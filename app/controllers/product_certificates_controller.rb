@@ -1,0 +1,2 @@
+class ProductCertificatesController < ApplicationController
+end
