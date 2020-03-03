@@ -4,6 +4,8 @@ class CreateProducts < ActiveRecord::Migration[5.2]
       t.string :name
       t.string :description
       t.string :brand
+      t.references :prod_category
+      t.references :user
       t.boolean :private_label
       t.float :weight_in_kg
       t.integer :nr_per_sku

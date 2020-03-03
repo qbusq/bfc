@@ -22,17 +22,23 @@ ActiveRecord::Schema.define(version: 2020_03_03_111750) do
   end
 
   create_table "company_certificates", force: :cascade do |t|
+    t.bigint "user_id"
+    t.bigint "certificate_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["certificate_id"], name: "index_company_certificates_on_certificate_id"
+    t.index ["user_id"], name: "index_company_certificates_on_user_id"
   end
 
   create_table "offer_lines", force: :cascade do |t|
     t.float "quantity_in_tons"
+    t.bigint "offer_id"
     t.boolean "alternative_to_target"
     t.float "full_truck_price_per_kg"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "target_offer_line_id"
+    t.index ["offer_id"], name: "index_offer_lines_on_offer_id"
   end
 
   create_table "offers", force: :cascade do |t|
@@ -41,11 +47,17 @@ ActiveRecord::Schema.define(version: 2020_03_03_111750) do
     t.date "end_date"
     t.string "remark"
     t.string "status"
+    t.bigint "from_user_id"
+    t.bigint "to_user_id"
+    t.bigint "offer_request_id_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "from_user"
     t.integer "to_user"
     t.integer "offer_request_id"
+    t.index ["from_user_id"], name: "index_offers_on_from_user_id"
+    t.index ["offer_request_id_id"], name: "index_offers_on_offer_request_id_id"
+    t.index ["to_user_id"], name: "index_offers_on_to_user_id"
   end
 
   create_table "prod_categories", force: :cascade do |t|
@@ -57,20 +69,28 @@ ActiveRecord::Schema.define(version: 2020_03_03_111750) do
   end
 
   create_table "product_certificates", force: :cascade do |t|
+    t.bigint "certificate_id"
+    t.bigint "product_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["certificate_id"], name: "index_product_certificates_on_certificate_id"
+    t.index ["product_id"], name: "index_product_certificates_on_product_id"
   end
 
   create_table "products", force: :cascade do |t|
     t.string "name"
     t.string "description"
     t.string "brand"
+    t.bigint "prod_category_id"
+    t.bigint "user_id"
     t.boolean "private_label"
     t.float "weight_in_kg"
     t.integer "nr_per_sku"
     t.string "prod_specification_pdf"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["prod_category_id"], name: "index_products_on_prod_category_id"
+    t.index ["user_id"], name: "index_products_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -82,7 +102,7 @@ ActiveRecord::Schema.define(version: 2020_03_03_111750) do
     t.string "company_name"
     t.string "address"
     t.string "country"
-    t.string "type"
+    t.string "user_type"
     t.boolean "seller"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

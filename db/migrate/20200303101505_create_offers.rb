@@ -6,6 +6,9 @@ class CreateOffers < ActiveRecord::Migration[5.2]
       t.date :end_date
       t.string :remark
       t.string :status
+      t.references :from_user
+      t.references :to_user
+      t.references :offer_request_id
 
       t.timestamps
     end

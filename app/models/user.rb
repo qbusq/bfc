@@ -6,5 +6,5 @@ class User < ApplicationRecord
   has_many :company_certificates, dependent: :destroy
   has_many :offers, dependent: :destroy
   has_many :products, dependent: :destroy
-  validates :type, inclusion: { in: ["processor", "food service", "retail"] }
+  validates :user_type, inclusion: { in: ['processor', 'food_service', 'retail']}
 end
