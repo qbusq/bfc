@@ -35,7 +35,7 @@ class DeviseCreateUsers < ActiveRecord::Migration[5.2]
       t.string :company_name
       t.string :address
       t.string :country
-      t.string :type
+      t.string :user_type
       t.boolean :seller
 
       t.timestamps null: false

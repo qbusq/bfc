@@ -1,2 +1,13 @@
-<h1>Products#new</h1>
-<p>Find me in app/views/products/new.html.erb</p>
+<h1>Register a new product</h1>
+<%= simple_form_for  [@product] do |f| %>
+  <%= f.input :name %>
+  <%= f.input :description %>
+  <%= f.input :brand %>
+  <%= f.association :prod_category, label: 'Product category' %>
+  <%= f.input :private_label, label: 'The product is produced under a private label' %>
+  <%= f.input :weight_in_kg, label: 'Weight of the product (kg)' %>
+  <%= f.input :nr_per_sku, label: 'SKU (stock-keeping-unit) number' %>
+  <%= f.input :prod_specification_pdf, label: 'Detailed product speficiations' %>
+  <%= f.hidden_field :user_id, value: current_user.id %>
+  <%= f.submit  "Register a product", class: "btn btn-primary" %>
+<% end %>
