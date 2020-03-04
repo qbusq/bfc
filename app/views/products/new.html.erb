@@ -7,7 +7,7 @@
   <%= f.input :private_label, label: 'The product is produced under a private label' %>
   <%= f.input :weight_in_kg, label: 'Weight of the product (kg)' %>
   <%= f.input :nr_per_sku, label: 'SKU (stock-keeping-unit) number' %>
-  <%= f.input :prod_specification_pdf, label: 'Detailed product speficiations' %>
+  <%= f.input :prod_specification_pdf, as: :file, label: 'Detailed product speficiations' %>
   <%= f.input :photo, as: :file %>
   <%= f.hidden_field :user_id, value: current_user.id %>
   <%= f.submit  "Register a product", class: "btn btn-primary" %>

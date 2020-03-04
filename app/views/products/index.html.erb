@@ -1,5 +1,6 @@
 <div class="container">
   <h1>All products</h1>
+  <div class="display-container">
   <% @products.each do |product| %>
     <div class="card-product">
       <% unless product.photo.attached? %>
@@ -32,7 +33,9 @@
                 </div>
                 <div class="modal-body">
                   <p><%= product.description %></p>
-                  <p>Download the product specifications: </p> <%= product.prod_specification_pdf %>
+                  <% if product.prod_specification_pdf.attached? %>
+                    <a href="<%= url_for(product.prod_specification_pdf) %>"><i class="fas fa-file-download"></i> Download the product specifications</a>
+                  <% end %>
                 </div>
               </div>
             </div>
@@ -41,4 +44,5 @@
       </div>
     </div>
   <% end %>
+  </div>
 </div>
