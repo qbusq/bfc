@@ -10,17 +10,20 @@ require 'nokogiri'
 
 file      = File.open('./lib/food.xml')
 document  = Nokogiri::XML(file)
+array = []
 
 document.search('//brick').each do |brick|
   gpc_brick = brick.attribute('code').value
   brick_description = brick.attribute('text').value
-  ProdCategory.create([
-    {
+   prod_c = ProdCategory.create(
       gpc_brick: gpc_brick,
       brick_description: brick_description
-   }])
-
+   )
+  array << prod_c if gpc_brick == '10000270' || gpc_brick == '10000204'
 end
+
+ProdCategory.where gpc_brick: ['10000204', '10000270']
+# ==> the id's are 233 and 236
 
 require 'json'
 require 'open-uri'
