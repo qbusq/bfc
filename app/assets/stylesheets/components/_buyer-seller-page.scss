@@ -1,0 +1,72 @@
+$primary: rgb(100, 191, 255);
+
+.buyer-page, .seller-page {
+  height: 100vh;
+  max-width: 700px;
+  margin: auto;
+}
+
+.buyer-upper-div, .seller-upper-div {
+  background-color: $primary;
+  margin: 20px 0;
+  border-radius: 5px;
+  padding: 8px 30px;
+  // border-bottom: 2px solid black;
+}
+
+.buyer-header, .seller-header {
+  color: white;
+  margin: 0;
+  text-align: center;
+}
+
+.buyer-middle-div, .seller-middle-div {
+  height: 65vh;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-gap: 10px;
+}
+
+@media(max-width: 600px) {
+  .buyer-middle-div, .seller-middle-div {
+    grid-template-columns: 1fr;
+  }
+}
+
+.seller-middle-div-card, .buyer-middle-div-card {
+  box-shadow: 0 0 5px black;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.card-content {
+  text-align: center;
+  margin: 10px;
+}
+
+.card-content h5 {
+  font-size: 30px;
+}
+
+.card-icon {
+  text-align: center;
+  margin: 10px;
+}
+
+.icon {
+  font-size: 40px;
+}
+
+.buyer-lower-div, .seller-lower-div {
+  background-color: $primary;
+  margin: 20px 0;
+  border-radius: 5px;
+  padding: 8px 30px;
+}
+
+.buyer-footer, .seller-footer {
+  color: white;
+  margin: 0;
+  text-align: center;
+}

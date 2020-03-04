@@ -1,0 +1,80 @@
+$primary: rgb(239, 81, 19);
+
+.banner {
+  height: 100vh;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+.banner-upper-div {
+  display: flex;
+  flex-direction: column;
+}
+
+.login-button-div {
+  align-self: flex-end;
+  margin: 15px;
+  position: -webkit-sticky;
+  position: sticky;
+  top: 15px;
+  box-shadow: 0 0 10px black;
+}
+
+.login-button {
+  color: white;
+  background-color: $primary;
+  padding: 8px 40px;
+  border-radius: 5px;
+}
+
+@media (max-width: 800px) {
+  .login-button {
+  padding: 8px 20px;
+  }
+}
+
+.login-button:hover {
+  color: white;
+  text-decoration: none;
+}
+
+.banner-middle-div {
+  height: 79vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.title-center-div {
+  align-self: center;
+  text-position: center;
+}
+
+.title {
+ color: white;
+ text-decoration: underline;
+ font-size: 40px;
+ line-height: 60px;
+ text-shadow: 0 0 10px black;
+}
+
+.subtitle {
+  color: white;
+  text-shadow: 0 0 10px black;
+}
+
+.banner-lower-div {
+  display: flex;
+  flex-direction: column;
+}
+
+.buyer-seller-div {
+  align-self: center;
+  margin: 15px;
+}
+
+.buyer-seller-button {
+  margin-right: 10px;
+  margin-left: 10px;
+  box-shadow: 0 0 10px black;
+}
