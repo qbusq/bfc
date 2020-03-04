@@ -5,8 +5,15 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
-ProdCategory.destroy_all
+User.destroy_all
+Offer.destroy_all
+OfferLine.destroy_all
+Product.destroy_all
+Certificate.destroy_all
+CompanyCertificate.destroy_all
+ProductCertificate.destroy_all
 
+ProdCategory.destroy_all
 require 'nokogiri'
 
 file      = File.open('./lib/food.xml')
@@ -16,11 +23,11 @@ array = []
 document.search('//brick').each do |brick|
   gpc_brick = brick.attribute('code').value
   brick_description = brick.attribute('text').value
-   prod_c = ProdCategory.create(
-      gpc_brick: gpc_brick,
-      brick_description: brick_description
-   )
-  array << prod_c if gpc_brick == '10000270' || gpc_brick == '10000204'
+  p ProdCategory.create!([
+    {
+      gpc_brick: gpc_brick.to_i,
+     brick_description: brick_description
+   }])
 end
 
 ProdCategory.where gpc_brick: ['10000204', '10000270']
@@ -37,569 +44,595 @@ user.each do |a|
 all_countries << a["name"]
 end
 
-# User.destroy_all
-# Offer.destroy_all
-# OfferLine.destroy_all
-# Product.destroy_all
-# Certificate.destroy_all
-# CompanyCertificate.destroy_all
-# ProductCertificate.destroy_all
+seller1 = User.create!(
+  {
+    email: 'seller1@gmail.com',
+    password: '123456abc!',
+    company_name: 'Veggie Company',
+    address: 'Veldstraat 10, Roeselare',
+    country: 'Belgium',
+    user_type: 'processor',
+    seller: true
+ })
 
-# users = User.create([
-#   {
-#     email: 'seller1@gmail.com',
-#     password: '123456abc!',
-#     company_name: 'Veggie Company',
-#     address: 'Veldstraat 10, Roeselare',
-#     country: 'Belgium',
-#     user_type: 'processor',
-#     seller: true
-#  },
-#   {
-#     email: 'seller2@gmail.com',
-#     password: '654321abc!',
-#     company_name: 'Fruity & Co',
-#     address: 'Rue de fruits, 13, Arlon',
-#     country: 'Belgium',
-#     user_type: 'processor',
-#     seller: true
-#  },
-#   {
-#     email: 'buyer1@gmail.com',
-#     password: '147852abc!',
-#     company_name: 'La Biscuiterie',
-#     address: 'Rue du Biscuit 5, Lyon',
-#     country: 'France',
-#     user_type: 'processor',
-#     seller: false
-#  },
-#   {
-#     email: 'buyer2@gmail.com',
-#     password: '369852abc!',
-#     company_name: 'Gastro Gut Essen',
-#     address: 'Ludwigstrasse 11, Hamburg',
-#     country: 'Germany',
-#     user_type: 'food service',
-#     seller: false
-#  }
-# ])
+seller2 = User.create!(
+  {
+    email: 'seller2@gmail.com',
+    password: '654321abc!',
+    company_name: 'Fruity & Co',
+    address: 'Rue de fruits, 13, Arlon',
+    country: 'Belgium',
+    user_type: 'processor',
+    seller: true
+ })
 
-# offers = Offer.create([
-#   {
-#     from_user: 4,
-#     date: Date.new(2020,3,3),
-#     start_date: Date.new(2020,7,1),
-#     end_date: Date.new(2020,6,30),
-#     remark: 'Please consult the general terms and conditions that apply to this offer request on our website.',
-#     status: 'requested'
-#   },
-#   {
-#     from_user: 1,
-#     to_user: 4,
-#     date: Date.new(2020,3,5),
-#     start_date: Date.new(2020,7,1),
-#     end_date: Date.new(2020,6,30),
-#     remark: 'Offer subject to unsold',
-#     offer_request_id: 1,
-#     follow_up_on_offer: 1,
-#     status: 'sent'
-#   },
-#   {
-#     from_user: 2,
-#     to_user: 4,
-#     date: Date.new(2020,3,6),
-#     start_date: Date.new(2020,7,1),
-#     end_date: Date.new(2020,6,30),
-#     remark: 'Offer subject to unsold',
-#     offer_request_id: 1,
-#     follow_up_on_offer: 1,
-#     status: 'sent'
-#   },
-#   {
-#     from_user: 4,
-#     to_user: 1,
-#     date: Date.new(2020,3,15),
-#     start_date: Date.new(2020,7,1),
-#     end_date: Date.new(2020,6,30),
-#     remark: 'Please consult the general terms and conditions that apply to this offer request on our website.',
-#     offer_request_id: 1,
-#     follow_up_on_offer: 2,
-#     status: 'sent'
-#   },
-#   {
-#     from_user: 1,
-#     to_user: 4,
-#     date: Date.new(2020,3,17),
-#     start_date: Date.new(2020,7,1),
-#     end_date: Date.new(2020,6,30),
-#     remark: 'Offer subject to unsold',
-#     offer_request_id: 1,
-#     follow_up_on_offer: 4,
-#     status: 'sent'
-#   },
-#   {
-#     from_user: 4,
-#     to_user: 1,
-#     date: Date.new(2020,3,20),
-#     start_date: Date.new(2020,7,1),
-#     end_date: Date.new(2020,6,30),
-#     remark: 'Please consult the general terms and conditions that apply to this offer request on our website.',
-#     offer_request_id: 1,
-#     follow_up_on_offer: 5,
-#     status: 'accepted'
-#   },
-#   {
-#     from_user: 1,
-#     to_user: 4,
-#     date: Date.new(2020,3,21),
-#     start_date: Date.new(2020,7,1),
-#     end_date: Date.new(2020,6,30),
-#     remark: 'Offer subject to unsold',
-#     offer_request_id: 1,
-#     follow_up_on_offer: 6,
-#     status: 'confirmed'
-#   },
-#   {
-#     from_user: 2,
-#     to_user: 3,
-#     date: Date.new(2020,3,9),
-#     start_date: Date.new(2020,4,1),
-#     end_date: Date.new(2020,4,30),
-#     remark: 'Offer subject to unsold',
-#     status: 'sent'
-#   }
-# ])
+buyer1 = User.create!(
+  {
+    email: 'buyer1@gmail.com',
+    password: '147852abc!',
+    company_name: 'La Biscuitrie',
+    address: 'Rue du Biscuit 5, Lyon',
+    country: 'France',
+    user_type: 'processor',
+    seller: false
+ })
 
-# offer_lines = OfferLine.create([
-#   {
-#     offer_id: 1,
-#     product_id: 1,
-#     quantity_in_tons: 100,
-#     target_offer_line_id: 1
-#   },
-#   {
-#     offer_id: 1,
-#     product_id: 2,
-#     quantity_in_tons: 60,
-#     target_offer_line_id: 2
-#   },
-#   {
-#     offer_id: 1,
-#     product_id: 3,
-#     quantity_in_tons: 25,
-#     target_offer_line_id: 3
-#   },
-#   {
-#     offer_id: 2,
-#     product_id: 4,
-#     quantity_in_tons: 100,
-#     target_offer_line_id: 1,
-#     alternative_to_target: false,
-#     price: 0.69
-#   },
-#   {
-#     offer_id: 2,
-#     product_id: 5,
-#     quantity_in_tons: 60,
-#     target_offer_line_id: 2,
-#     alternative_to_target: true,
-#     price: 0.55
-#   },
-#   {
-#     offer_id: 2,
-#     product_id: 3,
-#     quantity_in_tons: 25,
-#     target_offer_line_id: 3,
-#     alternative_to_target: false,
-#     price: 0.62
-#   },
-#   {
-#     offer_id: 3,
-#     product_id: 6,
-#     quantity_in_tons: 100,
-#     target_offer_line_id: 1,
-#     alternative_to_target: false,
-#     price: 0.78
-#   },
-#   {
-#     offer_id: 3,
-#     product_id: 2,
-#     quantity_in_tons: 60,
-#     target_offer_line_id: 2,
-#     alternative_to_target: false,
-#     price: 0.62
-#   },
-#   {
-#     offer_id: 3,
-#     product_id: 7,
-#     quantity_in_tons: 25,
-#     target_offer_line_id: 3,
-#     alternative_to_target: true,
-#     price: 0.5
-#   },
-#   {
-#     offer_id: 4,
-#     product_id: 4,
-#     quantity_in_tons: 100,
-#     target_offer_line_id: 1,
-#     alternative_to_target: false,
-#     price: 0.66
-#   },
-#   {
-#     offer_id: 4,
-#     product_id: 2,
-#     quantity_in_tons: 60,
-#     target_offer_line_id: 2,
-#     alternative_to_target: false,
-#     price: 0.5
-#   },
-#   {
-#     offer_id: 4,
-#     product_id: 3,
-#     quantity_in_tons: 25,
-#     target_offer_line_id: 3,
-#     alternative_to_target: false,
-#     price: 0.6
-#   },
-#   {
-#     offer_id: 5,
-#     product_id: 4,
-#     quantity_in_tons: 100,
-#     target_offer_line_id: 1,
-#     alternative_to_target: false,
-#     price: 0.68
-#   },
-#   {
-#     offer_id: 5,
-#     product_id: 2,
-#     quantity_in_tons: 60,
-#     target_offer_line_id: 2,
-#     alternative_to_target: false,
-#     price: 0.65
-#   },
-#   {
-#     offer_id: 5,
-#     product_id: 5,
-#     quantity_in_tons: 60,
-#     target_offer_line_id: 2,
-#     alternative_to_target: true,
-#     price: 0.51
-#   },
-#   {
-#     offer_id: 5,
-#     product_id: 3,
-#     quantity_in_tons: 25,
-#     target_offer_line_id: 3,
-#     alternative_to_target: false,
-#     price: 0.65
-#   },
-#   {
-#     offer_id: 6,
-#     product_id: 4,
-#     quantity_in_tons: 100,
-#     target_offer_line_id: 1,
-#     alternative_to_target: false,
-#     price: 0.65
-#   },
-#   {
-#     offer_id: 6,
-#     product_id: 5,
-#     quantity_in_tons: 60,
-#     target_offer_line_id: 2,
-#     alternative_to_target: true,
-#     price: 0.5
-#   },
-#   {
-#     offer_id: 6,
-#     product_id: 3,
-#     quantity_in_tons: 25,
-#     target_offer_line_id: 3,
-#     alternative_to_target: false,
-#     price: 0.63
-#   },
-#   {
-#     offer_id: 7,
-#     product_id: 4,
-#     quantity_in_tons: 100,
-#     target_offer_line_id: 1,
-#     alternative_to_target: false,
-#     price: 0.65
-#   },
-#   {
-#     offer_id: 7,
-#     product_id: 5,
-#     quantity_in_tons: 60,
-#     target_offer_line_id: 2,
-#     alternative_to_target: true,
-#     price: 0.5
-#   },
-#   {
-#     offer_id: 7,
-#     product_id: 3,
-#     quantity_in_tons: 25,
-#     target_offer_line_id: 3,
-#     alternative_to_target: false,
-#     price: 0.63
-#   },
-#   {
-#     offer_id: 8,
-#     product_id: 8,
-#     quantity_in_tons: 150,
-#     price: 2.45
-#   },
-#   {
-#     offer_id: 8,
-#     product_id: 9,
-#     quantity_in_tons: 240,
-#     price: 1.95
-#   }
-# ])
+buyer2 = User.create!(
+  {
+    email: 'buyer2@gmail.om',
+    password: '369852abc!',
+    company_name: 'Gastro Gut Essen',
+    address: 'Ludwigstrasse 11, Hamburg',
+    country: 'Germany',
+    user_type: 'food service',
+    seller: false
+ })
+
+p seller1
+p seller2
+p buyer1
+p buyer2
+
+puts 'Creating original offers_'
+
+p offer_request = Offer.create!(
+    from_user: buyer2,
+    date: Date.new(2020,3,3),
+    start_date: Date.new(2020,7,1),
+    end_date: Date.new(2020,6,30),
+    remark: 'Please consult the general terms and conditions that apply to this offer request on our website.',
+    status: 'requested'
+   )
+
+p offer1 = Offer.create!(
+    from_user: seller1,
+    to_user: buyer2,
+    date: Date.new(2020,3,5),
+    start_date: Date.new(2020,7,1),
+    end_date: Date.new(2020,6,30),
+    remark: 'Offer subject to unsold',
+    offer_request: offer_request,
+    follow_up_on_offer: offer_request,
+    status: 'sent'
+   )
+p offer2 = Offer.create!(
+    from_user: seller2,
+    to_user: buyer2,
+    date: Date.new(2020,3,6),
+    start_date: Date.new(2020,7,1),
+    end_date: Date.new(2020,6,30),
+    remark: 'Offer subject to unsold',
+    offer_request: offer_request,
+    follow_up_on_offer: offer_request,
+    status: 'sent'
+   )
+
+p counteroffer1 = Offer.create!(
+    from_user: buyer2,
+    to_user: seller1,
+    date: Date.new(2020,3,15),
+    start_date: Date.new(2020,7,1),
+    end_date: Date.new(2020,6,30),
+    remark: 'Please consult the general terms and conditions that apply to this offer request on our website.',
+    offer_request: offer_request,
+    follow_up_on_offer: offer1,
+    status: 'sent'
+   )
+
+p renewedoffer1 = Offer.create!(
+    from_user: seller1,
+    to_user: buyer2,
+    date: Date.new(2020,3,17),
+    start_date: Date.new(2020,7,1),
+    end_date: Date.new(2020,6,30),
+    remark: 'Offer subject to unsold',
+    offer_request: offer_request,
+    follow_up_on_offer: counteroffer1,
+    status: 'sent'
+   )
+p counteroffer2 = Offer.create!(
+    from_user: buyer2,
+    to_user: seller1,
+    date: Date.new(2020,3,20),
+    start_date: Date.new(2020,7,1),
+    end_date: Date.new(2020,6,30),
+    remark: 'Please consult the general terms and conditions that apply to this offer request on our website.',
+    offer_request: offer_request,
+    follow_up_on_offer: renewedoffer1,
+    status: 'accepted'
+   )
+
+p renewedoffer2 = Offer.create!(
+    from_user: seller1,
+    to_user: buyer2,
+    date: Date.new(2020,3,21),
+    start_date: Date.new(2020,7,1),
+    end_date: Date.new(2020,6,30),
+    remark: 'Offer subject to unsold',
+    offer_request: offer_request,
+    follow_up_on_offer: counteroffer2,
+    status: 'confirmed'
+   )
+
+p offer3 = Offer.create!(
+    from_user: seller2,
+    to_user: buyer1,
+    date: Date.new(2020,3,9),
+    start_date: Date.new(2020,4,1),
+    end_date: Date.new(2020,4,30),
+    remark: 'Offer subject to unsold',
+    status: 'sent'
+   )
 
 
-# products = Product.create([
-#   {
-#     name: 'Frozen peas – extra small',
-#     description: 'IQF peas <8mm',
-#     private_label: false,
-#     weight_in_kg: 2.5,
-#     nr_per_sku: 4,
-#     user_id: 4,
-#     prod_cat_id: 1,
-#     prod_specification_pdf: 'someurl1'
-#   },
-#   {
-#     name: 'Frozen carrot dices',
-#     description: 'IQF carrot dices 10x10mm',
-#     brand: ' GutChef',
-#     private_label: true,
-#     weight_in_kg: 2.5,
-#     nr_per_sku: 4,
-#     user_id: 4,
-#     prod_cat_id: 1,
-#     prod_specification_pdf: 'someurl2'
-#   },
-#   {
-#     name: 'Frozen broken beans',
-#     description: 'IQF green beans cut 26mm',
-#     brand: 'GutChef',
-#     private_label: true,
-#     weight_in_kg: 2.5,
-#     nr_per_sku: 4,
-#     user_id: 4,
-#     prod_cat_id: 1,
-#     prod_specification_pdf: 'someurl3'
-#   },
-#   {
-#     name: 'Frozen garden peas – extra small',
-#     description: 'IQF garden peas: 7 - 8mm',
-#     brand: 'Veggie',
-#     private_label: false,
-#     weight_in_kg: 2.5,
-#     nr_per_sku: 4,
-#     user_id: 1,
-#     prod_cat_id: 1,
-#     prod_specification_pdf: 'someurl4'
-#   },
-#   {
-#     name: 'Frozen carrot cubes',
-#     description: 'IQF carrots diced 10x10mm',
-#     brand: 'Veggie',
-#     private_label: false,
-#     weight_in_kg: 5,
-#     nr_per_sku: 2,
-#     user_id: 1,
-#     prod_cat_id: 1,
-#     prod_specification_pdf: 'someurl5'
-#   },
-#   {
-#     name: 'Petit pois',
-#     description: 'Frozen peas extra small (7.5 – 8 mm)',
-#     brand: 'Fruity',
-#     private_label: false,
-#     weight_in_kg: 2.5,
-#     nr_per_sku: 4,
-#     user_id: 2,
-#     prod_cat_id: 1,
-#     prod_specification_pdf: 'someurl6'
-#   },
-#   {
-#     name: 'Frozen cut beans',
-#     description: 'IQF beans cut 26mm',
-#     brand: 'Fruity',
-#     private_label: false,
-#     weight_in_kg: 10,
-#     nr_per_sku: 1,
-#     user_id: 2,
-#     prod_cat_id: 1,
-#     prod_specification_pdf: 'someurl7'
-#   },
-#   {
-#     name: 'IQF bio sourcherries',
-#     description: 'IQF bio sourcherries halves pitless',
-#     weight_in_kg: 25,
-#     nr_per_sku: 1,
-#     user_id: 2,
-#     prod_cat_id: 2,
-#     prod_specification_pdf: 'someurl8'
-#   },
-#   {
-#     name: 'IQF bio blueberries',
-#     description: 'IQF bio blueberries B quality',
-#     weight_in_kg: 10,
-#     nr_per_sku: 1,
-#     user_id: 2,
-#     prod_cat_id: 2,
-#     prod_specification_pdf: 'someurl9'
-#   }
-# ])
+p peas1 = Product.create!(
+    name: 'Frozen peas – extra small',
+    description: 'IQF peas <8mm',
+    private_label: false,
+    weight_in_kg: 2.5,
+    nr_per_sku: 4,
+    user: buyer2,
+    prod_category_id: 233
+   )
+
+p carrots1 = Product.create!(
+    name: 'Frozen carrot dices',
+    description: 'IQF carrot dices 10x10mm',
+    brand: ' GutChef',
+    private_label: true,
+    weight_in_kg: 2.5,
+    nr_per_sku: 4,
+    user: buyer2,
+    prod_category_id: 233
+   )
+
+p beans1 = Product.create(
+    name: 'Frozen broken beans',
+    description: 'IQF green beans cut 26mm',
+    brand: 'GutChef',
+    private_label: true,
+    weight_in_kg: 2.5,
+    nr_per_sku: 4,
+    prod_category_id: 233,
+    user: buyer2
+   )
+
+p peas2 = Product.create(
+    name: 'Frozen garden peas – extra small',
+    description: 'IQF garden peas: 7 - 8mm',
+    brand: 'Veggie',
+    private_label: false,
+    weight_in_kg: 2.5,
+    nr_per_sku: 4,
+    user: seller1,
+    prod_category_id: 233
+   )
+
+p carrots2 = Product.create(
+    name: 'Frozen carrot cubes',
+    description: 'IQF carrots diced 10x10mm',
+    brand: 'Veggie',
+    private_label: false,
+    weight_in_kg: 5,
+    nr_per_sku: 2,
+    user: seller1,
+    prod_category_id: 233
+   )
+
+p peas3 = Product.create(
+    name: 'Petit pois',
+    description: 'Frozen peas extra small (7.5 – 8 mm)',
+    brand: 'Fruity',
+    private_label: false,
+    weight_in_kg: 2.5,
+    nr_per_sku: 4,
+    user: seller2,
+    prod_category_id: 233
+   )
+
+p beans2 = Product.create(
+    name: 'Frozen cut beans',
+    description: 'IQF beans cut 26mm',
+    brand: 'Fruity',
+    private_label: false,
+    weight_in_kg: 10,
+    nr_per_sku: 1,
+    user: seller2,
+    prod_category_id: 233
+   )
+
+p cherries = Product.create(
+    name: 'IQF bio sourcherries',
+    description: 'IQF bio sourcherries halves pitless',
+    weight_in_kg: 25,
+    nr_per_sku: 1,
+    user: seller2,
+    prod_category_id: 236
+   )
+
+p berries = Product.create(
+    name: 'IQF bio blueberries',
+    description: 'IQF bio blueberries B quality',
+    weight_in_kg: 10,
+    nr_per_sku: 1,
+    user: seller2,
+    prod_category_id: 236
+   )
+
+p offer_line1 = OfferLine.create!(
+    offer: offer_request,
+    product: peas1,
+    quantity_in_tons: 100
+   )
+
+p offer_line2 = OfferLine.create!(
+    offer: offer_request,
+    product: carrots1,
+    quantity_in_tons: 60
+   )
+
+p offer_line3 = OfferLine.create!(
+    offer: offer_request,
+    product: beans1,
+    quantity_in_tons: 25
+   )
+
+p offer_line4 = OfferLine.create!(
+    offer: offer1,
+    product: peas2,
+    quantity_in_tons: 100,
+    target_offer_line: offer_line1,
+    alternative_to_target: false,
+    price: 0.69
+   )
+
+p offer_line5 = OfferLine.create!(
+    offer: offer1,
+    product: carrots2,
+    quantity_in_tons: 60,
+    target_offer_line: offer_line2,
+    alternative_to_target: true,
+    price: 0.55
+   )
+
+p offer_line6 = OfferLine.create!(
+    offer: offer1,
+    product: beans1,
+    quantity_in_tons: 25,
+    target_offer_line: offer_line3,
+    alternative_to_target: false,
+    price: 0.62
+   )
+
+p offer_line7 = OfferLine.create!(
+    offer: offer2,
+    product: peas3,
+    quantity_in_tons: 100,
+    target_offer_line: offer_line1,
+    alternative_to_target: false,
+    price: 0.78
+   )
+
+p offer_line8 = OfferLine.create!(
+    offer: offer2,
+    product: carrots1,
+    quantity_in_tons: 60,
+    target_offer_line: offer_line2,
+    alternative_to_target: false,
+    price: 0.62
+   )
+
+p offer_line9 = OfferLine.create!(
+    offer: offer2,
+    product: beans2,
+    quantity_in_tons: 25,
+    target_offer_line: offer_line3,
+    alternative_to_target: true,
+    price: 0.5
+   )
+
+p offer_line10 = OfferLine.create!(
+    offer: counteroffer1,
+    product: peas2,
+    quantity_in_tons: 100,
+    target_offer_line: offer_line1,
+    alternative_to_target: false,
+    price: 0.66
+   )
+
+p offer_line11 = OfferLine.create!(
+    offer: counteroffer1,
+    product: carrots1,
+    quantity_in_tons: 60,
+    target_offer_line: offer_line2,
+    alternative_to_target: false,
+    price: 0.5
+   )
+
+p offer_line12 = OfferLine.create!(
+    offer: counteroffer1,
+    product: beans1,
+    quantity_in_tons: 25,
+    target_offer_line: offer_line3,
+    alternative_to_target: false,
+    price: 0.6
+   )
+
+p offer_line13 = OfferLine.create!(
+    offer: renewedoffer1,
+    product: peas2,
+    quantity_in_tons: 100,
+    target_offer_line: offer_line1,
+    alternative_to_target: false,
+    price: 0.68
+   )
+
+p offer_line14 = OfferLine.create!(
+    offer: renewedoffer1,
+    product: carrots1,
+    quantity_in_tons: 60,
+    target_offer_line: offer_line2,
+    alternative_to_target: false,
+    price: 0.65
+   )
+
+p offer_line15 = OfferLine.create!(
+    offer: renewedoffer1,
+    product: carrots2,
+    quantity_in_tons: 60,
+    target_offer_line: offer_line2,
+    alternative_to_target: true,
+    price: 0.51
+   )
+
+p offer_line16 = OfferLine.create!(
+    offer: renewedoffer1,
+    product: beans1,
+    quantity_in_tons: 25,
+    target_offer_line: offer_line3,
+    alternative_to_target: false,
+    price: 0.65
+   )
+
+p offer_line17 = OfferLine.create!(
+    offer: counteroffer2,
+    product: peas2,
+    quantity_in_tons: 100,
+    target_offer_line: offer_line1,
+    alternative_to_target: false,
+    price: 0.65
+   )
+
+p offer_line18 = OfferLine.create!(
+    offer: counteroffer2,
+    product: carrots2,
+    quantity_in_tons: 60,
+    target_offer_line: offer_line2,
+    alternative_to_target: true,
+    price: 0.5
+   )
+
+p offer_line19 = OfferLine.create!(
+    offer: counteroffer2,
+    product: beans1,
+    quantity_in_tons: 25,
+    target_offer_line: offer_line3,
+    alternative_to_target: false,
+    price: 0.63
+   )
+
+p offer_line20 = OfferLine.create!(
+    offer: renewedoffer2,
+    product: peas2,
+    quantity_in_tons: 100,
+    target_offer_line: offer_line1,
+    alternative_to_target: false,
+    price: 0.65
+   )
+
+p offer_line21 = OfferLine.create!(
+    offer: renewedoffer2,
+    product: carrots2,
+    quantity_in_tons: 60,
+    target_offer_line: offer_line2,
+    alternative_to_target: true,
+    price: 0.5
+   )
+
+p offer_line22 = OfferLine.create!(
+    offer: renewedoffer2,
+    product: beans1,
+    quantity_in_tons: 25,
+    target_offer_line: offer_line3,
+    alternative_to_target: false,
+    price: 0.63
+   )
+
+p offer_line23 = OfferLine.create!(
+    offer: offer3,
+    product: cherries,
+    quantity_in_tons: 150,
+    price: 2.45
+   )
+
+p offer_line24 = OfferLine.create!(
+    offer: offer3,
+    product: berries,
+    quantity_in_tons: 240,
+    price: 1.95
+   )
+
+p certificate1 = Certificate.create(
+    name: 'BRC'
+   )
+
+p certificate2 = Certificate.create(
+    name: 'ISO'
+   )
+
+p certificate3 = Certificate.create(
+    name: 'IFS'
+   )
+
+p certificate4 = Certificate.create(
+    name: 'Halal'
+   )
+
+p certificate5 = Certificate.create(
+    name: 'Kosher'
+   )
+
+p certificate6 = Certificate.create(
+    name: 'bio'
+   )
+
+p certificate7 = Certificate.create(
+    name: 'organic'
+   )
+
+p certificate8 = Certificate.create(
+    name: 'non-GMO'
+   )
 
 
-# certificates = Certificate.create([
-#   {
-#     name: 'BRC'
-#   },
-#   {
-#     name: 'ISO'
-#   },
-#   {
-#     name: 'IFS'
-#   },
-#   {
-#     name: 'Halal'
-#   },
-#   {
-#     name: 'Kosher'
-#   },
-#   {
-#     name: 'bio'
-#   },
-#   {
-#     name: 'organic'
-#   },
-#   {
-#     name: 'non-GMO'
-#   }
-# ])
+p company_certificates = CompanyCertificate.create!([
+  {
+    user: seller1,
+    certificate: certificate1
+  },
+  {
+    user: seller1,
+    certificate: certificate2
+  },
+  {
+    user: seller1,
+    certificate: certificate3
+  },
+  {
+    user: seller1,
+    certificate: certificate4
+  },
+  {
+    user: seller1,
+    certificate: certificate5
+  },
+  {
+    user: seller2,
+    certificate: certificate1
+  },
+  {
+    user: seller2,
+    certificate: certificate3
+  },
+  {
+    user: buyer1,
+    certificate: certificate2
+  },
+  {
+    user: buyer1,
+    certificate: certificate4
+  },
+  {
+    user: buyer1,
+    certificate: certificate5
+  }
+])
 
 
-# company_certificates = CompanyCertificate.create([
-#   {
-#     user_id: 1,
-#     certificate_id: 1
-#   },
-#   {
-#     user_id: 1,
-#     certificate_id: 2
-#   },
-#   {
-#     user_id: 1,
-#     certificate_id: 3
-#   },
-#   {
-#     user_id: 1,
-#     certificate_id: 4
-#   },
-#   {
-#     user_id: 1,
-#     certificate_id: 5
-#   },
-#   {
-#     user_id: 2,
-#     certificate_id: 1
-#   },
-#   {
-#     user_id: 2,
-#     certificate_id: 3
-#   },
-#   {
-#     user_id: 3,
-#     certificate_id: 2
-#   },
-#   {
-#     user_id: 3,
-#     certificate_id: 4
-#   },
-#   {
-#     user_id: 3,
-#     certificate_id: 5
-#   }
-# ])
-
-
-# product_certificates = ProductCertificate.create([
-#   {
-#     product_id: 1,
-#     certificate_id: 5
-#   },
-#   {
-#     product_id: 1,
-#     certificate_id: 7
-#   },
-#   {
-#     product_id: 1,
-#     certificate_id: 8
-#   },
-#   {
-#     product_id: 2,
-#     certificate_id: 8
-#   },
-#   {
-#     product_id: 3,
-#     certificate_id: 6
-#   },
-#   {
-#     product_id: 3,
-#     certificate_id: 8
-#   },
-#   {
-#     product_id: 4,
-#     certificate_id: 5
-#   },
-#   {
-#     product_id: 4,
-#     certificate_id: 7
-#   },
-#   {
-#     product_id: 4,
-#     certificate_id: 8
-#   },
-#   {
-#     product_id: 5,
-#     certificate_id: 8
-#   },
-#   {
-#     product_id: 6,
-#     certificate_id: 5
-#   },
-#   {
-#     product_id: 6,
-#     certificate_id: 7
-#   },
-#   {
-#     product_id: 6,
-#     certificate_id: 8
-#   },
-#   {
-#     product_id: 7,
-#     certificate_id: 8
-#   },
-#   {
-#     product_id: 8,
-#     certificate_id: 6
-#   },
-#   {
-#     product_id: 8,
-#     certificate_id: 8
-#   },
-#   {
-#     product_id: 9,
-#     certificate_id: 6
-#   },
-#   {
-#     product_id: 9,
-#     certificate_id: 8
-#   }
-# ])
+p product_certificates = ProductCertificate.create!([
+  {
+    product: peas1,
+    certificate: certificate5
+  },
+  {
+    product: peas1,
+    certificate: certificate7
+  },
+  {
+    product: peas1,
+    certificate: certificate8
+  },
+  {
+    product: carrots1,
+    certificate: certificate8
+  },
+  {
+    product: beans1,
+    certificate: certificate6
+  },
+  {
+    product: beans1,
+    certificate: certificate8
+  },
+  {
+    product: peas2,
+    certificate: certificate5
+  },
+  {
+    product: peas2,
+    certificate: certificate7
+  },
+  {
+    product: peas2,
+    certificate: certificate8
+  },
+  {
+    product: carrots2,
+    certificate: certificate8
+  },
+  {
+    product: peas3,
+    certificate: certificate5
+  },
+  {
+    product: peas3,
+    certificate: certificate7
+  },
+  {
+    product: peas3,
+    certificate: certificate8
+  },
+  {
+    product: beans2,
+    certificate: certificate8
+  },
+  {
+    product: cherries,
+    certificate: certificate6
+  },
+  {
+    product: cherries,
+    certificate: certificate8
+  },
+  {
+    product: berries,
+    certificate: certificate6
+  },
+  {
+    product: berries,
+    certificate: certificate8
+  }
+])
 
 
 
