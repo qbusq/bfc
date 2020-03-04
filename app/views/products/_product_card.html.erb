@@ -32,7 +32,7 @@
                     <div class="modal-body">
                       <p><%= @product.description %></p>
                       <% if @product.prod_specification_pdf.attached? %>
-                        <a href="<%= url_for(@product.prod_specification_pdf) %>"><i class="fas fa-file-download"></i>Download the product specifications</a>
+                        <a href="<%= url_for(@product.prod_specification_pdf) %>"><i class="fas fa-file-download"></i> Download the product specifications</a>
                       <% end %>
                     </div>
                   </div>
