@@ -5,6 +5,13 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+User.destroy_all
+Offer.destroy_all
+OfferLine.destroy_all
+Product.destroy_all
+Certificate.destroy_all
+CompanyCertificate.destroy_all
+ProductCertificate.destroy_all
 
 ProdCategory.destroy_all
 require 'nokogiri'
@@ -20,7 +27,6 @@ document.search('//brick').each do |brick|
       gpc_brick: gpc_brick.to_i,
      brick_description: brick_description
    }])
-
 end
 
 require 'json'
@@ -33,13 +39,7 @@ all_countries = []
 user.each do |a|
 all_countries << a["name"]
 end
-User.destroy_all
-Offer.destroy_all
-OfferLine.destroy_all
-Product.destroy_all
-Certificate.destroy_all
-CompanyCertificate.destroy_all
-ProductCertificate.destroy_all
+
 seller1 = User.create!(
   {
     email: 'seller1@gmail.com',
@@ -275,208 +275,205 @@ p berries = Product.create(
     prod_category_id: 236
    )
 
-p offer_line1 = OfferLine.create(
-    offer_id: offer_request,
+p offer_line1 = OfferLine.create!(
+    offer: offer_request,
     product: peas1,
+    quantity_in_tons: 100
+   )
+
+p offer_line2 = OfferLine.create!(
+    offer: offer_request,
+    product: carrots1,
+    quantity_in_tons: 60
+   )
+
+p offer_line3 = OfferLine.create!(
+    offer: offer_request,
+    product: beans1,
+    quantity_in_tons: 25
+   )
+
+p offer_line4 = OfferLine.create!(
+    offer: offer1,
+    product: peas2,
     quantity_in_tons: 100,
-    target_offer_line: offer_line1
-   )
-
-p offer_line2 = OfferLine.create(
-    offer_id: offer_request,
-    product_id: carrots1,
-    quantity_in_tons: 60,
-    target_offer_line_id: offer_line2
-   )
-
-p offer_line3 = OfferLine.create(
-    offer_id: offer_request,
-    product_id: beans1,
-    quantity_in_tons: 25,
-    target_offer_line_id: offer_line3
-   )
-
-p offer_line4 = OfferLine.create(
-    offer_id: offer1,
-    product_id: peas2,
-    quantity_in_tons: 100,
-    target_offer_line_id: offer_line1,
+    target_offer_line: offer_line1,
     alternative_to_target: false,
     price: 0.69
    )
 
-p offer_line5 = OfferLine.create(
-    offer_id: offer1,
-    product_id: carrots2,
+p offer_line5 = OfferLine.create!(
+    offer: offer1,
+    product: carrots2,
     quantity_in_tons: 60,
-    target_offer_line_id: offer_line2,
+    target_offer_line: offer_line2,
     alternative_to_target: true,
     price: 0.55
    )
 
-p offer_line6 = OfferLine.create(
-    offer_id: offer1,
-    product_id: beans1,
+p offer_line6 = OfferLine.create!(
+    offer: offer1,
+    product: beans1,
     quantity_in_tons: 25,
-    target_offer_line_id: offer_line3,
+    target_offer_line: offer_line3,
     alternative_to_target: false,
     price: 0.62
    )
 
-p offer_line7 = OfferLine.create(
-    offer_id: offer2,
-    product_id: peas3,
+p offer_line7 = OfferLine.create!(
+    offer: offer2,
+    product: peas3,
     quantity_in_tons: 100,
-    target_offer_line_id: offer_line1,
+    target_offer_line: offer_line1,
     alternative_to_target: false,
     price: 0.78
    )
 
-p offer_line8 = OfferLine.create(
-    offer_id: offer2,
-    product_id: carrots1,
+p offer_line8 = OfferLine.create!(
+    offer: offer2,
+    product: carrots1,
     quantity_in_tons: 60,
-    target_offer_line_id: offer_line2,
+    target_offer_line: offer_line2,
     alternative_to_target: false,
     price: 0.62
    )
 
-p offer_line9 = OfferLine.create(
-    offer_id: offer2,
-    product_id: beans2,
+p offer_line9 = OfferLine.create!(
+    offer: offer2,
+    product: beans2,
     quantity_in_tons: 25,
-    target_offer_line_id: offer_line3,
+    target_offer_line: offer_line3,
     alternative_to_target: true,
     price: 0.5
    )
 
-p offer_line10 = OfferLine.create(
-    offer_id: counteroffer1,
-    product_id: peas2,
+p offer_line10 = OfferLine.create!(
+    offer: counteroffer1,
+    product: peas2,
     quantity_in_tons: 100,
-    target_offer_line_id: offer_line1,
+    target_offer_line: offer_line1,
     alternative_to_target: false,
     price: 0.66
    )
 
-p offer_line11 = OfferLine.create(
-    offer_id: counteroffer1,
-    product_id: carrots1,
+p offer_line11 = OfferLine.create!(
+    offer: counteroffer1,
+    product: carrots1,
     quantity_in_tons: 60,
-    target_offer_line_id: offer_line2,
+    target_offer_line: offer_line2,
     alternative_to_target: false,
     price: 0.5
    )
 
-p offer_line12 = OfferLine.create(
-    offer_id: counteroffer1,
-    product_id: beans1,
+p offer_line12 = OfferLine.create!(
+    offer: counteroffer1,
+    product: beans1,
     quantity_in_tons: 25,
-    target_offer_line_id: offer_line3,
+    target_offer_line: offer_line3,
     alternative_to_target: false,
     price: 0.6
    )
 
-p offer_line13 = OfferLine.create(
-    offer_id: renewedoffer1,
-    product_id: peas2,
+p offer_line13 = OfferLine.create!(
+    offer: renewedoffer1,
+    product: peas2,
     quantity_in_tons: 100,
-    target_offer_line_id: offer_line1,
+    target_offer_line: offer_line1,
     alternative_to_target: false,
     price: 0.68
    )
 
-p offer_line14 = OfferLine.create(
-    offer_id: renewedoffer1,
-    product_id: carrots1,
+p offer_line14 = OfferLine.create!(
+    offer: renewedoffer1,
+    product: carrots1,
     quantity_in_tons: 60,
-    target_offer_line_id: offer_line2,
+    target_offer_line: offer_line2,
     alternative_to_target: false,
     price: 0.65
    )
 
-p offer_line15 = OfferLine.create(
-    offer_id: renewedoffer1,
-    product_id: carrots2,
+p offer_line15 = OfferLine.create!(
+    offer: renewedoffer1,
+    product: carrots2,
     quantity_in_tons: 60,
-    target_offer_line_id: offer_line2,
+    target_offer_line: offer_line2,
     alternative_to_target: true,
     price: 0.51
    )
 
-p offer_line16 = OfferLine.create(
-    offer_id: renewedoffer1,
-    product_id: beans1,
+p offer_line16 = OfferLine.create!(
+    offer: renewedoffer1,
+    product: beans1,
     quantity_in_tons: 25,
-    target_offer_line_id: offer_line3,
+    target_offer_line: offer_line3,
     alternative_to_target: false,
     price: 0.65
    )
 
-p offer_line17 = OfferLine.create(
-    offer_id: counteroffer2,
-    product_id: peas2,
+p offer_line17 = OfferLine.create!(
+    offer: counteroffer2,
+    product: peas2,
     quantity_in_tons: 100,
-    target_offer_line_id: offer_line1,
+    target_offer_line: offer_line1,
     alternative_to_target: false,
     price: 0.65
    )
 
-p offer_line18 = OfferLine.create(
-    offer_id: counteroffer2,
-    product_id: carrots2,
+p offer_line18 = OfferLine.create!(
+    offer: counteroffer2,
+    product: carrots2,
     quantity_in_tons: 60,
-    target_offer_line_id: offer_line2,
+    target_offer_line: offer_line2,
     alternative_to_target: true,
     price: 0.5
    )
 
-p offer_line19 = OfferLine.create(
-    offer_id: counteroffer2,
-    product_id: beans1,
+p offer_line19 = OfferLine.create!(
+    offer: counteroffer2,
+    product: beans1,
     quantity_in_tons: 25,
-    target_offer_line_id: offer_line3,
+    target_offer_line: offer_line3,
     alternative_to_target: false,
     price: 0.63
    )
 
-p offer_line20 = OfferLine.create(
-    offer_id: renewedoffer2,
-    product_id: peas2,
+p offer_line20 = OfferLine.create!(
+    offer: renewedoffer2,
+    product: peas2,
     quantity_in_tons: 100,
-    target_offer_line_id: offer_line1,
+    target_offer_line: offer_line1,
     alternative_to_target: false,
     price: 0.65
    )
 
-p offer_line21 = OfferLine.create(
-    offer_id: renewedoffer2,
-    product_id: carrots2,
+p offer_line21 = OfferLine.create!(
+    offer: renewedoffer2,
+    product: carrots2,
     quantity_in_tons: 60,
-    target_offer_line_id: offer_line2,
+    target_offer_line: offer_line2,
     alternative_to_target: true,
     price: 0.5
    )
 
-p offer_line22 = OfferLine.create(
-    offer_id: renewedoffer2,
-    product_id: beans1,
+p offer_line22 = OfferLine.create!(
+    offer: renewedoffer2,
+    product: beans1,
     quantity_in_tons: 25,
-    target_offer_line_id: offer_line3,
+    target_offer_line: offer_line3,
     alternative_to_target: false,
     price: 0.63
    )
 
-p offer_line23 = OfferLine.create(
-    offer_id: offer3,
-    product_id: cherries,
+p offer_line23 = OfferLine.create!(
+    offer: offer3,
+    product: cherries,
     quantity_in_tons: 150,
     price: 2.45
    )
 
-p offer_line24 = OfferLine.create(
-    offer_id: offer3,
-    product_id: berries,
+p offer_line24 = OfferLine.create!(
+    offer: offer3,
+    product: berries,
     quantity_in_tons: 240,
     price: 1.95
    )
