@@ -1,7 +1,11 @@
 .banner {
   height: 100vh;
+  background-position: center center;
   background-size: cover;
   background-repeat: no-repeat;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
 .banner h2 {
@@ -16,16 +20,14 @@
 .login-button-div {
   align-self: flex-end;
   margin: 15px;
-  position: -webkit-sticky;
-  position: sticky;
-  top: 15px;
   box-shadow: 0 0 10px black;
+  background-position: center center;
 }
 
 .login-button {
   color: black;
   background-color: white;
-  padding: 8px 40px;
+  padding: 8px 35px;
   border-radius: 5px;
 }
 
@@ -42,15 +44,9 @@
 }
 
 .banner-middle-div {
-  height: 79vh;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
 }
 
 .title-center-div {
-  align-self: center;
-  text-position: center;
 }
 
 .title {
@@ -67,17 +63,21 @@
 }
 
 .banner-lower-div {
-  display: flex;
-  flex-direction: column;
 }
 
 .buyer-seller-div {
-  align-self: center;
   margin: 15px;
 }
 
 .buyer-seller-button {
+  padding: 8px 60px;
   margin-right: 10px;
   margin-left: 10px;
   box-shadow: 0 0 10px black;
+}
+
+@media (max-width: 800px) {
+  .buyer-seller-button {
+  padding: 8px 20px;
+  }
 }
