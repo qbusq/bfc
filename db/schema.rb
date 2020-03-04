@@ -123,7 +123,7 @@ ActiveRecord::Schema.define(version: 2020_03_04_095434) do
     t.string "company_name"
     t.string "address"
     t.string "country"
-    t.string "user_type"
+    t.string "type"
     t.boolean "seller"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
