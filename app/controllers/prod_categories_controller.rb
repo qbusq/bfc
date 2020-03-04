@@ -16,6 +16,6 @@ class ProdCategoriesController < ApplicationController
   private
 
   def prod_category_params
-    params.require(:prod_category).permit(:name, :gpc_brick, :brick_decription)
+    params.require(:prod_category).permit(:name, :gpc_brick, :brick_description)
   end
 end
