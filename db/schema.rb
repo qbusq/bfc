@@ -10,6 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
+
 ActiveRecord::Schema.define(version: 2020_03_04_213907) do
 
   # These are extensions that must be enabled in order to support this database
@@ -83,7 +84,6 @@ ActiveRecord::Schema.define(version: 2020_03_04_213907) do
   end
 
   create_table "prod_categories", force: :cascade do |t|
-    t.string "name"
     t.integer "gpc_brick"
     t.string "brick_description"
     t.datetime "created_at", null: false
@@ -108,7 +108,6 @@ ActiveRecord::Schema.define(version: 2020_03_04_213907) do
     t.boolean "private_label"
     t.float "weight_in_kg"
     t.integer "nr_per_sku"
-    t.string "prod_specification_pdf"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["prod_category_id"], name: "index_products_on_prod_category_id"

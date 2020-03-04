@@ -1,7 +1,7 @@
 .card-product {
   overflow: hidden;
   height: 160px;
-  max-width: 350px;
+  width: 330px;
   background: white;
   box-shadow: 0 0 15px rgba(0,0,0,0.2);
   display: flex;
@@ -44,7 +44,15 @@
   align-self: flex-end;
 }
 
+.card-product-info-button a {
+  font-size: 11px;
+  font-weight: bold;
+  color: black;
+  text-decoration: none;
+}
+
 .card-product .card-product-infos {
   width: 80%;
   padding: 16px;
 }
+
