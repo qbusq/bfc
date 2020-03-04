@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_03_04_110537) do
+ActiveRecord::Schema.define(version: 2020_03_04_134556) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -83,7 +83,6 @@ ActiveRecord::Schema.define(version: 2020_03_04_110537) do
   end
 
   create_table "prod_categories", force: :cascade do |t|
-    t.string "name"
     t.integer "gpc_brick"
     t.string "brick_description"
     t.datetime "created_at", null: false
@@ -124,7 +123,7 @@ ActiveRecord::Schema.define(version: 2020_03_04_110537) do
     t.string "company_name"
     t.string "address"
     t.string "country"
-    t.string "type"
+    t.string "user_type"
     t.boolean "seller"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
