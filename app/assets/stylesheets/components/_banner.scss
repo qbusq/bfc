@@ -1,5 +1,3 @@
-$primary: rgb(239, 81, 19);
-
 .banner {
   height: 100vh;
   background-position: center center;
@@ -8,6 +6,10 @@ $primary: rgb(239, 81, 19);
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+}
+
+.banner h2 {
+  font-weight: bold;
 }
 
 .banner-upper-div {
@@ -23,8 +25,8 @@ $primary: rgb(239, 81, 19);
 }
 
 .login-button {
-  color: white;
-  background-color: $primary;
+  color: black;
+  background-color: white;
   padding: 8px 35px;
   border-radius: 5px;
 }
@@ -37,6 +39,7 @@ $primary: rgb(239, 81, 19);
 
 .login-button:hover {
   color: white;
+  background-color: #373737;
   text-decoration: none;
 }
 
