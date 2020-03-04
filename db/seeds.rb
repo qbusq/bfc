@@ -5,6 +5,23 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+
+require 'nokogiri'
+
+file      = File.open('./lib/food.xml')
+document  = Nokogiri::XML(file)
+
+document.search('//brick').each do |brick|
+  gpc_brick = brick.attribute('code').value
+  brick_description = brick.attribute('text').value
+  ProdCategory.create([
+    {
+      gpc_brick: gpc_brick,
+      brick_description: brick_description
+   }])
+
+end
+
 require 'json'
 require 'open-uri'
 url = 'https://restcountries.eu/rest/v2/all'
@@ -434,20 +451,6 @@ products = Product.create([
 ])
 
 
-product_categories = ProdCategory.create([
-  {
-    name: 'IQF Vegetables',
-    gpc_brick: 10000270,
-    brick_description: 'Vegetables – Prepared/Processed (Frozen)'
-  },
-  {
-    name: 'IQF Fruit',
-    gpc_brick: 10000204,
-    brick_description: 'Fruit – Prepared/Processed (Frozen)'
-  }
-])
-
-
 certificates = Certificate.create([
   {
     name: 'BRC'
@@ -594,7 +597,6 @@ product_certificates = ProductCertificate.create([
     certificate_id: 8
   }
 ])
-
 
 
 
