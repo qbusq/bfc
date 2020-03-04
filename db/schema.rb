@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_03_04_110537) do
+ActiveRecord::Schema.define(version: 2020_03_04_162013) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -55,11 +55,13 @@ ActiveRecord::Schema.define(version: 2020_03_04_110537) do
     t.float "quantity_in_tons"
     t.bigint "offer_id"
     t.boolean "alternative_to_target"
-    t.float "full_truck_price_per_kg"
+    t.float "price"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "target_offer_line_id"
+    t.bigint "product_id"
     t.index ["offer_id"], name: "index_offer_lines_on_offer_id"
+    t.index ["product_id"], name: "index_offer_lines_on_product_id"
   end
 
   create_table "offers", force: :cascade do |t|
@@ -70,15 +72,13 @@ ActiveRecord::Schema.define(version: 2020_03_04_110537) do
     t.string "status"
     t.bigint "from_user_id"
     t.bigint "to_user_id"
-    t.bigint "offer_request_id_id"
+    t.bigint "offer_request_id"
+    t.bigint "follow_up_on_offer_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "from_user"
-    t.integer "to_user"
-    t.integer "offer_request_id"
-    t.integer "follow_up_on_offer"
+    t.index ["follow_up_on_offer_id"], name: "index_offers_on_follow_up_on_offer_id"
     t.index ["from_user_id"], name: "index_offers_on_from_user_id"
-    t.index ["offer_request_id_id"], name: "index_offers_on_offer_request_id_id"
+    t.index ["offer_request_id"], name: "index_offers_on_offer_request_id"
     t.index ["to_user_id"], name: "index_offers_on_to_user_id"
   end
 
@@ -124,7 +124,7 @@ ActiveRecord::Schema.define(version: 2020_03_04_110537) do
     t.string "company_name"
     t.string "address"
     t.string "country"
-    t.string "type"
+    t.string "user_type"
     t.boolean "seller"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -133,4 +133,5 @@ ActiveRecord::Schema.define(version: 2020_03_04_110537) do
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "offer_lines", "products"
 end
