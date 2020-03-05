@@ -19,7 +19,7 @@ class OffersController < ApplicationController
   end
 
   def index
-    Offer.all
+   @offers = Offer.all
   end
 
   def destroy
