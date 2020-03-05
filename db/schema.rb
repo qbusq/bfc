@@ -83,6 +83,7 @@ ActiveRecord::Schema.define(version: 2020_03_04_141058) do
   end
 
   create_table "prod_categories", force: :cascade do |t|
+    t.string "name"
     t.integer "gpc_brick"
     t.string "brick_description"
     t.datetime "created_at", null: false
