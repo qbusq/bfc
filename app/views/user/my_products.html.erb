@@ -1,3 +1,43 @@
 <% @products.each do |product| %>
-  <%= product.name %>
+  <div class="card-product">
+      <% unless product.photo.attached? %>
+        <img src="https://source.unsplash.com/fd05H8aHoXY/500x500" />
+      <% else %>
+        <%= cl_image_tag product.photo.key, height: 300, width: 400, crop: :fill %>
+      <% end %>
+      <div class="card-product-infos">
+        <div class="card-product-description">
+          <h2><b><%= product.name %></b></h2>
+          <p>Brand: <b><%= product.brand %></b></p>
+          <%if product.private_label %>
+            <p><i class="far fa-check-square"></i> Private label</p>
+          <% end %>
+          <p>Weight: <b><%= product.weight_in_kg %> kg</b></p>
+          <p>SKU number: <b><%= product.nr_per_sku %></b></p>
+        </div>
+        <div class="card-product-info-button">
+          <button type="button" class="btn-sm btn-primary" data-toggle="modal" data-target="#product-<%= product.id %>">
+          More
+          </button>
+          <div class="modal fade" id="product-<%= product.id %>" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="exampleModalLongTitle">Description</h5>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div class="modal-body">
+                  <p><%= product.description %></p>
+                  <% if product.prod_specification_pdf.attached? %>
+                    <a href="<%= url_for(product.prod_specification_pdf) %>"><i class="fas fa-file-download"></i> Download the product specifications</a>
+                  <% end %>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
 <% end %>
