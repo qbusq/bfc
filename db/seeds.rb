@@ -94,9 +94,11 @@ p buyer1
 p buyer2
 
 puts 'Creating original offers_'
+p buyer2[:company_name]
 
 p offer_request = Offer.create!(
     from_user: buyer2,
+    title: buyer2[:company_name] + ' - Offer request',
     date: Date.new(2020,3,3),
     start_date: Date.new(2020,7,1),
     end_date: Date.new(2020,6,30),
@@ -107,6 +109,7 @@ p offer_request = Offer.create!(
 p offer1 = Offer.create!(
     from_user: seller1,
     to_user: buyer2,
+    title: buyer2[:company_name] + ' - Offer request: Offer ' + seller1[:company_name],
     date: Date.new(2020,3,5),
     start_date: Date.new(2020,7,1),
     end_date: Date.new(2020,6,30),
@@ -118,6 +121,7 @@ p offer1 = Offer.create!(
 p offer2 = Offer.create!(
     from_user: seller2,
     to_user: buyer2,
+    title: buyer2[:company_name] + ' - Offer request: Offer ' + seller2[:company_name],
     date: Date.new(2020,3,6),
     start_date: Date.new(2020,7,1),
     end_date: Date.new(2020,6,30),
@@ -130,6 +134,7 @@ p offer2 = Offer.create!(
 p counteroffer1 = Offer.create!(
     from_user: buyer2,
     to_user: seller1,
+    title: buyer2[:company_name] + ' - Offer request: Counteroffer to ' + seller1[:company_name],
     date: Date.new(2020,3,15),
     start_date: Date.new(2020,7,1),
     end_date: Date.new(2020,6,30),
@@ -142,6 +147,7 @@ p counteroffer1 = Offer.create!(
 p renewedoffer1 = Offer.create!(
     from_user: seller1,
     to_user: buyer2,
+    title: buyer2[:company_name] + ' - Offer request: Renewed offer ' + seller1[:company_name],
     date: Date.new(2020,3,17),
     start_date: Date.new(2020,7,1),
     end_date: Date.new(2020,6,30),
@@ -153,6 +159,7 @@ p renewedoffer1 = Offer.create!(
 p counteroffer2 = Offer.create!(
     from_user: buyer2,
     to_user: seller1,
+    title: buyer2[:company_name] + ' - Offer request: Accepted offer ' + seller1[:company_name],
     date: Date.new(2020,3,20),
     start_date: Date.new(2020,7,1),
     end_date: Date.new(2020,6,30),
@@ -165,6 +172,7 @@ p counteroffer2 = Offer.create!(
 p renewedoffer2 = Offer.create!(
     from_user: seller1,
     to_user: buyer2,
+    title: buyer2[:company_name] + ' - Contracted supplier: ' + seller1[:company_name],
     date: Date.new(2020,3,21),
     start_date: Date.new(2020,7,1),
     end_date: Date.new(2020,6,30),
@@ -177,6 +185,7 @@ p renewedoffer2 = Offer.create!(
 p offer3 = Offer.create!(
     from_user: seller2,
     to_user: buyer1,
+    title: seller2[:company_name] + ' - Spontaneous offer',
     date: Date.new(2020,3,9),
     start_date: Date.new(2020,4,1),
     end_date: Date.new(2020,4,30),
