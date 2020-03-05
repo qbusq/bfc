@@ -6,12 +6,42 @@ $primary: rgb(100, 191, 255);
   margin: auto;
 }
 
-.buyer-upper-div, .seller-upper-div {
+.description-container {
+  padding: 20px 0px 20px 0px;
+}
+
+html, body {
+  overflow-x: hidden;
+}
+
+.full-width-bar {
+  margin: 0 -9999rem;
+  /* add back negative margin value */
+  padding: 0.25rem 9999rem;
+  background: #23967F;
+}
+
+.buyer-upper-div, .buyer-lower-div {
+  margin: 20px 0;
+  padding: 8px 30px;
+
+  h4 {
+    font-weight: bold;
+  }
+}
+
+#image {
+  background-image: url("https://source.unsplash.com/c8TWWQ5ZnUw/400x400");
+  background-size: cover;
+  height: 100%;
+}
+
+.seller-upper-div {
   background-color: $primary;
   margin: 20px 0;
   border-radius: 5px;
   padding: 8px 30px;
-  // border-bottom: 2px solid black;
+  border-bottom: 2px solid black;
 }
 
 .buyer-header, .seller-header {
@@ -21,7 +51,7 @@ $primary: rgb(100, 191, 255);
 }
 
 .buyer-middle-div, .seller-middle-div {
-  height: 65vh;
+  // height: 40vh;
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   grid-gap: 10px;
@@ -34,7 +64,12 @@ $primary: rgb(100, 191, 255);
 }
 
 .seller-middle-div-card, .buyer-middle-div-card {
-  box-shadow: 0 0 5px black;
+  // box-shadow: 0 0 5px black;
+  color: #011627;
+  background-color: white;
+  border-style: none;
+  border-radius: 5px;
+  height: 280px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -58,7 +93,7 @@ $primary: rgb(100, 191, 255);
   font-size: 40px;
 }
 
-.buyer-lower-div, .seller-lower-div {
+.seller-lower-div {
   background-color: $primary;
   margin: 20px 0;
   border-radius: 5px;
