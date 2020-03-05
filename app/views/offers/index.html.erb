@@ -1,5 +1,7 @@
 <h1>Offers</h1>
 
+<%= current_user.company_name %>
+
 <ul>
   <% @offers.each do |offer| %>
     <li><%= offer.remark %></li>

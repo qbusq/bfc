@@ -20,7 +20,7 @@ class OffersController < ApplicationController
   end
 
   def index
-    @offers = Offer.where(to_user: current_user[:id])
+   @offers = Offer.all
   end
 
   def offers_requested #status "requested"

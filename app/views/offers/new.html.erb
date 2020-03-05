@@ -1,25 +1,35 @@
 <div class="container">
   <h1>New offer request</h1>
-
-  <p>Offer for placeholder (prepopulated with from the offerlines controller)</p>
+  <%= current_user.company_name %>
 
   <%= simple_form_for(@offer) do |f| %>
-    <%= f.error_notification %>
+  <%= f.error_notification %>
 
-    <%= f.hidden_field :date, value: DateTime.now %>
-    <%= f.hidden_field :from_user, value: current_user %>
-    <%= f.hidden_field :status, value: "Sent" %>
-
-    <%= f.input :start_date %>
-    <%= f.input :end_date %>
-    <%= f.input :remark %>
-
-    <%= f.input :offer_attachment, as: :file %>
-
-
-    <%= f.button :submit, class: "btn-primary w-100" %>
+  <h3>Products</h3>
+  <%= f.simple_fields_for :offer_lines do |offer_line| %>
+  <%= render 'offer_line_fields', f: offer_line %>
 
   <% end %>
+
+  <div class="links">
+  <%= link_to_add_association 'Add product', f, :offer_lines %>
+</div>
+  <%= f.hidden_field :date, value: DateTime.now %>
+
+  <%= f.hidden_field :from_user, value: current_user %>
+  <%= f.hidden_field :status, value: "Sent" %>
+
+  <%= f.input :start_date %>
+  <%= f.input :end_date %>
+  <%= f.input :remark %>
+
+  <%= f.input :offer_attachment, as: :file %>
+
+
+  <%= f.button :submit, class: "btn-primary w-100" %>
+
+  <% end %>
+
 
 </div>
 
