@@ -1,0 +1,30 @@
+.links {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-gap: 20px;
+}
+
+@media (max-width: 500px) {
+  .links {
+    grid-template-columns: 1fr;
+  }
+}
+
+.link {
+  background-color: green;
+  padding: 40px 40px;
+  border-radius: 4px;
+  text-align: center;
+}
+
+.link-plus {
+  color: white;
+}
+
+.link-text {
+  color: white;
+}
+
+.link-text:hover {
+  color: white;
+}
