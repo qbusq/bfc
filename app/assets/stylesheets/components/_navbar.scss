@@ -1,12 +1,21 @@
-.navbar-lewagon {
+.navbar {
+  display: flex;
   justify-content: space-between;
-  background: white;
 }
 
-.navbar-lewagon .navbar-collapse {
-  flex-grow: 0;
+.navbar-right {
+  display: flex;
+  justify-content: space-between;
 }
 
-.navbar-lewagon .navbar-brand img {
-  width: 40px;
+.navbar-item {
+  margin: 5px 10px;
+}
+
+.fa-pepper-hot {
+  color: black;
+}
+
+.fa-pepper-hot:hover {
+  color: black;
 }
