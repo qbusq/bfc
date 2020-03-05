@@ -1,0 +1,56 @@
+<div class="container">
+  <h1><%= @offer.title %></h1>
+  <br>
+  <div class="row no-gutters justify-content-start">
+    <div class="col-12 col-md-4">
+      <div class="card-user">
+        <div>
+          <p><b>Order status: <%= @offer.status %></b></p>
+          <p><b>Delivery period: <%= @offer.start_date %> - <%= @offer.end_date %></b></p>
+          <% if @offer.remark != nil %>
+            <p><b>Conditions: <%= @offer.remark %></b></p>
+          <% end %>
+        </div>
+      </div>
+    </div>
+    <div class="col-12 col-md-4">
+      <div class="card-user">
+        <div>
+          <h2>Buyer details</h2>
+        </div>
+        <div>
+          <p>Company name: <%= @offer.from_user.company_name %></p>
+          <p>Address: <%= @offer.from_user.address %>, <%= @offer.from_user.country %></p>
+        </div>
+      </div>
+    </div>
+    <div class="col-12 col-md-4">
+      <div class="card-user">
+        <div>
+          <h2>Producer details</h2>
+        </div>
+        <div>
+          <p>Company name: <%= @offer.to_user.company_name %></p>
+          <p>Address: <%= @offer.to_user.address %>, <%= @offer.to_user.country %></p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-12 col-md-6">
+      <div>
+        <h2>Offer summary</h2>
+        <% @offer.offer_lines.each do |offer_line| %>
+          <ul class="product-list">
+            <li>Product: <b><%= offer_line.product.name %></b></li>
+            <li>Brand: <b><%= offer_line.product.brand %></b></li>
+            <li>Description: <b><%= offer_line.product.description %></b></li>
+            <li>Price: <b>€<%= offer_line.price %></b></li>
+            <li>Quantity: <b><%= offer_line.quantity_in_tons %> tons</b></li>
+            <li> SKU: <b><%= offer_line.product.nr_per_sku %> * <%= offer_line.product.weight_in_kg %> kg</b></li>
+          </ul>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
