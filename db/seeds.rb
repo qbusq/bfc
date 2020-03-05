@@ -101,7 +101,7 @@ p offer_request = Offer.create!(
     title: buyer2[:company_name] + ' - Offer request',
     date: Date.new(2020,3,3),
     start_date: Date.new(2020,7,1),
-    end_date: Date.new(2020,6,30),
+    end_date: Date.new(2021,6,30),
     remark: 'Please consult the general terms and conditions that apply to this offer request on our website.',
     status: 'requested'
    )
@@ -112,7 +112,7 @@ p offer1 = Offer.create!(
     title: buyer2[:company_name] + ' - Offer request: Offer ' + seller1[:company_name],
     date: Date.new(2020,3,5),
     start_date: Date.new(2020,7,1),
-    end_date: Date.new(2020,6,30),
+    end_date: Date.new(2021,6,30),
     remark: 'Offer subject to unsold',
     offer_request: offer_request,
     follow_up_on_offer: offer_request,
@@ -124,7 +124,7 @@ p offer2 = Offer.create!(
     title: buyer2[:company_name] + ' - Offer request: Offer ' + seller2[:company_name],
     date: Date.new(2020,3,6),
     start_date: Date.new(2020,7,1),
-    end_date: Date.new(2020,6,30),
+    end_date: Date.new(2021,6,30),
     remark: 'Offer subject to unsold',
     offer_request: offer_request,
     follow_up_on_offer: offer_request,
@@ -137,7 +137,7 @@ p counteroffer1 = Offer.create!(
     title: buyer2[:company_name] + ' - Offer request: Counteroffer to ' + seller1[:company_name],
     date: Date.new(2020,3,15),
     start_date: Date.new(2020,7,1),
-    end_date: Date.new(2020,6,30),
+    end_date: Date.new(2021,6,30),
     remark: 'Please consult the general terms and conditions that apply to this offer request on our website.',
     offer_request: offer_request,
     follow_up_on_offer: offer1,
@@ -150,7 +150,7 @@ p renewedoffer1 = Offer.create!(
     title: buyer2[:company_name] + ' - Offer request: Renewed offer ' + seller1[:company_name],
     date: Date.new(2020,3,17),
     start_date: Date.new(2020,7,1),
-    end_date: Date.new(2020,6,30),
+    end_date: Date.new(2021,6,30),
     remark: 'Offer subject to unsold',
     offer_request: offer_request,
     follow_up_on_offer: counteroffer1,
@@ -162,7 +162,7 @@ p counteroffer2 = Offer.create!(
     title: buyer2[:company_name] + ' - Offer request: Accepted offer ' + seller1[:company_name],
     date: Date.new(2020,3,20),
     start_date: Date.new(2020,7,1),
-    end_date: Date.new(2020,6,30),
+    end_date: Date.new(2021,6,30),
     remark: 'Please consult the general terms and conditions that apply to this offer request on our website.',
     offer_request: offer_request,
     follow_up_on_offer: renewedoffer1,
@@ -175,8 +175,8 @@ p renewedoffer2 = Offer.create!(
     title: buyer2[:company_name] + ' - Contracted supplier: ' + seller1[:company_name],
     date: Date.new(2020,3,21),
     start_date: Date.new(2020,7,1),
-    end_date: Date.new(2020,6,30),
-    remark: 'Offer subject to unsold',
+    end_date: Date.new(2021,6,30),
+    remark: 'The general terms and conditions of the buyer apply.',
     offer_request: offer_request,
     follow_up_on_offer: counteroffer2,
     status: 'confirmed'
@@ -191,6 +191,30 @@ p offer3 = Offer.create!(
     end_date: Date.new(2020,4,30),
     remark: 'Offer subject to unsold',
     status: 'sent'
+   )
+
+p counteroffer3 = Offer.create!(
+    from_user: buyer1,
+    to_user: seller2,
+    title: seller2[:company_name] + ' - Spontaneous offer accepted by ' + buyer1[:company_name],
+    date: Date.new(2020,3,10),
+    start_date: Date.new(2020,4,1),
+    end_date: Date.new(2020,4,30),
+    remark: 'Offer accepted under the general terms and conditions of the buyer.',
+    follow_up_on_offer: offer3,
+    status: 'accepted'
+   )
+
+p renewedoffer3 = Offer.create!(
+    from_user: seller2,
+    to_user: buyer1,
+    title: buyer1[:company_name] + ' - Contracted supplier: ' + seller2[:company_name],
+    date: Date.new(2020,3,10),
+    start_date: Date.new(2020,4,1),
+    end_date: Date.new(2020,4,30),
+    remark: 'Contract valid under the general terms and conditions of the buyer.',
+    follow_up_on_offer: counteroffer3,
+    status: 'confirmed'
    )
 
 
