@@ -1,13 +1,17 @@
 $primary: rgb(239, 81, 19);
 
 .banner {
-  height: 100vh;
+  height: 50vh;
   background-position: center center;
   background-size: cover;
   background-repeat: no-repeat;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+}
+
+.banner h2 {
+  font-weight: bold;
 }
 
 .banner-upper-div {
@@ -48,8 +52,7 @@ $primary: rgb(239, 81, 19);
 
 .title {
  color: white;
- text-decoration: underline;
- font-size: 40px;
+ font-size: 60px;
  line-height: 60px;
  text-shadow: 0 0 10px black;
 }

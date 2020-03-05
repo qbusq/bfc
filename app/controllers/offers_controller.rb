@@ -16,10 +16,23 @@ class OffersController < ApplicationController
   end
 
   def show
+
   end
 
   def index
    @offers = Offer.all
+  end
+
+  def offers_requested #status "requested"
+    @offers = Offer.where(status: "requested")
+  end
+
+  def offers_received #status "pending"
+    @offers = Offer.where(status: "pending")
+  end
+
+  def contracts #status "confirmed"
+    @offers = Offer.where(status: "confirmed")
   end
 
   def destroy
