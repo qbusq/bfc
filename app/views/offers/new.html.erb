@@ -8,12 +8,11 @@
   <h3>Products</h3>
   <%= f.simple_fields_for :offer_lines do |offer_line| %>
   <%= render 'offer_line_fields', f: offer_line %>
-
   <% end %>
 
   <div class="links">
   <%= link_to_add_association 'Add product', f, :offer_lines %>
-</div>
+  </div>
   <%= f.hidden_field :date, value: DateTime.now %>
 
   <%= f.hidden_field :from_user, value: current_user %>
@@ -24,8 +23,6 @@
   <%= f.input :remark %>
 
   <%= f.input :offer_attachment, as: :file %>
-
-
   <%= f.button :submit, class: "btn-primary w-100" %>
 
   <% end %>
