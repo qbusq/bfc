@@ -1,6 +1,18 @@
 .navbar {
+  position: fixed;
+  width: 100%;
   display: flex;
   justify-content: space-between;
+  z-index: 5;
+}
+
+.navbar-white {
+  background-color: white;
+}
+
+.navbar-white-unfixed {
+  background-color: white;
+  position: relative;
 }
 
 .navbar-right {
@@ -9,7 +21,7 @@
 }
 
 .navbar-item {
-  margin: 5px 10px;
+  margin: 0px 0px;
 }
 
 .fa-pepper-hot {
@@ -18,4 +30,8 @@
 
 .fa-pepper-hot:hover {
   color: black;
+}
+
+.dropdown-toggle::after {
+
 }
