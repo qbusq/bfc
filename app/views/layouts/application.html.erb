@@ -11,36 +11,12 @@
     <%#= stylesheet_pack_tag 'application', media: 'all' %> <!-- Uncomment if you import CSS in app/javascript/packs/application.js -->
   </head>
   <body>
-    <% if current_user %>
-      <% if current_user.seller? %>
-        <div class="navbar">
-          <div class="navbar-left">
-            <%= link_to ('<i class="fas fa-pepper-hot"></i>').html_safe, user_path(current_user) %>
-          </div>
-          <div class="navbar-right">
-            <%= link_to 'Something', user_path(current_user), class: 'navbar-item' %>
-            <p class="navbar-item"><i class="fas fa-user"></i></p>
-          </div>
-        </div>
-      <% elsif %>
-        <div class="navbar">
-            <div class="navbar-left">
-              <%= link_to ('<i class="fas fa-pepper-hot"></i>').html_safe, user_path(current_user) %>
-            </div>
-            <div class="navbar-right">
-              <%= link_to 'Received-offers', offers_received_offers_path, class: 'navbar-item' %>
-              <%= link_to 'Request-offers', offers_requested_offers_path, class: 'navbar-item' %>
-              <p class="navbar-item"><i class="fas fa-user"></i></p>
-            </div>
-          </div>
-      <% end %>
-    <% end %>
+    <%= render 'shared/navbar' %>
     <%= yield %>
     <p class="notice"><%= notice %></p>
     <p class="alert"><%= alert %></p>
-        <%= javascript_pack_tag 'application' %>
 
+    <%= javascript_pack_tag 'application' %>
     <%= javascript_include_tag 'application' %>
-
   </body>
 </html>
