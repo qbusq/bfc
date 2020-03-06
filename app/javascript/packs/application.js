@@ -8,6 +8,9 @@ initMapbox();
 =======
 import {initUpdateNavbarOnScroll} from "../components/navbar";
 import {initUpdateNavbar} from "../components/navbar";
+import {boxMadeClickable} from "../components/user_show";
+boxMadeClickable();
+
 
 if (window.location.pathname=='/') {
   initUpdateNavbarOnScroll()
