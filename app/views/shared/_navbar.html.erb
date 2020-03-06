@@ -1,0 +1,43 @@
+<% if current_user %>
+      <% if current_user.seller? %>
+        <div class="navbar">
+          <div class="navbar-left">
+            <%= link_to ('<i class="fas fa-pepper-hot"></i>').html_safe, root_path %>
+          </div>
+          <div class="navbar-right">
+            <%= link_to 'Something', user_path(current_user), class: 'navbar-item' %>
+            <div  class= "avatar dropdown-toggle" id= "navbarDropdown" data-toggle= "dropdown" aria-haspopup= "true" aria-expanded= "false"><i class="fas fa-user"></i></div>
+              <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                <%= link_to "Log out", destroy_user_session_path, method: :delete, class: "dropdown-item" %>
+              </div>
+          </div>
+        </div>
+        </div>
+      <% else %>
+        <div class="navbar">
+          <div class="navbar-left">
+            <%= link_to ('<i class="fas fa-pepper-hot"></i>').html_safe, root_path %>
+          </div>
+          <div class="navbar-right">
+            <%= link_to 'Received-offers', offers_received_offers_path, class: 'navbar-item' %>
+            <%= link_to 'Request-offers', offers_requested_offers_path, class: 'navbar-item' %>
+            <%= link_to 'Dashboard', user_path(current_user), class: 'navbar-item' %>
+            <div  class= "avatar dropdown-toggle" id= "navbarDropdown" data-toggle= "dropdown" aria-haspopup= "true" aria-expanded= "false"><i class="fas fa-user"></i></div>
+              <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                <%= link_to "Log out", destroy_user_session_path, method: :delete, class: "dropdown-item" %>
+              </div>
+          </div>
+        </div>
+      <% end %>
+     <% else %>
+      <div class="navbar">
+        <div class="navbar-left">
+          <%= link_to ('<i class="fas fa-pepper-hot"></i>').html_safe, root_path %>
+        </div>
+        <div class="navbar-right">
+          <%= link_to 'Login', new_user_session_path, class: 'login-button' %>
+        </div>
+      </div>
+    <% end %>
+
+
