@@ -1,20 +1,3 @@
-<div class="container">
-  <h1>Search all available products</h1>
-  <form id="search-box">
-        <div class="row">
-          <div class="col">
-            <input type="text" class="form-control" placeholder="Product category">
-          </div>
-          <div class="col">
-            <input type="text" class="form-control" placeholder="Location">
-          </div>
-          <div>
-            <button type="submit" class="btn btn-outline-primary">Find products</button>
-          </div>
-        </div>
-      </form>
-  <div class="display-container">
-  <% @products.each do |product| %>
     <div class="card-product">
       <% unless product.photo.attached? %>
         <img src="https://source.unsplash.com/fd05H8aHoXY/500x500" />
@@ -56,6 +39,3 @@
         </div>
       </div>
     </div>
-  <% end %>
-  </div>
-</div>
