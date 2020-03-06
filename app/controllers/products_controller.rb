@@ -1,6 +1,18 @@
 class ProductsController < ApplicationController
   before_action :set_product, only: [:show, :edit, :update, :destroy]
 
+  def index
+    if params[:search] == nil || params[:search][:prod_category_input] == ""
+      @products = Product.all
+    else
+      @products = Product.where(prod_category: params[:search][:prod_category_input])
+      prod_category_input = params[:search][:prod_category_input]
+    end
+  end
+
+  def show
+  end
+
   def new
     @product = Product.new
   end
@@ -12,13 +24,6 @@ class ProductsController < ApplicationController
     else
       render :new
     end
-  end
-
-  def show
-  end
-
-  def index
-    @products = Product.all
   end
 
   def update

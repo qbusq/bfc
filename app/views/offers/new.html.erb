@@ -18,12 +18,13 @@
   <%= f.hidden_field :from_user, value: current_user %>
   <%= f.hidden_field :status, value: "Sent" %>
 
-  <%= f.input :start_date %>
-  <%= f.input :end_date %>
-  <%= f.input :remark %>
+  <%= f.input :start_date, label: 'Delivery period from:' %>
+  <%= f.input :end_date, label: 'till:' %>
+  <%= f.input :remark, label: 'Comments:' %>
 
-  <%= f.input :offer_attachment, as: :file %>
-  <%= f.button :submit, class: "btn-primary w-100" %>
+  <%= f.input :offer_attachment, as: :file, label: 'Attachment:' %>
+
+  <%= f.submit "Send offer request", class: "btn-primary w-100" %>
 
   <% end %>
 
