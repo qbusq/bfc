@@ -1,0 +1,25 @@
+.user-info {
+  display: flex;
+  flex-direction: column;
+  width: 40%;
+  flex-grow: 1;
+  padding-right: 20px;
+}
+
+.user-container {
+  margin-top: 20px;
+  display: flex;
+  flex-orientation: row;
+}
+
+.user-info-details {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  padding: 10px 0 10px 0;
+}
+
+.user-info-details-text {
+  display: flex;
+  flex-direction: column;
+}
