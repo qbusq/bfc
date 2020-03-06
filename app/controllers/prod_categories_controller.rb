@@ -3,6 +3,11 @@ class ProdCategoriesController < ApplicationController
     @prod_category = ProdCategory.new
   end
 
+  def index
+    @prod_categories = ProdCategory.all
+
+  end
+
   def create
     @prod_category = ProdCategory.new(prod_category_params)
     @prod_category.save
