@@ -49,7 +49,7 @@ seller1 = User.create!(
     email: 'seller1@gmail.com',
     password: '123456abc!',
     company_name: 'Veggie Company',
-    address: 'Veldstraat 10, Roeselare',
+    address: '38 Parkstraat, Roeselare',
     country: 'Belgium',
     user_type: 'processor',
     seller: true
@@ -60,7 +60,7 @@ seller2 = User.create!(
     email: 'seller2@gmail.com',
     password: '654321abc!',
     company_name: 'Fruity & Co',
-    address: 'Rue de fruits, 13, Arlon',
+    address: '247 Chemin des Espagnols, 13, Arlon',
     country: 'Belgium',
     user_type: 'processor',
     seller: true
@@ -71,7 +71,7 @@ buyer1 = User.create!(
     email: 'buyer1@gmail.com',
     password: '147852abc!',
     company_name: 'La Biscuitrie',
-    address: 'Rue du Biscuit 5, Lyon',
+    address: '14 Rue Pierre Robin, Lyon',
     country: 'France',
     user_type: 'processor',
     seller: false
@@ -82,7 +82,7 @@ buyer2 = User.create!(
     email: 'buyer2@gmail.om',
     password: '369852abc!',
     company_name: 'Gastro Gut Essen',
-    address: 'Ludwigstrasse 11, Hamburg',
+    address: '18 Lagerstraße, Hamburg',
     country: 'Germany',
     user_type: 'food service',
     seller: false
