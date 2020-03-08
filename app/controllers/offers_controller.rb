@@ -7,11 +7,9 @@ class OffersController < ApplicationController
 
   def create
     @offer = Offer.new(offer_params)
-    @offer.save!
 
     if @offer.save
       if @offer.status = 'requested'
-        @offer.create_offer_lines!
         redirect_to offers_requested_offers_path
       elsif @offer.status = 'confirmed'
         redirect_to contracts_offers_path
@@ -24,7 +22,7 @@ class OffersController < ApplicationController
   end
 
   def show
-
+    @offer_line = OfferLine.new
   end
 
   def index
@@ -32,15 +30,15 @@ class OffersController < ApplicationController
   end
 
   def offers_requested #status "requested"
-    @offers = Offer.where(status: "requested")
+    @offers = Offer.where(from_user_id: current_user.id).where(status: "requested")
   end
 
-  def offers_received #status "pending"
-    @offers = Offer.where(status: "pending")
+  def offers_received #status "sent"
+    @offers = Offer.where(to_user_id: current_user.id).where(status: "sent")
   end
 
   def contracts #status "confirmed"
-    @offers = Offer.where(status: "confirmed")
+    @offers = Offer.where(to_user_id: current_user.id).where(status: "confirmed")
   end
 
   def destroy
@@ -51,7 +49,10 @@ class OffersController < ApplicationController
   private
 
   def offer_params
-    params.require(:offer).permit(:from_user_id, :to_user_id, :title, :date, :start_date, :end_date, :remark, :offer_request_id, :follow_up_on_offer_id, :status)
+    params.require(:offer)
+      .permit(:from_user_id, :to_user_id, :title, :date, :start_date, :end_date, :remark, :offer_request_id, :follow_up_on_offer_id, :status,
+        offer_lines_attributes: [:offer_id, :product_id, :quantity_in_tons, :price, :target_offer_line_id, :alternative_to_target ]
+      )
   end
 
   def find_offer

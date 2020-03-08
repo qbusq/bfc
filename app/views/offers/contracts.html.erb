@@ -1,9 +1,7 @@
-<h1>List of contracts</h1>
+<h1>Contracts</h1>
 
 <ul>
   <% @offers.each do |offer| %>
-    <li><%= offer.remark %></li>
-
-
+    <li><%= link_to offer.title, offer_path(offer) %></li>
   <% end %>
 </ul>
