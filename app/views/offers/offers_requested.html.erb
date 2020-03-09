@@ -1,3 +1,15 @@
+<div class="container">
+  <% if current_user.seller? %>
+    <h1>Received requests</h1>
+    <% @offers.each do |offer| %>
+      <% if offer.country == current_user.country  %>
+        <p>Request: <%= offer.title %></p>
+
+      <% end %>
+    <% end %>
+  <% end %>
+</div>
+
 <h1>Offer requests</h1>
 
 <ul>
