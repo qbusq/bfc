@@ -19,37 +19,6 @@ $primary: rgb(239, 81, 19);
   flex-direction: column;
 }
 
-.login-button-div {
-  align-self: flex-end;
-  margin: 15px;
-  box-shadow: 0 0 10px black;
-  background-position: center center;
-}
-
-.login-button {
-  color: white;
-  background-color: $primary;
-  padding: 8px 35px;
-  border-radius: 5px;
-}
-
-@media (max-width: 80px) {
-  .login-button {
-  padding: 8px 20px;
-  }
-}
-
-.login-button:hover {
-  color: white;
-  text-decoration: none;
-}
-
-.banner-middle-div {
-}
-
-.title-center-div {
-}
-
 .title {
  color: white;
  font-size: 60px;
@@ -62,22 +31,17 @@ $primary: rgb(239, 81, 19);
   text-shadow: 0 0 10px black;
 }
 
-.banner-lower-div {
-}
-
 .buyer-seller-div {
   margin: 15px;
 }
 
-.buyer-seller-button {
-  padding: 8px 60px;
-  margin-right: 10px;
-  margin-left: 10px;
-  box-shadow: 0 0 10px black;
+.banner-middle-div {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
-@media (max-width: 800px) {
-  .buyer-seller-button {
-  padding: 8px 20px;
-  }
+.title-center-div {
+  flex-direction: column;
+  justify-content: space-between;
 }

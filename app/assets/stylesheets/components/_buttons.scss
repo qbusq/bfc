@@ -1,0 +1,32 @@
+$primary: rgb(239, 81, 19);
+
+.login-button-div {
+  align-self: flex-end;
+  box-shadow: 0 0 10px black;
+  background-position: center center;
+}
+
+.login-button {
+  color: white;
+  background-color: $primary;
+  padding: 8px 50px;
+  border-radius: 5px;
+}
+
+.login-button:hover {
+  color: white;
+  text-decoration: none;
+}
+
+.buyer-seller-button {
+  padding: 8px 100px;
+  margin-right: 10px;
+  margin-left: 10px;
+  box-shadow: 0 0 10px black;
+}
+
+@media (max-width: 800px) {
+  .buyer-seller-button {
+  padding: 8px 20px;
+  }
+}
