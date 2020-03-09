@@ -6,6 +6,7 @@
     <%= f.error_notification %>
     <%= f.input :title, label: 'Title:', placeholder: 'Offer request title (for future reference):' %>
 
+
     <h5>Products</h5>
     <%= f.simple_fields_for(:offer_lines) do |offer_line| %>
       <%= render 'offer_line_fields', f: offer_line %>
@@ -24,6 +25,7 @@
 
     <%= f.input :offer_attachment, as: :file, label: 'Attachment:' %>
 
+    <%= f.input :country, collection: Country.list.sort.map {|k,v| [v,k]}, label: 'Countries' %>
     <%= f.submit "Send offer request", class: "btn-primary w-100" %>
   <% end %>
 </div>

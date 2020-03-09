@@ -16,6 +16,7 @@
                 required: true,
                 input_html: { autocomplete: "new-password" } %>
     <%= f.input :user_type,as: :radio_buttons, collection: [['processor','processor'], ['food_service', 'food_service'], ['retail', 'retail']]%>
+    <%= f.input :country, collection: Country.list.sort.map {|k,v| [v,k]}, label: 'Countries' %>
   </div>
 
   <div class="form-actions">

@@ -39,9 +39,9 @@ url = 'https://restcountries.eu/rest/v2/all'
 user_serialized = open(url).read
 user = JSON.parse(user_serialized)
 
-all_countries = []
+@all_countries = []
 user.each do |a|
-all_countries << a["name"]
+@all_countries << a["name"]
 end
 
 seller1 = User.create!(
