@@ -25,7 +25,7 @@
 
     <%= f.input :offer_attachment, as: :file, label: 'Attachment:' %>
 
-    <%= f.input :country, collection: Country.list.sort.map {|k,v| [v,k]}, label: 'Countries' %>
+    <%# f.input :country, collection: Country.list.sort.map {|k,v| [v,k]}, label: 'Countries' %>
     <%= f.submit "Send offer request", class: "btn-primary w-100" %>
   <% end %>
 </div>
