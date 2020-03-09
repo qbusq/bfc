@@ -2,7 +2,7 @@
       <% if current_user.seller? %>
         <div class="navbar">
           <div class="navbar-left">
-            <%= link_to ('<i class="fas fa-pepper-hot navbar-item"></i>').html_safe, root_path, class: 'navbar-item' %>
+            <%= link_to ('<i class="fas fa-pepper-hot"></i>').html_safe, root_path %>
           </div>
           <div class="navbar-right">
             <%= link_to 'Something', user_path(current_user), class: 'navbar-item' %>

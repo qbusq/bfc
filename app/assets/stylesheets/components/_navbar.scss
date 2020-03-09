@@ -15,9 +15,31 @@
   position: relative;
 }
 
+.navbar-left a {
+  color: white;
+}
+
 .navbar-right {
   display: flex;
   justify-content: space-between;
+}
+
+.dropdown-item {
+  text-align: center;
+}
+
+.black {
+  color: black;
+}
+
+.white {
+  color: white;
+}
+
+.dropdown-menu {
+  padding: 0;
+  background-color: rgb(216, 216, 216);
+  border-radius: 3px;
 }
 
 .navbar-item {
@@ -31,19 +53,7 @@
 }
 
 .navbar-item:hover {
-  padding: 0px 12px;
+  padding: 1px 10px;
   opacity: 0.8;
   text-decoration: none;
-}
-
-.fa-pepper-hot {
-  color: black;
-}
-
-.fa-pepper-hot:hover {
-  color: black;
-}
-
-.dropdown-toggle::after {
-
 }
