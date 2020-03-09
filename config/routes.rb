@@ -7,9 +7,9 @@ Rails.application.routes.draw do
     end
   end
   root to: 'pages#home'
-  resources :offers, except: [:edit, :update] do
+  resources :offers do
     resources :offer_lines, only: [:new, :create, :index, :destroy]
-    resources :offers, except: [:edit, :update]
+    resources :offers
     collection do
       get 'offers_requested'
       get 'offers_received'

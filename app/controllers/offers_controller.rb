@@ -1,5 +1,5 @@
 class OffersController < ApplicationController
-  before_action :find_offer, only: [:show, :destroy]
+  before_action :find_offer, only: [:show, :edit, :update, :destroy]
 
   def new
     @offer = Offer.new
@@ -18,6 +18,17 @@ class OffersController < ApplicationController
       end
     else
       render :new
+    end
+  end
+
+  def edit
+  end
+
+  def update
+    if @offer.update(offer_params)
+      redirect_to offer_path(@offer)
+    else
+      render :edit
     end
   end
 
