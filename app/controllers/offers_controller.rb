@@ -17,10 +17,11 @@ class OffersController < ApplicationController
 
   def show
 
+
   end
 
   def index
-   @offers = Offer.all
+   @offers = current_user.offers
   end
 
   def offers_requested #status "requested"
