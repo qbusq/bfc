@@ -1,37 +1,62 @@
 <div class="container">
   <div>
     <h1>Search all available products</h1>
-    <form id="search-box">
-      <div class="row">
-        <div class="col">
-          <input type="text" class="form-control" placeholder="Product category">
-        </div>
-        <div class="col">
-          <input type="text" class="form-control" placeholder="Location">
-        </div>
-        <div>
-          <button type="submit" class="btn btn-outline-primary">Find products</button>
-        </div>
-      </div>
-    </form>
-  </div>
-  <div class="user-container">
-    <div class="user-info">
-      <% @users.each do |user| %>
-        <% unless user.products.empty? %>
-          <% if user.seller? %>
-            <div class="user-info-details">
-              <div class="user-info-details-text">
-                <h2>Producer: <%= user.company_name %></h2>
-                <p>Address: <%= user.address %>, <%= user.country %></p>
-                <p><b><i class="fas fa-shopping-cart"></i> <%= link_to "Request an offer" ,new_offer_path(user) %></b></p>
-              </div>
-              <div class="cards">
-                <% user.products.each do |product| %>
-                  <%= render "products/products_cards_in_index", product: product %>
-                <% end %>
-              </div>
+      <form id="search-box">
+        <div class="row">
+          <%= simple_form_for :search, url: user_index_path, method: "GET" do |f| %>
+            <div class="col">
+              <%= f.text_field :prod_input, class: 'form-control', placeholder: 'Product' %>
             </div>
+            <div class="col">
+              <%= f.text_field :location_input, class: 'form-control', placeholder: 'Location' %>
+            </div>
+            <div>
+              <%= f.submit "Find products", class: "btn btn-outline-primary" %>
+            </div>
+          <% end %>
+        </div>
+      </form>
+  </div>
+
+  <div class="user-container">
+
+    <div class="user-info">
+      <% if @users.class == Hash %>
+        <% @users.each do |user, products| %>
+          <% unless user.products.empty? %>
+            <% if user.seller? %>
+              <div class="user-info-details">
+                <div class="user-info-details-text">
+                  <h2>Producer: <%= user.company_name %></h2>
+                  <p>Address: <%= user.address %>, <%= user.country %></p>
+                  <p><b><i class="fas fa-shopping-cart"></i> <%= link_to "Request an offer" ,new_offer_path(user) %></b></p>
+                </div>
+                <div class="cards">
+                  <% products.each do |product| %>
+                    <%= render "products/products_cards_in_index", product: product %>
+                  <% end %>
+                </div>
+              </div>
+            <% end %>
+          <% end %>
+        <% end %>
+      <% else %>
+        <% @users.each do |user| %>
+          <% unless user.products.empty? %>
+            <% if user.seller? %>
+              <div class="user-info-details">
+                <div class="user-info-details-text">
+                  <h2>Producer: <%= user.company_name %></h2>
+                  <p>Address: <%= user.address %>, <%= user.country %></p>
+                  <p><b><i class="fas fa-shopping-cart"></i> <%= link_to "Request an offer" ,new_offer_path(user) %></b></p>
+                </div>
+                <div class="cards">
+                  <% user.products.each do |product| %>
+                    <%= render "products/products_cards_in_index", product: product %>
+                  <% end %>
+                </div>
+              </div>
+            <% end %>
           <% end %>
         <% end %>
       <% end %>
