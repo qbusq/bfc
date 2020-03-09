@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_03_05_100224) do
+ActiveRecord::Schema.define(version: 2020_03_09_083823) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -77,6 +77,7 @@ ActiveRecord::Schema.define(version: 2020_03_05_100224) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "title"
+    t.string "country"
     t.index ["follow_up_on_offer_id"], name: "index_offers_on_follow_up_on_offer_id"
     t.index ["from_user_id"], name: "index_offers_on_from_user_id"
     t.index ["offer_request_id"], name: "index_offers_on_offer_request_id"
@@ -84,6 +85,7 @@ ActiveRecord::Schema.define(version: 2020_03_05_100224) do
   end
 
   create_table "prod_categories", force: :cascade do |t|
+    t.string "name"
     t.integer "gpc_brick"
     t.string "brick_description"
     t.datetime "created_at", null: false
@@ -127,6 +129,8 @@ ActiveRecord::Schema.define(version: 2020_03_05_100224) do
     t.boolean "seller"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.float "latitude"
+    t.float "longitude"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end

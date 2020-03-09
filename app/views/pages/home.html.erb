@@ -1,7 +1,8 @@
-<div class="banner" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('https://source.unsplash.com/-r5KSMkyoSc/1600x900')">
+<div class="banner" id="banner" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('https://source.unsplash.com/-r5KSMkyoSc/1600x900')">
   <div class="banner-upper-div">
     <div class="login-button-div">
-      <a href="#" class="login-button">Login</a>
+      <%# link_to 'Login', new_user_session_path, class: 'login-button' %>
+      <!-- <a href="#" class="login-button">Login</a> -->
     </div>
   </div>
 
@@ -12,7 +13,7 @@
     </div>
   </div>
 
-  <<!-- div class="banner-lower-div">
+    <!-- div class="banner-lower-div">
     <div class="buyer-seller-div text-center">
       <a href="#buyer-page" class="login-button buyer-seller-button">I'm a buyer</a>
       <a href="#seller-page" class="login-button buyer-seller-button">I'm a seller</a>

@@ -3,7 +3,7 @@
   <%= f.input :name %>
   <%= f.input :description %>
   <%= f.input :brand %>
-  <%= f.association :prod_category, label: 'Product category' %>
+  <%= f.association :prod_category, collection: ProdCategory.all.sort { |a, b| a.brick_description <=> b.brick_description }, label_method: :brick_description, label: 'Product category' %>
   <%= f.input :private_label, label: 'The product is produced under a private label' %>
   <%= f.input :weight_in_kg, label: 'Weight of the product (kg)' %>
   <%= f.input :nr_per_sku, label: 'SKU (stock-keeping-unit) number' %>
