@@ -1,22 +1,22 @@
 <div class="container">
   <div class="links" >
       <div class="link" data-url="<%= my_products_user_index_path %>" style="cursor: pointer;">
-        <p class="link-text">Product Range</p>
+        <p class="link-text" data-url="<%= my_products_user_index_path %>">Product Range</p>
         <%= link_to '<i class="fas fa-plus-square"></i>'.html_safe,  new_product_path, class: "link-text" %>
       </div>
       <div class="link" data-url="<%= offers_requested_offers_path %>" style="cursor: pointer;">
-        <p class="link-text">Offer requests</p>
+        <p class="link-text" data-url="<%= offers_requested_offers_path %>">Offer requests</p>
         <%= link_to '<i class="fas fa-plus-square"></i>'.html_safe,  new_offer_path, class: "link-text" %>
       </div>
       <div class="link" data-url="<%= offers_received_offers_path %>" style="cursor: pointer;">
-        <p class="link-text">Offers</p>
+        <p class="link-text" data-url="<%= offers_received_offers_path %>">Offers</p>
       </div>
       <div class="link" data-url="<%= contracts_offers_path %>" style="cursor: pointer;">
-        <p class="link-text">Contracts</p>
+        <p class="link-text" data-url="<%= contracts_offers_path %>">Contracts</p>
         <%= link_to '<i class="fas fa-plus-square"></i>'.html_safe,  contracts_offers_path, class: "link-text" %>
       </div>
-      <div class="link" data-url="<%= user_index_path %>" style="cursor: pointer;">
-        <p class="link-text">Search products</p>
+      <div class="link" data-url="<%= products_path %>" style="cursor: pointer;">
+        <p class="link-text" data-url="<%= products_path %>">Search products</p>
       </div>
   </div>
 </div>
