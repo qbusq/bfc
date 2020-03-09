@@ -8,6 +8,9 @@ Rails.application.routes.draw do
   end
   root to: 'pages#home'
   resources :offers do
+    get 'c_offers', to: 'offers#new_offer'
+    post 'c_offers', to: 'offers#create_offer'
+
     resources :offer_lines, only: [:new, :create, :index, :destroy]
     resources :offers
     collection do
