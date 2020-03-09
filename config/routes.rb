@@ -19,5 +19,7 @@ Rails.application.routes.draw do
   resources :products do
     resources :product_certificates, only: [:new, :create, :destroy]
   end
+
+  get '/charts', to: 'charts#display_chart'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
