@@ -1,33 +1,31 @@
 <div class="container">
   <h1>New offer request</h1>
-  <%= current_user.company_name %>
+  <h2><%= current_user.company_name %></h2>
 
   <%= simple_form_for(@offer) do |f| %>
-  <%= f.error_notification %>
+    <%= f.error_notification %>
+    <%= f.input :title, label: 'Title:', placeholder: 'Offer request title (for future reference):' %>
 
-  <h3>Products</h3>
-  <%= f.simple_fields_for :offer_lines do |offer_line| %>
-  <%= render 'offer_line_fields', f: offer_line %>
+    <h5>Products</h5>
+    <%= f.simple_fields_for(:offer_lines) do |offer_line| %>
+      <%= render 'offer_line_fields', f: offer_line %>
+    <% end %>
+    <div class="links">
+      <%= link_to_add_association 'Add product', f, :offer_lines %>
+    </div>
+
+    <%= f.hidden_field :from_user_id, value: current_user.id %>
+    <%= f.hidden_field :date, value: DateTime.now %>
+    <%= f.hidden_field :status, value: "requested" %>
+
+    <%= f.input :start_date, label: 'Delivery period from:' %>
+    <%= f.input :end_date, label: 'till:' %>
+    <%= f.input :remark, label: 'Comments:' %>
+
+    <%= f.input :offer_attachment, as: :file, label: 'Attachment:' %>
+
+    <%= f.submit "Send offer request", class: "btn-primary w-100" %>
   <% end %>
-
-  <div class="links">
-  <%= link_to_add_association 'Add product', f, :offer_lines %>
-  </div>
-  <%= f.hidden_field :date, value: DateTime.now %>
-
-  <%= f.hidden_field :from_user, value: current_user %>
-  <%= f.hidden_field :status, value: "Sent" %>
-
-  <%= f.input :start_date %>
-  <%= f.input :end_date %>
-  <%= f.input :remark %>
-
-  <%= f.input :offer_attachment, as: :file %>
-  <%= f.button :submit, class: "btn-primary w-100" %>
-
-  <% end %>
-
-
 </div>
 
 
