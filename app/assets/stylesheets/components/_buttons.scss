@@ -30,3 +30,19 @@ $primary: rgb(239, 81, 19);
   padding: 8px 20px;
   }
 }
+
+.button-frame {
+  display: flex;
+  flex-direction: row;
+  width: 500px;
+  margin-top: 10px;
+}
+
+.btn {
+  margin: 5px;
+  border-radius: 10px;
+}
+
+.btn-danger {
+  color: white;
+}

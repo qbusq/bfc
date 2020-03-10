@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_03_09_152757) do
+ActiveRecord::Schema.define(version: 2020_03_10_093254) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -78,6 +78,7 @@ ActiveRecord::Schema.define(version: 2020_03_09_152757) do
     t.datetime "updated_at", null: false
     t.string "title"
     t.string "country"
+    t.date "deadline"
     t.index ["follow_up_on_offer_id"], name: "index_offers_on_follow_up_on_offer_id"
     t.index ["from_user_id"], name: "index_offers_on_from_user_id"
     t.index ["offer_request_id"], name: "index_offers_on_offer_request_id"
