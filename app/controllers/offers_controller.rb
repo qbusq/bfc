@@ -22,7 +22,6 @@ class OffersController < ApplicationController
     @offer.title = "Re: " + old_offer.title
     @offer.offer_request_id = old_offer.offer_request_id
     @offer.follow_up_on_offer_id = old_offer.id
-    @offer.save
   end
 
   def create_offer
