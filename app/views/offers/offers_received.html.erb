@@ -5,7 +5,7 @@
       <% unless offer.offer_request_id == nil || offer.status == "accepted" %>
         <div class="card-user">
           <p><%= link_to offer.title, offer_path(offer) %></p>
-          <p><i class="far fa-chart-bar"></i> <%= link_to "Compare to other offers of #{offer.offer_request.title}", offer_path(offer) %></p>
+          <p><i class="far fa-chart-bar"></i> <%= link_to "Compare to other offers of #{offer.offer_request.title}",  compare_chart_path(offer) %></p>
         </div>
       <% end %>
     <% end %>

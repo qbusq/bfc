@@ -1,40 +1,52 @@
-<h1>This is the chart</h1>
+<h1>Price comparison</h1>
 
-<%= current_user.company_name %>
+  <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+  <script type="text/javascript">
+    google.charts.load('current', {'packages':['corechart']});
+    google.charts.setOnLoadCallback(drawChart);
+    const chartData = JSON.parse("<%= @chart_points.to_json %>")
+    console.log(chartData)
+    function drawChart() {
+     var data = google.visualization.arrayToDataTable([
+       ['Price', 'Product'],
+       ...chartData
+       ]);
 
+     var options = {
+       title: 'Product prices',
+       hAxis: {title: 'Price', minValue: 1, maxValue: 1, gridlines: {count: 0}, minorGridlines: {count: 0}},
+       vAxis: {title: 'Product', minValue: 1, maxValue: 3.5, minorGridlines: {count: 0}},
+       legend: 'none',
+       pointSize: 15
+     };
 
+     var chart = new google.visualization.ScatterChart(document.getElementById('chart_div'));
 
+     chart.draw(data, options);
+   }
+ </script>
 
-<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-<script type="text/javascript">
-  google.charts.load('current', {'packages':['corechart']});
-  google.charts.setOnLoadCallback(drawChart);
+<div id="chart_div" style="width: 1200px; height: 900px;"></div>
 
-  function drawChart() {
-    var data = google.visualization.arrayToDataTable([
-      ['Age', 'Weight'],
-      [ 8,      12],
-      [ 4,      5.5],
-      [ 11,     14],
-      [ 4,      5],
-      [ 3,      3.5],
-      [ 6.5,    7]
-      ]);
+<h3>Detailed comparison</h3>
 
-    var options = {
-      title: 'Age vs. Weight comparison',
-      hAxis: {title: 'Age', minValue: 0, maxValue: 15},
-      vAxis: {title: 'Weight', minValue: 0, maxValue: 15},
-      legend: 'none'
-    };
+<p><%= @offer.title %></p>
 
-    var chart = new google.visualization.ScatterChart(document.getElementById('chart_div'));
+<p><%= @orgininal_offer.title %></p>
 
-    chart.draw(data, options);
-  }
-</script>
+<ul>
+  <% @received_offers.each do |offer| %>
+  <li><%= offer.title %></li>
+  <ul>
+    <% @offer_lines.each do |line| %>
+    <% product = Product.find(line.product_id) %>
+    <% if line.offer_id == offer.id %>
+    <li><%= line.target_offer_line_id %>, <%= product.name %>: $<%= line.price %></li>
+    <% end %>
+    <% end %>
+  </ul>
+  <% end %>
 
-<div id="chart_div" data-offers="<%= @offers %>" style="width: 1200px; height: 800px;"></div>
 
 
 
