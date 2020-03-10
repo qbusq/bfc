@@ -39,8 +39,12 @@
       </div>
     <% end %>
     <% if current_user.seller && @offer.status == "accepted" %>
-      <%= link_to "Confirm", offer_path(@offer, offer: {status: "confirmed"}), method: :put, class: "btn btn-success" %>
-      <%= link_to "Decline", offer_path(@offer, offer: {status: "declined"}), method: :put, class: "btn btn-danger" %>
+      <div>
+        <%= link_to "Confirm", offer_path(@offer, offer: {status: "confirmed"}), method: :put, class: "btn btn-success" %>
+      </div>
+      <div>
+        <%= link_to "Decline", offer_path(@offer, offer: {status: "declined"}), method: :put, class: "btn btn-danger" %>
+      </div>
     <% end %>
   </div>
 </div>
