@@ -68,6 +68,9 @@ class OffersController < ApplicationController
 
   def offers_received #status "sent"
     @offers = Offer.where(to_user_id: current_user.id).where(status: "sent")
+    @accepted_offers = Offer.where(to_user_id: current_user.id).where(status: "accepted")
+    @spontaneous_offers = Offer.where(to_user_id: current_user.id).where(offer_request_id: nil)
+    # @requested_offers = Offer.where(to_user_id: current_user.id).where(offer_request_id: != nil)
   end
 
   def contracts #status "confirmed"

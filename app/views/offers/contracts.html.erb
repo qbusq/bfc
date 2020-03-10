@@ -1,7 +1,11 @@
-<h1>Contracts</h1>
-
-<ul>
-  <% @offers.each do |offer| %>
-    <li><%= link_to offer.title, offer_path(offer) %></li>
-  <% end %>
-</ul>
+<div class="container">
+  <h1> <%= current_user.company_name %></h1>
+  <div class="content-container">
+    <h2>Your contracts</h2>
+      <% @offers.each do |offer| %>
+        <div class="card-user">
+          <p><%= link_to offer.title, offer_path(offer) %></p>
+        </div>
+      <% end %>
+  </div>
+</div>

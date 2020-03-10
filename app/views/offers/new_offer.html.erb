@@ -1,5 +1,6 @@
 <div class="container">
   <h1>Offer reply</h1>
+  <div class="content-container">
   <h2><%= current_user.company_name %></h2>
 
   <%= simple_form_for(@offer) do |f| %>
@@ -25,6 +26,7 @@
 
     <%= f.input :offer_attachment, as: :file, label: 'Attachment:' %>
 
-    <%= f.submit "Send reply", class: "btn-primary w-100" %>
+    <%= f.submit "Send reply", class: "btn btn-success w-100" %>
   <% end %>
+  </div>
 </div>
