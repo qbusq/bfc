@@ -28,21 +28,13 @@
   </div>
   <div class="row">
     <% if @offer.status == "sent" %>
-      <%= link_to "Send counter offer", offer_path(@offer), class: "btn btn-primary" %><!-- create a new counter offer with NEW@offer = THIS@offer.dup and NEWfollow_up_on_offer_id = THIS@offer.id -->
-
-
-      <%= link_to "Accept", offer_path(@offer, offer: {status: "accepted"}), method: :put, class: "btn btn-primary" %><!-- @offer.update(status:"accepted") -->
-      <!-- how to redirect to another page after pushing button and status change? -->
-
-      <%= link_to "Decline", offer_path(@offer, offer: {status: "declined"}), method: :put, class: "btn btn-primary" %><!-- @offer.update(status:"declined") -->
-      <!-- how to redirect to user_path(current_user) after pushing button and status change? -->
+      <%= link_to "Send counter offer", offer_c_offers_path(@offer), method: :get, class: "btn btn-primary" %>
+      <%= link_to "Accept", offer_path(@offer, offer: {status: "accepted"}), method: :put, class: "btn btn-primary" %>
+      <%= link_to "Decline", offer_path(@offer, offer: {status: "declined"}), method: :put, class: "btn btn-primary" %>
     <% end %>
     <% if current_user.seller && @offer.status == "accepted" %>
-      <%= link_to "Confirm", offer_path(@offer, offer: {status: "confirmed"}), method: :put, class: "btn btn-primary" %><!-- @offer.update(status:"confirmed") -->
-      <!-- how to redirect to contract page after pushing button and status change? -->
-
-      <%= link_to "Decline", offer_path(@offer, offer: {status: "declined"}), method: :put, class: "btn btn-primary" %><!-- @offer.update(status:"declined") -->
-      <!-- how to redirect to user_path(current_user) after pushing button and status change? -->
+      <%= link_to "Confirm", offer_path(@offer, offer: {status: "confirmed"}), method: :put, class: "btn btn-primary" %>
+      <%= link_to "Decline", offer_path(@offer, offer: {status: "declined"}), method: :put, class: "btn btn-primary" %>
     <% end %>
   </div>
 </div>

@@ -9,17 +9,38 @@ class OffersController < ApplicationController
     @offer = Offer.new(offer_params)
 
     if @offer.save
-      if @offer.status = 'requested'
-        redirect_to offers_requested_offers_path
-      elsif @offer.status = 'confirmed'
+      redirect_to offers_requested_offers_path
+    else
+      render :new
+    end
+  end
+
+  def new_offer
+    old_offer = Offer.find(params[:offer_id])
+    @offer = old_offer.deep_clone include: :offer_lines
+    @offer.to_user_id = old_offer.from_user_id
+    @offer.title = "Re: " + old_offer.title
+    @offer.offer_request_id = old_offer.offer_request_id
+    @offer.follow_up_on_offer_id = old_offer.id
+  end
+
+  def create_offer
+    @offer = Offer.new(offer_params.except(:offer_lines_attributes))
+    @offer_line = OfferLine.new(params[:offer][:offer_line])
+    @offer_line.save
+    @offer.offer_line = @offer_line
+
+    if @offer.save
+      if @offer.status = 'confirmed'
         redirect_to contracts_offers_path
       else
         redirect_to offer_path(@offer)
       end
     else
-      render :new
+      render :new_offer
     end
   end
+
 
   def edit
   end
