@@ -14,6 +14,9 @@
       <% @offers.each do |offer| %>
         <div class="card-user">
           <p><%= link_to offer.title, offer_path(offer) %></p>
+          <% if offer.deadline? %>
+            <p>Deadline: <%= offer.deadline %></p>
+          <% end %>
         </div>
       <% end %>
   <% end %>
