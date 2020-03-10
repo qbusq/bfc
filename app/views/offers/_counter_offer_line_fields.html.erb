@@ -1,19 +1,33 @@
-<div class="nested-fields form-row">
-  <div class="form-group col-md-3 justify-content-center">
-    <%= f.number_field :quantity_in_tons, placeholder: "desired quantity",  min: 0, step: 0.5 %>
-    <%= "tons" %>
+<div class="nested-fields">
+  <div class="form-row">
+    <%= f.input :target_offer_line_id, label: "Product requested:" + :target_offer_line_id[:product_id[:name_display]].to_s %>
+    <!-- How to display the name (and possibly quantity) of the target offer line? -->
+    <!-- How to pass the id of the target offer line to each (new) offer line? -->
   </div>
-  <div class="form-group col-md-3 justify-content-center">
-    <%= f.association :product, prompt: "select product", label: false, collection: Product.where(user: current_user).order(prod_category_id: :asc), data: { placeholder: 'Select product'}, label_method: :name_display  %>
+  <div class="form-row">
+    <%= link_to_add_association 'Add product', f %>
+    <!-- How to add an offer line for a specific target_offer_line?-->
   </div>
-  <div class="form-group col-md-3 justify-content-center">
-    <%= f.number_field :price, min: 0, step: 0.001, label: 'Price' %>
-    <%= "EUR/kg" %>
+  <div class="form-row">
+    <div class="form-group col-md-2 justify-content-center">
+      <%= f.number_field :quantity_in_tons, placeholder: "desired quantity",  min: 0, step: 0.5 %>
+      <%= "tons" %>
+    </div>
+    <div class="form-group col-md-6 justify-content-center">
+      <%= f.association @offer.offer_lines.map(&:product), prompt: "select product", label: false, collection: Product.where(user: current_user).order(prod_category_id: :asc), data: { placeholder: 'Select product'}, label_method: :name_display  %>
+    </div>
+    <div class="form-group col-md-2 justify-content-center">
+      <%= f.number_field :price, min: 0, step: 0.001, label: 'Price' %>
+      <%= "EUR/kg" %>
+    </div>
+    <div class="form-group col-md-2 justify-content-center">
+      <%= link_to_remove_association "Remove product", f %>
+    </div>
+    <%= f.hidden_field :offer_id, value: @offer.id %>
   </div>
-  <div class="form-group col-md-3 justify-content-center">
-  <%= link_to_remove_association "Remove product", f %>
+
+  <div class="form-row">
+    <%= f.input :alternative_to_target, label: 'Product offered is an alternative for the product requested.' %>
   </div>
-  <%= f.hidden_field :offer_id, value: @offer.id %>
-  <%= f.hidden_field :target_offer_line_id, value: params[:id] %>
 </div>
 

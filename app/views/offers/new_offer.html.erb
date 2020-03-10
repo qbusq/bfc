@@ -1,5 +1,5 @@
 <div class="container">
-  <h1>Counter second offer</h1>
+  <h1>Offer reply</h1>
   <h2><%= current_user.company_name %></h2>
 
   <%= simple_form_for(@offer) do |f| %>
@@ -8,8 +8,9 @@
 
     <h5>Products</h5>
     <%= f.simple_fields_for(:offer_lines) do |offer_line| %>
-      <%= render '_counter_offer_line_fields', f: offer_line %>
+      <%= render 'counter_offer_line_fields', f: offer_line %>
     <% end %>
+
     <div class="links">
       <%= link_to_add_association 'Add product', f, :offer_lines %>
     </div>
@@ -24,7 +25,6 @@
 
     <%= f.input :offer_attachment, as: :file, label: 'Attachment:' %>
 
-    <%= f.submit "Send counter offer", class: "btn-primary w-100" %>
+    <%= f.submit "Send reply", class: "btn-primary w-100" %>
   <% end %>
 </div>
-
