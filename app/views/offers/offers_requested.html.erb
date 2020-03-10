@@ -1,4 +1,5 @@
 <div class="container">
+  <div class="content-container">
   <% if current_user.seller? %>
     <h1>Received offer requests</h1>
     <% @all_offers.each do |offer| %>
@@ -14,9 +15,13 @@
       <% @offers.each do |offer| %>
         <div class="card-user">
           <p><%= link_to offer.title, offer_path(offer) %></p>
+          <% if offer.deadline? %>
+            <p>Deadline: <%= offer.deadline %></p>
+          <% end %>
         </div>
       <% end %>
   <% end %>
+  </div>
 </div>
 
 
