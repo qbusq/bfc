@@ -1,5 +1,6 @@
 <div class="container">
   <h1>New offer request</h1>
+  <div class="content-container">
   <h2><%= current_user.company_name %></h2>
 
   <%= simple_form_for(@offer) do |f| %>
@@ -27,8 +28,9 @@
     <%= f.input :offer_attachment, as: :file, label: 'Attachment:' %>
 
     <%# f.input :country, collection: Country.list.sort.map {|k,v| [v,k]}, label: 'Countries' %>
-    <%= f.submit "Send offer request", class: "btn-primary w-100" %>
+    <%= f.submit "Send offer request", class: "btn btn-success w-100" %>
   <% end %>
+</div>
 </div>
 
 

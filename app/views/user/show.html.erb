@@ -2,7 +2,8 @@
   <br>
     <h2><b><%= @user.company_name %></b></h2>
   <br>
-    <h3><b>Your dashboard</b></h3>
+    <div class="content-container">
+       <h3><b>Your dashboard</b></h3>
   <div class="links" >
       <div class="link" data-url="<%= my_products_user_index_path %>" style="cursor: pointer;">
         <h2 class="link-text" data-url="<%= my_products_user_index_path %>">Product Range</h2>
@@ -21,5 +22,6 @@
       <div class="link" data-url="<%= products_path %>" style="cursor: pointer;">
         <h2 class="link-text" data-url="<%= user_index_path %>">Search products</h2>
       </div>
+  </div>
   </div>
 </div>

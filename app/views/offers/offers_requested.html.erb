@@ -1,4 +1,5 @@
 <div class="container">
+  <div class="content-container">
   <% if current_user.seller? %>
     <h1>Received offer requests</h1>
     <% @all_offers.each do |offer| %>
@@ -20,6 +21,7 @@
         </div>
       <% end %>
   <% end %>
+  </div>
 </div>
 
 
