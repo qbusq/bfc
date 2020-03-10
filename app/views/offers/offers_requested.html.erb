@@ -1,7 +1,23 @@
-<h1>Offer requests</h1>
-
-<ul>
-  <% @offers.each do |offer| %>
-    <li><%= link_to offer.title, offer_path(offer) %></li>
+<div class="container">
+  <% if current_user.seller? %>
+    <h1>Received offer requests</h1>
+    <% @all_offers.each do |offer| %>
+      <% if offer.country == current_user.country  %>
+        <div class="card-user">
+          <p><b><%= offer.title %></b></p>
+          <p><%= link_to "View request", offer_path(offer) %></p>
+        </div>
+      <% end %>
+    <% end %>
+  <% else %>
+    <h1>My sent offer requests</h1>
+      <% @offers.each do |offer| %>
+        <div class="card-user">
+          <p><%= link_to offer.title, offer_path(offer) %></p>
+        </div>
+      <% end %>
   <% end %>
-</ul>
+</div>
+
+
+
