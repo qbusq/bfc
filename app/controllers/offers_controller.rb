@@ -18,9 +18,13 @@ class OffersController < ApplicationController
   def new_offer
     old_offer = Offer.find(params[:offer_id])
     @offer = old_offer.deep_clone include: :offer_lines
-    @offer.to_user_id = old_offer.from_user_id
+    @offer.to_user = old_offer.from_user
     @offer.title = "Re: " + old_offer.title
-    @offer.offer_request_id = old_offer.offer_request_id
+    if old_offer.status = 'requested'
+      @offer.offer_request_id = old_offer.id
+    else
+      @offer.offer_request_id = old_offer.offer_request_id
+    end
     @offer.follow_up_on_offer_id = old_offer.id
   end
 
