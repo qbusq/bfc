@@ -50,7 +50,7 @@ seller1 = User.create!(
     password: '123456abc!',
     company_name: 'Veggie Company',
     address: '38 Parkstraat, Roeselare',
-    country: 'Belgium',
+    country: 'BE',
     user_type: 'processor',
     seller: true
  })
@@ -61,7 +61,7 @@ seller2 = User.create!(
     password: '654321abc!',
     company_name: 'Fruity & Co',
     address: '247 Chemin des Espagnols, 13, Arlon',
-    country: 'Belgium',
+    country: 'BE',
     user_type: 'processor',
     seller: true
  })
@@ -72,7 +72,7 @@ seller3 = User.create!(
     password: '98765abc!',
     company_name: 'All Things Veggie',
     address: '235 Avenue Lacassagne, Lyon',
-    country: 'France',
+    country: 'FR',
     user_type: 'processor',
     seller: true
  })
@@ -83,7 +83,7 @@ buyer1 = User.create!(
     password: '147852abc!',
     company_name: 'La Biscuitrie',
     address: '14 Rue Pierre Robin, Lyon',
-    country: 'France',
+    country: 'FR',
     user_type: 'processor',
     seller: false
  })
@@ -94,7 +94,7 @@ buyer2 = User.create!(
     password: '369852abc!',
     company_name: 'Gastro Gut Essen',
     address: '18 Lagerstraße, Hamburg',
-    country: 'Germany',
+    country: 'DE',
     user_type: 'food service',
     seller: false
  })
@@ -123,7 +123,7 @@ p offer_request2 = Offer.create!(
     date: Date.new(2020,3,7),
     start_date: Date.new(2020,5,1),
     end_date: Date.new(2021,6,30),
-    country: 'France',
+    country: 'FR',
     remark: 'Please consult the general terms and conditions that apply to this offer request on our website.',
     status: 'requested'
    )
@@ -135,7 +135,7 @@ p offer1 = Offer.create!(
     date: Date.new(2020,3,5),
     start_date: Date.new(2020,7,1),
     end_date: Date.new(2021,6,30),
-    country: 'Belgium',
+    country: 'BE',
     remark: 'Offer subject to unsold',
     offer_request: offer_request,
     follow_up_on_offer: offer_request,
@@ -148,7 +148,7 @@ p offer2 = Offer.create!(
     date: Date.new(2020,3,6),
     start_date: Date.new(2020,7,1),
     end_date: Date.new(2021,6,30),
-    country: 'Belgium',
+    country: 'BE',
     remark: 'Offer subject to unsold',
     offer_request: offer_request,
     follow_up_on_offer: offer_request,
@@ -175,7 +175,7 @@ p renewedoffer1 = Offer.create!(
     date: Date.new(2020,3,17),
     start_date: Date.new(2020,7,1),
     end_date: Date.new(2021,6,30),
-    country: 'Belgium',
+    country: 'BE',
     remark: 'Offer subject to unsold',
     offer_request: offer_request,
     follow_up_on_offer: counteroffer1,
@@ -188,7 +188,7 @@ p counteroffer2 = Offer.create!(
     date: Date.new(2020,3,20),
     start_date: Date.new(2020,7,1),
     end_date: Date.new(2021,6,30),
-    country: 'Belgium',
+    country: 'BE',
     remark: 'Please consult the general terms and conditions that apply to this offer request on our website.',
     offer_request: offer_request,
     follow_up_on_offer: renewedoffer1,
@@ -202,7 +202,7 @@ p renewedoffer2 = Offer.create!(
     date: Date.new(2020,3,21),
     start_date: Date.new(2020,7,1),
     end_date: Date.new(2021,6,30),
-    country: 'Belgium',
+    country: 'BE',
     remark: 'The general terms and conditions of the buyer apply.',
     offer_request: offer_request,
     follow_up_on_offer: counteroffer2,
@@ -214,7 +214,7 @@ p offer3 = Offer.create!(
     to_user: buyer1,
     title: seller2[:company_name] + ' - Spontaneous offer',
     date: Date.new(2020,3,9),
-    country: 'Belgium',
+    country: 'BE',
     start_date: Date.new(2020,4,1),
     end_date: Date.new(2020,4,30),
     remark: 'Offer subject to unsold',

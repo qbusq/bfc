@@ -42,6 +42,7 @@ class OffersController < ApplicationController
 
   def offers_requested #status "requested"
     @offers = Offer.where(from_user_id: current_user.id).where(status: "requested")
+    @all_offers = Offer.all
   end
 
   def offers_received #status "sent"
