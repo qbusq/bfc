@@ -32,7 +32,15 @@
   color: black;
 }
 
+.black:hover {
+  color: black;
+}
+
 .white {
+  color: white;
+}
+
+.white:hover {
   color: white;
 }
 
@@ -50,6 +58,18 @@
 
 .navbar-item-black {
   color: black;
+}
+
+.navbar-item-black:hover {
+  color: black;
+}
+
+.navbar-item-white {
+  color: white;
+}
+
+.navbar-item-white:hover {
+  color: white;
 }
 
 .navbar-item:hover {
