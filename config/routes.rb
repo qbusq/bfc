@@ -20,6 +20,6 @@ Rails.application.routes.draw do
     resources :product_certificates, only: [:new, :create, :destroy]
   end
 
-  get '/charts', to: 'charts#display_chart'
+  get '/charts/:id', to: 'charts#display_chart', as: :compare_chart
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
