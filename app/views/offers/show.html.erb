@@ -1,5 +1,10 @@
 <div class="container">
   <h1><%= @offer.title %></h1>
+  <% if @offer.status == "confirmed" %>
+  <div class="button-frame">
+    <a href="/offers/<%= @offer.id %>.pdf" class="btn btn-success">Download contract</a>
+  </div>
+  <% end %>
   <br>
   <div class="content-container">
     <h2>Offer info</h2>
@@ -59,9 +64,6 @@
       <div>
         <%= link_to "Decline", offer_path(@offer, offer: {status: "declined"}), method: :put, class: "btn btn-danger" %>
       </div>
-      <% end %>
-      <% if @offer.status == "confirmed" %>
-        <a href="/offers/<%= @offer.id %>.pdf" class="btn btn-success">Download offer</a>
       <% end %>
     </div>
   </div>
