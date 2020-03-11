@@ -1,11 +1,45 @@
-<h1>Offers</h1>
-
-<ul>
-  <% @offers.each do |offer| %>
-    <% if offer.offer_request != nil %>
-      <li><%= link_to offer.title, offer_path(offer) %> <%= link_to "Compare to other offers of #{offer.offer_request.title}", compare_chart_path(offer) %></li>
-    <% else %>
-      <li><%= link_to offer.title, offer_path(offer) %></li>
+<div class="container">
+  <h1> <%= current_user.company_name %> - Offers</h1>
+  <div class="content-container">
+  <% if @offers.empty? %>
+    <p>You currently have no received offers.</p>
+  <% else %>
+  <h2>Offers responding to your offer requests</h2>
+    <% @offers.each do |offer| %>
+      <% unless offer.offer_request_id == nil || offer.status == "accepted" %>
+        <div class="card-user">
+          <p><b><%= link_to offer.title, offer_path(offer) %></b></p>
+          <p> <%= link_to '<i class="far fa-chart-bar"></i> Compare with other offers'.html_safe,  compare_chart_path(offer) %></p>
+        </div>
+      <% end %>
     <% end %>
   <% end %>
-</ul>
+  </div>
+  <br>
+  <div class="content-container">
+  <h2> Spontaneous offers</h2>
+    <% if @spontaneous_offers.empty? %>
+      <p>You currently have no spontaenous offers.</p>
+    <% else %>
+      <% @spontaneous_offers.each do |offer| %>
+          <div class="card-user">
+            <p><%= link_to offer.title, offer_path(offer) %></p>
+          </div>
+      <% end %>
+    <% end %>
+  </div>
+  <br>
+  <div class="content-container">
+  <h2>Offers pending confirmation</h2>
+   <% if @accepted_offers.empty? %>
+      <p>You currently have no offers pending confirmation.</p>
+    <% else %>
+      <% @accepted_offers.each do |offer| %>
+          <div class="card-user">
+            <p><%= link_to offer.title, offer_path(offer) %></p>
+          </div>
+      <% end %>
+    <% end %>
+  </div>
+  <br>
+</div>

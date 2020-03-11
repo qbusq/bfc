@@ -1,14 +1,18 @@
-<h1>Register a new product</h1>
-<%= simple_form_for  [@product] do |f| %>
-  <%= f.input :name %>
-  <%= f.input :description %>
-  <%= f.input :brand %>
-  <%= f.association :prod_category, collection: ProdCategory.all.sort { |a, b| a.brick_description <=> b.brick_description }, label_method: :brick_description, label: 'Product category' %>
-  <%= f.input :private_label, label: 'The product is produced under a private label' %>
-  <%= f.input :weight_in_kg, label: 'Weight of the product (kg)' %>
-  <%= f.input :nr_per_sku, label: 'SKU (stock-keeping-unit) number' %>
-  <%= f.input :prod_specification_pdf, as: :file, label: 'Detailed product speficiations' %>
-  <%= f.input :photo, as: :file %>
-  <%= f.hidden_field :user_id, value: current_user.id %>
-  <%= f.submit  "Register a product", class: "btn btn-primary" %>
-<% end %>
+<div class="container">
+  <div class="content-container">
+    <h1>Register a new product</h1>
+    <%= simple_form_for  [@product] do |f| %>
+      <%= f.input :name %>
+      <%= f.input :description %>
+      <%= f.input :brand %>
+      <%= f.association :prod_category, collection: ProdCategory.all.sort { |a, b| a.brick_description <=> b.brick_description }, label_method: :brick_description, label: 'Product category' %>
+      <%= f.input :private_label, label: 'The product is produced under a private label' %>
+      <%= f.input :weight_in_kg, label: 'Weight of the product (kg)' %>
+      <%= f.input :nr_per_sku, label: 'SKU (stock-keeping-unit) number' %>
+      <%= f.input :prod_specification_pdf, as: :file, label: 'Detailed product speficiations' %>
+      <%= f.input :photo, as: :file %>
+      <%= f.hidden_field :user_id, value: current_user.id %>
+      <%= f.submit  "Register a product", class: "btn btn-success" %>
+    <% end %>
+  </div>
+</div>

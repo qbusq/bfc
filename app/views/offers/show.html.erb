@@ -1,6 +1,7 @@
 <div class="container">
   <h1><%= @offer.title %></h1>
   <br>
+  <div class="content-container">
   <h2>Offer info</h2>
   <% if @offer.status == "requested" %>
     <%= render "details_offer_request" %>
@@ -24,24 +25,39 @@
           </ul>
         <% end %>
       </div>
+      </div>
     </div>
-  </div>
-  <div class="button-frame">
-    <% if @offer.status == "sent" %>
-      <div>
-        <%= link_to "Send counter offer", offer_c_offers_path(@offer), method: :get, class: "btn btn-primary" %>
-      </div>
-      <div>
-        <%= link_to "Accept", offer_path(@offer, offer: {status: "accepted"}), method: :put, class: "btn btn-success" %>
-      </div>
-      <div>
-        <%= link_to "Decline", offer_path(@offer, offer: {status: "declined"}), method: :put, class: "btn btn-danger" %>
-      </div>
-    <% end %>
-    <% if current_user.seller && @offer.status == "accepted" %>
-      <%= link_to "Confirm", offer_path(@offer, offer: {status: "confirmed"}), method: :put, class: "btn btn-success" %>
-      <%= link_to "Decline", offer_path(@offer, offer: {status: "declined"}), method: :put, class: "btn btn-danger" %>
-    <% end %>
+    <div class="button-frame">
+      <% if @offer.status == "sent" %>
+        <div>
+          <%= link_to "Send counter offer", offer_c_offers_path(@offer), method: :get, class: "btn btn-secondary" %>
+        </div>
+        <div>
+          <%= link_to "Accept", offer_path(@offer, offer: {status: "accepted"}), method: :put, class: "btn btn-success" %>
+        </div>
+        <div>
+          <%= link_to "Decline", offer_path(@offer, offer: {status: "declined"}), method: :put, class: "btn btn-danger" %>
+        </div>
+      <% end %>
+
+      <% if current_user.seller && @offer.status == "requested" %>
+        <div>
+          <%= link_to "Send offer", offer_c_offers_path(@offer), method: :get, class: "btn btn-secondary" %>
+        </div>
+        <div>
+          <%= link_to "Decline", offer_path(@offer, offer: {status: "declined"}), method: :put, class: "btn btn-danger" %>
+        </div>
+      <% end %>
+
+      <% if current_user.seller && @offer.status == "accepted" %>
+        <div>
+          <%= link_to "Confirm", offer_path(@offer, offer: {status: "confirmed"}), method: :put, class: "btn btn-success" %>
+        </div>
+        <div>
+          <%= link_to "Decline", offer_path(@offer, offer: {status: "declined"}), method: :put, class: "btn btn-danger" %>
+        </div>
+      <% end %>
+    </div>
   </div>
 </div>
 

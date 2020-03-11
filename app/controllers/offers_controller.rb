@@ -18,9 +18,13 @@ class OffersController < ApplicationController
   def new_offer
     old_offer = Offer.find(params[:offer_id])
     @offer = old_offer.deep_clone include: :offer_lines
-    @offer.to_user_id = old_offer.from_user_id
+    @offer.to_user = old_offer.from_user
     @offer.title = "Re: " + old_offer.title
-    @offer.offer_request_id = old_offer.offer_request_id
+    if old_offer.status = 'requested'
+      @offer.offer_request_id = old_offer.id
+    else
+      @offer.offer_request_id = old_offer.offer_request_id
+    end
     @offer.follow_up_on_offer_id = old_offer.id
   end
 
@@ -68,6 +72,9 @@ class OffersController < ApplicationController
 
   def offers_received #status "sent"
     @offers = Offer.where(to_user_id: current_user.id).where(status: "sent")
+    @accepted_offers = Offer.where(to_user_id: current_user.id).where(status: "accepted")
+    @spontaneous_offers = Offer.where(to_user_id: current_user.id).where(offer_request_id: nil)
+    # @requested_offers = Offer.where(to_user_id: current_user.id).where(offer_request_id: != nil)
   end
 
   def contracts #status "confirmed"
@@ -83,7 +90,7 @@ class OffersController < ApplicationController
 
   def offer_params
     params.require(:offer)
-      .permit(:from_user_id, :to_user_id, :title, :date, :country, :start_date, :end_date, :remark, :offer_request_id, :follow_up_on_offer_id, :status,
+      .permit(:from_user_id, :to_user_id, :title, :date, :deadline, :country, :start_date, :end_date, :remark, :offer_request_id, :follow_up_on_offer_id, :status,
         offer_lines_attributes: [:offer_id, :product_id, :quantity_in_tons, :price, :target_offer_line_id, :alternative_to_target ]
       )
   end

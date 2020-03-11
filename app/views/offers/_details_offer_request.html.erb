@@ -7,6 +7,9 @@
         <% if @offer.remark != nil %>
           <p><b>Conditions</b>: <%= @offer.remark %></p>
         <% end %>
+        <% if @offer.deadline != nil %>
+          <p><b>Deadline:</b> <%= @offer.deadline %></p>
+        <% end %>
       </div>
     </div>
   </div>
