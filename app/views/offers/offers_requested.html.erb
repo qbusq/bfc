@@ -11,7 +11,7 @@
       <% end %>
     <% end %>
   <% else %>
-    <h1>My sent offer requests</h1>
+    <h1>Ongoing offer requests</h1>
       <% @offers.each do |offer| %>
         <div class="card-user">
           <p><b><%= link_to offer.title, offer_path(offer) %></b></p>
