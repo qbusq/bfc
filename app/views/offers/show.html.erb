@@ -13,13 +13,13 @@
       <div>
         <% @offer.offer_lines.each do |offer_line| %>
           <ul class="product-list">
-            <li>Product: <b><%= offer_line.product.name %></b></li>
-            <li>Brand: <b><%= offer_line.product.brand %></b></li>
-            <li>SKU: <b><%= offer_line.product.nr_per_sku %> * <%= offer_line.product.weight_in_kg %> kg</b></li>
-            <li>Description: <b><%= offer_line.product.description %></b></li>
-            <li>Quantity: <b><%= offer_line.quantity_in_tons %> tons</b></li>
+            <li><b>Product</b>: <%= offer_line.product.name %></li>
+            <li><b>Brand</b>: <%= offer_line.product.brand %></li>
+            <li><b>SKU</b>: <%= offer_line.product.nr_per_sku %> * <%= offer_line.product.weight_in_kg %> kg</li>
+            <li><b>Description</b>: <%= offer_line.product.description %></li>
+            <li><b>Quantity</b>: <%= offer_line.quantity_in_tons %> tons</li>
             <% if @offer.status != "requested" %>
-              <li>Price: <b>€<%= offer_line.price %></b></li>
+              <li><b>Price</b>: €<%= offer_line.price %></li>
             <% end %>
           </ul>
         <% end %>

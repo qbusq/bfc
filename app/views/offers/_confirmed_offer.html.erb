@@ -2,10 +2,10 @@
   <div class="col-12 col-md-4">
     <div class="card-user">
       <div>
-        <p><b>Status: <%= @offer.status %></b></p>
-        <p><b>Delivery period: <%= @offer.start_date %> - <%= @offer.end_date %></b></p>
+        <p><b>Status</b>: <%= @offer.status %></p>
+        <p><b>Delivery period</b>: <%= @offer.start_date %> - <%= @offer.end_date %></p>
         <% if @offer.remark != nil %>
-          <p><b>Conditions: <%= @offer.remark %></b></p>
+          <p><b>Conditions</b>: <%= @offer.remark %></p>
         <% end %>
       </div>
     </div>
@@ -16,8 +16,8 @@
         <h2>Buyer details</h2>
       </div>
       <div>
-        <p>Company name: <%= @offer.from_user.company_name %></p>
-        <p>Address: <%= @offer.from_user.address %>, <%= @offer.from_user.country %></p>
+        <p><b>Company name</b>: <%= @offer.from_user.company_name %></p>
+        <p><b>Address</b>: <%= @offer.from_user.address %>, <%= @offer.from_user.country %></p>
       </div>
     </div>
   </div>
@@ -27,8 +27,8 @@
         <h2>Producer details</h2>
       </div>
       <div>
-        <p>Company name: <%= @offer.to_user.company_name %></p>
-        <p>Address: <%= @offer.to_user.address %>, <%= @offer.to_user.country %></p>
+        <p><b>Company name</b>: <%= @offer.to_user.company_name %></p>
+        <p><b>Address</b>: <%= @offer.to_user.address %>, <%= @offer.to_user.country %></p>
       </div>
     </div>
   </div>
