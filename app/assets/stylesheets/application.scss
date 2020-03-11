@@ -11,3 +11,29 @@
 // Your CSS partials
 @import "components/index";
 @import "pages/index";
+
+@media print {
+
+  #header, #footer, .navbar { display: none !important;
+  }
+
+  .btn .btn-success  {
+    display: none !important;
+  }
+
+  a {
+    display: none !important;
+  }
+
+  .container {
+    width: 100vw;
+    display: flex;
+    flex-direction: column;
+    flex: wrap;
+  }
+
+  .card-frame {
+    display: flex;
+    flex-direction: column;
+  }
+}

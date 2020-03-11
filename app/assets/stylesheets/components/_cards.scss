@@ -6,6 +6,11 @@
   flex-wrap: wrap;
 }
 
+.card-frame {
+  display: flex;
+  flex: wrap;
+}
+
 .card-product {
   overflow: hidden;
   height: 160px;
