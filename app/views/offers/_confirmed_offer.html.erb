@@ -1,5 +1,4 @@
-<div class="row no-gutters justify-content-start">
-  <div class="col-12 col-md-4">
+<div class="card-frame">
     <div class="card-user">
       <div>
         <p><b>Status</b>: <%= @offer.status %></p>
@@ -9,8 +8,6 @@
         <% end %>
       </div>
     </div>
-  </div>
-  <div class="col-12 col-md-4">
     <div class="card-user">
       <div>
         <h2>Buyer details</h2>
@@ -20,8 +17,6 @@
         <p><b>Address</b>: <%= @offer.from_user.address %>, <%= @offer.from_user.country %></p>
       </div>
     </div>
-  </div>
-  <div class="col-12 col-md-4">
     <div class="card-user">
       <div>
         <h2>Producer details</h2>
@@ -31,7 +26,6 @@
         <p><b>Address</b>: <%= @offer.to_user.address %>, <%= @offer.to_user.country %></p>
       </div>
     </div>
-  </div>
 </div>
 
 

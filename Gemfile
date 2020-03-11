@@ -20,6 +20,10 @@ gem 'cloudinary', '~> 1.12.0'
 gem 'devise'
 gem 'deep_cloneable', '~> 3.0'
 
+# PDF
+gem 'pdfkit'
+gem 'wkhtmltopdf-binary'
+
 group :development do
   gem 'web-console', '>= 3.3.0'
 end
