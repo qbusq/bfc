@@ -5,15 +5,15 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
-User.destroy_all
 Offer.destroy_all
-OfferLine.destroy_all
+User.destroy_all
 Product.destroy_all
+ProdCategory.destroy_all
+OfferLine.destroy_all
 Certificate.destroy_all
 CompanyCertificate.destroy_all
 ProductCertificate.destroy_all
 
-ProdCategory.destroy_all
 require 'nokogiri'
 
 file      = File.open('./lib/food.xml')
@@ -30,7 +30,7 @@ document.search('//brick').each do |brick|
    }])
 end
 
-ProdCategory.where gpc_brick: ['10000204', '10000270']
+prod_categories = ProdCategory.where gpc_brick: ['10000204', '10000270']
 # ==> the id's are 233 and 236
 
 require 'json'
@@ -253,7 +253,7 @@ p peas1 = Product.create!(
     weight_in_kg: 2.5,
     nr_per_sku: 4,
     user: buyer2,
-    prod_category_id: 233
+    prod_category: prod_categories.first
    )
 
 p carrots1 = Product.create!(
@@ -264,7 +264,7 @@ p carrots1 = Product.create!(
     weight_in_kg: 2.5,
     nr_per_sku: 4,
     user: buyer2,
-    prod_category_id: 233
+    prod_category: prod_categories.first
    )
 
 p beans1 = Product.create(
@@ -274,7 +274,7 @@ p beans1 = Product.create(
     private_label: true,
     weight_in_kg: 2.5,
     nr_per_sku: 4,
-    prod_category_id: 233,
+    prod_category: prod_categories.first,
     user: buyer2
    )
 
@@ -286,7 +286,7 @@ p peas2 = Product.create(
     weight_in_kg: 2.5,
     nr_per_sku: 4,
     user: seller1,
-    prod_category_id: 233
+    prod_category: prod_categories.first
    )
 
 p carrots2 = Product.create(
@@ -297,7 +297,7 @@ p carrots2 = Product.create(
     weight_in_kg: 5,
     nr_per_sku: 2,
     user: seller1,
-    prod_category_id: 233
+    prod_category: prod_categories.first
    )
 
 p peas3 = Product.create(
@@ -308,7 +308,7 @@ p peas3 = Product.create(
     weight_in_kg: 2.5,
     nr_per_sku: 4,
     user: seller2,
-    prod_category_id: 233
+    prod_category: prod_categories.first
    )
 
 p beans2 = Product.create(
@@ -319,7 +319,7 @@ p beans2 = Product.create(
     weight_in_kg: 10,
     nr_per_sku: 1,
     user: seller2,
-    prod_category_id: 233
+    prod_category: prod_categories.first
    )
 
 p cherries = Product.create(
@@ -328,7 +328,7 @@ p cherries = Product.create(
     weight_in_kg: 25,
     nr_per_sku: 1,
     user: seller2,
-    prod_category_id: 236
+    prod_category: prod_categories.last
    )
 
 p berries = Product.create(
@@ -337,7 +337,7 @@ p berries = Product.create(
     weight_in_kg: 10,
     nr_per_sku: 1,
     user: seller2,
-    prod_category_id: 236
+    prod_category: prod_categories.last
    )
 
 p offer_line1 = OfferLine.create!(
