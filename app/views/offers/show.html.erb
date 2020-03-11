@@ -1,18 +1,28 @@
 <div class="container">
   <h1><%= @offer.title %></h1>
+  <% if @offer.status == "confirmed" %>
+  <div class="button-frame">
+    <a href="/offers/<%= @offer.id %>.pdf" class="btn btn-success">Download contract</a>
+  </div>
+  <% end %>
   <br>
   <div class="content-container">
-    <h2>Offer info</h2>
+    <h2>Info</h2>
     <% if @offer.status == "requested" %>
     <%= render "details_offer_request" %>
     <% else %>
     <%= render "confirmed_offer" %>
     <% end %>
+    <% if @offer.offer_request_id != nil && @offer.status != "confirmed" %>
+    <div class="button-frame">
+      <%= link_to 'Compare with other offers',  compare_chart_path(@offer), class: "btn btn-success" %>
+    </div>
+    <% end %>
   </div>
   <br>
   <div class="content-container">
-    <h2>Product overview</h2>
-    <div class="row">
+    <h2>Details</h2>
+    <div class="row justify-content-start">
       <div class="col-12 col-md-6">
         <div>
           <% @offer.offer_lines.each do |offer_line| %>
@@ -59,9 +69,6 @@
       <div>
         <%= link_to "Decline", offer_path(@offer, offer: {status: "declined"}), method: :put, class: "btn btn-danger" %>
       </div>
-      <% end %>
-      <% if @offer.status == "confirmed" %>
-        <a href="/offers/<%= @offer.id %>.pdf" class="btn btn-success">Download offer</a>
       <% end %>
     </div>
   </div>

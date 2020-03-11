@@ -1,10 +1,10 @@
 <div class="container">
-  <h1> <%= current_user.company_name %> - Offers</h1>
+  <h1>Offers</h1>
   <div class="content-container">
   <% if @offers.empty? %>
     <p>You currently have no received offers.</p>
   <% else %>
-  <h2>Offers responding to your offer requests</h2>
+  <h2>Offers responding to your requests</h2>
     <% @offers.each do |offer| %>
       <% unless offer.offer_request_id == nil || offer.status == "accepted" %>
         <div class="card-user">
@@ -23,7 +23,7 @@
     <% else %>
       <% @spontaneous_offers.each do |offer| %>
           <div class="card-user">
-            <p><%= link_to offer.title, offer_path(offer) %></p>
+            <p><b><%= link_to offer.title, offer_path(offer) %></b></p>
           </div>
       <% end %>
     <% end %>
@@ -36,7 +36,7 @@
     <% else %>
       <% @accepted_offers.each do |offer| %>
           <div class="card-user">
-            <p><%= link_to offer.title, offer_path(offer) %></p>
+            <p><b><%= link_to offer.title, offer_path(offer) %></b></p>
           </div>
       <% end %>
     <% end %>

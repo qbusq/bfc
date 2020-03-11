@@ -53,7 +53,7 @@ class OffersController < ApplicationController
 
   def update
     if @offer.update(offer_params)
-      redirect_to offer_path(@offer)
+      redirect_to offers_received_offers_path
     else
       render :edit
     end

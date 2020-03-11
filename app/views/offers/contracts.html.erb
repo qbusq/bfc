@@ -1,10 +1,9 @@
 <div class="container">
-  <h1> <%= current_user.company_name %></h1>
   <div class="content-container">
     <h2>Your contracts</h2>
       <% @offers.each do |offer| %>
         <div class="card-user">
-          <p><%= link_to offer.title, offer_path(offer) %></p>
+          <p><b><%= link_to offer.title, offer_path(offer) %></b></p>
         </div>
       <% end %>
   </div>

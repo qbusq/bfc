@@ -92,9 +92,9 @@ buyer2 = User.create!(
   {
     email: 'buyer2@gmail.com',
     password: '369852abc!',
-    company_name: 'Gastro Gut Essen',
-    address: '18 Lagerstraße, Hamburg',
-    country: 'DE',
+    company_name: 'Continental Foods',
+    address: '18 Rue du Boulet, Brussels',
+    country: 'BE',
     user_type: 'food service',
     seller: false
  })
