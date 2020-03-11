@@ -18,10 +18,10 @@
     <%= f.hidden_field :from_user_id, value: current_user.id %>
     <%= f.hidden_field :date, value: DateTime.now %>
     <%= f.hidden_field :status, value: "requested" %>
-    <%= f.input :country, collection: Country.list.sort.map {|k,v| [v,k]}, label: 'Country of origin' %>
     <%= f.input :start_date, label: 'Delivery period from:' %>
     <%= f.input :end_date, label: 'till:' %>
     <%= f.input :remark, label: 'Comments:' %>
+    <%= f.input :country, collection: Country.list.sort.map {|k,v| [v,k]}, label: 'Send offer request to suppliers from', prompt: "Select country" %>
     <%= f.input :deadline, as: :date, html5: true, label: 'Deadline:' %>
 
 
