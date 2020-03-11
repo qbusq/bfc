@@ -90,7 +90,7 @@ class OffersController < ApplicationController
 
   def offer_params
     params.require(:offer)
-      .permit(:from_user_id, :to_user_id, :title, :date, :country, :start_date, :end_date, :remark, :offer_request_id, :follow_up_on_offer_id, :status,
+      .permit(:from_user_id, :to_user_id, :title, :date, :deadline, :country, :start_date, :end_date, :remark, :offer_request_id, :follow_up_on_offer_id, :status,
         offer_lines_attributes: [:offer_id, :product_id, :quantity_in_tons, :price, :target_offer_line_id, :alternative_to_target ]
       )
   end
