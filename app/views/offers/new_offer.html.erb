@@ -5,11 +5,11 @@
 
   <%= simple_form_for(@offer) do |f| %>
     <%= f.error_notification %>
-    <%= f.input :title, label: 'Title:', placeholder: 'Name your counter offer (for future reference):' %>
+    <%= f.input :title, label: 'Title:', placeholder: 'Name your offer (for future reference):' %>
 
     <h5>Products</h5>
     <%= f.simple_fields_for(:offer_lines) do |offer_line| %>
-      <%= render 'counter_offer_line_fields', f: offer_line %>
+      <%= render 'offer_line_fields', f: offer_line %>
     <% end %>
 
     <div class="links">

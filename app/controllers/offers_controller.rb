@@ -18,14 +18,16 @@ class OffersController < ApplicationController
   def new_offer
     old_offer = Offer.find(params[:offer_id])
     @offer = old_offer.deep_clone include: :offer_lines
+    @offer.from_user = old_offer.to_user
     @offer.to_user = old_offer.from_user
     @offer.title = "Re: " + old_offer.title
-    if old_offer.status = 'requested'
+    if old_offer.status == 'requested'
       @offer.offer_request_id = old_offer.id
     else
       @offer.offer_request_id = old_offer.offer_request_id
     end
     @offer.follow_up_on_offer_id = old_offer.id
+
   end
 
   def create_offer
@@ -35,7 +37,7 @@ class OffersController < ApplicationController
     @offer.offer_line = @offer_line
 
     if @offer.save
-      if @offer.status = 'confirmed'
+      if @offer.status == 'confirmed'
         redirect_to contracts_offers_path
       else
         redirect_to offer_path(@offer)
