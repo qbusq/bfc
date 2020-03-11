@@ -1,4 +1,5 @@
-<h1>Price comparison</h1>
+<div class="container">
+  <h1>Price comparison</h1>
 
   <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
   <script type="text/javascript">
@@ -26,27 +27,35 @@
    }
  </script>
 
-<div id="chart_div" style="width: 1200px; height: 900px;"></div>
+ <div id="chart_div" style="width: 1200px; height: 900px;"></div>
 
-<h3>Detailed comparison</h3>
+ <h3>Detailed comparison</h3>
 
-<p><%= @offer.title %></p>
 
-<p><%= @orgininal_offer.title %></p>
+ <p><%= @orgininal_offer.title %></p>
 
-<ul>
-  <% @received_offers.each do |offer| %>
-  <li><%= offer.title %></li>
-  <ul>
-    <% @offer_lines.each do |line| %>
-    <% product = Product.find(line.product_id) %>
-    <% if line.offer_id == offer.id %>
-    <li><%= line.target_offer_line_id %>, <%= product.name %>: $<%= line.price %></li>
+
+ <% @received_offers.each do |offer| %>
+ <div class="content-container">
+   <h3><%= offer.title %></h3>
+   <div class="row">
+    <% @offer_lines.each do |offer_line| %>
+    <% product = Product.find(offer_line.product_id) %>
+    <% if offer_line.offer_id == offer.id %>
+    <div class="col">
+      <ul class="product-list">
+        <li><b>Product</b>: <%= product.name %>: $<%= offer_line.price %></li>
+        <li><b>Brand</b>: <%= offer_line.product.brand %></li>
+        <li><b>SKU</b>: <%= offer_line.product.nr_per_sku %> * <%= offer_line.product.weight_in_kg %> kg</li>
+      </ul>
+    </div>
     <% end %>
     <% end %>
-  </ul>
-  <% end %>
+  </div>
+
+ </div>
+
+<% end %>
 
 
-
-
+</div>
