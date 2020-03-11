@@ -27,7 +27,6 @@ class OffersController < ApplicationController
       @offer.offer_request_id = old_offer.offer_request_id
     end
     @offer.follow_up_on_offer_id = old_offer.id
-
   end
 
   def create_offer
