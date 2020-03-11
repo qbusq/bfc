@@ -1,0 +1,65 @@
+#circle {
+  animation: circle 3s infinite;
+}
+
+@keyframes circle {
+  0%{transform: scale(1)}
+  50%{transform: scale(0.95)}
+  100%{transform: scale(1)}
+}
+
+#first-bar {
+  animation: first-bar 3s infinite;
+}
+
+@keyframes first-bar {
+  0%{opacity: 0;}
+  50%{opacity: 1;}
+  100%{opacity: 0;}
+}
+
+#second-bar {
+  animation: second-bar 3s infinite;
+}
+
+@keyframes second-bar {
+  0%{opacity: 1;}
+  50%{opacity: 0;}
+  100%{opacity: 1;}
+}
+
+#first-dot {
+  animation: first-dot 3s infinite;
+}
+
+@keyframes first-dot {
+  0%{opacity: 1;}
+  25%{opacity: 0;}
+  50%{opacity: 1;}
+  75%{opacity: 1;}
+  100%{opacity: 1;}
+}
+
+#second-dot {
+  animation: second-dot 3s infinite;
+}
+
+@keyframes second-dot {
+  0%{opacity: 1;}
+  25%{opacity: 1;}
+  50%{opacity: 0;}
+  75%{opacity: 1;}
+  100%{opacity: 1;}
+}
+
+#third-dot {
+  animation: third-dot 3s infinite;
+}
+
+@keyframes third-dot {
+  0%{opacity: 1;}
+  25%{opacity: 1;}
+  50%{opacity: 1;}
+  75%{opacity: 0;}
+  100%{opacity: 1;}
+}
