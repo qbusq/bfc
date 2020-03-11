@@ -1,13 +1,13 @@
 $primary: rgb(239, 81, 19);
 
 .banner {
-  height: 50vh;
+  height: 66vh;
   background-position: center center;
   background-size: cover;
   background-repeat: no-repeat;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: center;
 }
 
 .banner h2 {
@@ -33,15 +33,4 @@ $primary: rgb(239, 81, 19);
 
 .buyer-seller-div {
   margin: 15px;
-}
-
-.banner-middle-div {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-}
-
-.title-center-div {
-  flex-direction: column;
-  justify-content: space-between;
 }

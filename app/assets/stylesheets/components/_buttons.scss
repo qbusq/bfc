@@ -46,3 +46,15 @@ $primary: rgb(239, 81, 19);
 .btn-danger {
   color: white;
 }
+
+.login-button-cards {
+  color: white;
+  background-color: $primary;
+  padding: 8px 10vw;
+  border-radius: 5px;
+}
+
+.login-button-cards:hover {
+  color: white;
+  text-decoration: none;
+}
