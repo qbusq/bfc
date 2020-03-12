@@ -71,7 +71,7 @@ class ChartsController < ApplicationController
     offer = Offer.find(offer_line.offer_id)
     producer = User.find(offer.from_user_id)
 
-    return "<div style='padding:5px 5px 5px 5px;'><b>#{producer.company_name}</b> <p style='font-weight: normal;'><b>Product</b>: #{product.name}</p> </div>"
+    return "<div data-target='#{offer_path(offer_line.offer)}' style='padding:5px 5px 5px 5px;'><b>#{producer.company_name}</b> <p style='font-weight: normal;'><b>Product</b>: #{product.name}</p> </div>"
   end
 
 
@@ -97,7 +97,7 @@ class ChartsController < ApplicationController
 
 
     product_position.each do |key, value|
-       @chart_points << [0.5, value, "", "point { size: 0; shape-type: 'circle' ; fill-color: #000000; }", Product.find(key).name]
+       @chart_points << [0.5, value, "", "point { size: 0; shape-type: 'circle' ; fill-color: #000000; }", Product.find(key).name ]
     end
 
   end
