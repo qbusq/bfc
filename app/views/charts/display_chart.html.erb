@@ -40,6 +40,19 @@
     google.charts.setOnLoadCallback(drawChart);
     const chartData = JSON.parse(document.getElementById('chart_div').dataset.target)
 
+    function getCol(matrix, col){
+       var column = [];
+       for(var i=0; i<matrix.length; i++){
+          column.push(matrix[i][col]);
+       }
+       return column;
+    }
+
+    const priceArray = getCol(chartData, 0);
+
+    console.log(Math.ceil(Math.min(...priceArray)));
+
+
     function drawChart() {
        var dataTable = new google.visualization.DataTable();
         dataTable.addColumn('number', 'Price');
@@ -55,7 +68,7 @@
 
         var options = {
           title: 'Product prices',
-          hAxis: {title: 'Price (€/kg)', minValue: 1, maxValue: 1, gridlines: {count: 0}, minorGridlines: {count: 0}},
+          hAxis: {title: 'Price (€/kg)', minValue: Math.ceil(Math.min(...priceArray)), maxValue: Math.ceil(Math.max(...priceArray)), gridlines: {count: 0}, minorGridlines: {count: 0}},
           vAxis: {title: 'Product', minValue: 1, maxValue: 3.5, minorGridlines: {count: 0}, textStyle: {color: '#ffffff'}},
           legend: 'none',
           pointSize: 15,
@@ -104,6 +117,7 @@
          console.log(chartData[selection[0].row])
          var wrapper= document.createElement('div');
          wrapper.innerHTML = chartData[selection[0].row][2]
+
          console.log(wrapper)
          window.location = wrapper.firstChild.dataset.target
                  }
