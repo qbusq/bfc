@@ -187,29 +187,31 @@ p buyer2[:company_name]
 
 p offer_request = Offer.create!(
     from_user: buyer2,
-    title: buyer2[:company_name] + ' - Offer request',
+    title: 'Offer request - Frozen Vegetables',
     date: Date.new(2020,3,3),
     start_date: Date.new(2020,7,1),
     end_date: Date.new(2021,6,30),
     remark: 'Please consult the general terms and conditions that apply to this offer request on our website.',
+    deadline: Date.new(2020,3,10),
     status: 'requested'
    )
 
 p offer_request2 = Offer.create!(
     from_user: buyer2,
-    title: buyer2[:company_name] + ' - Offer request',
+    title: 'Offer request - Dairy',
     date: Date.new(2020,3,7),
     start_date: Date.new(2020,5,1),
     end_date: Date.new(2021,6,30),
     country: 'FR',
     remark: 'Please consult the general terms and conditions that apply to this offer request on our website.',
+    deadline: Date.new(2020,3,17),
     status: 'requested'
    )
 
 p offer1 = Offer.create!(
     from_user: seller1,
     to_user: buyer2,
-    title: buyer2[:company_name] + ' - Offer request: Offer ' + seller1[:company_name],
+    title: 'Offer ' + seller1[:company_name],
     date: Date.new(2020,3,5),
     start_date: Date.new(2020,7,1),
     end_date: Date.new(2021,6,30),
@@ -223,7 +225,7 @@ p offer1 = Offer.create!(
 p offer2 = Offer.create!(
     from_user: seller2,
     to_user: buyer2,
-    title: buyer2[:company_name] + ' - Offer request: Offer ' + seller2[:company_name],
+    title: 'Offer ' + seller2[:company_name],
     date: Date.new(2020,3,6),
     start_date: Date.new(2020,7,1),
     end_date: Date.new(2021,6,30),
@@ -237,7 +239,7 @@ p offer2 = Offer.create!(
 p offer4 = Offer.create!(
     from_user: seller3,
     to_user: buyer2,
-    title: buyer2[:company_name] + ' - Offer request: Offer ' + seller3[:company_name],
+    title: 'Offer ' + seller3[:company_name],
     date: Date.new(2020,3,7),
     start_date: Date.new(2020,7,1),
     end_date: Date.new(2021,6,30),
@@ -250,7 +252,7 @@ p offer4 = Offer.create!(
 p counteroffer1 = Offer.create!(
     from_user: buyer2,
     to_user: seller1,
-    title: buyer2[:company_name] + ' - Offer request: Counteroffer to ' + seller1[:company_name],
+    title: 'Counteroffer to ' + seller1[:company_name],
     date: Date.new(2020,3,15),
     start_date: Date.new(2020,7,1),
     end_date: Date.new(2021,6,30),
@@ -263,7 +265,7 @@ p counteroffer1 = Offer.create!(
 p renewedoffer1 = Offer.create!(
     from_user: seller1,
     to_user: buyer2,
-    title: buyer2[:company_name] + ' - Offer request: Renewed offer ' + seller1[:company_name],
+    title: 'Renewed offer ' + seller1[:company_name],
     date: Date.new(2020,3,17),
     start_date: Date.new(2020,7,1),
     end_date: Date.new(2021,6,30),
@@ -276,7 +278,7 @@ p renewedoffer1 = Offer.create!(
 p counteroffer2 = Offer.create!(
     from_user: buyer2,
     to_user: seller1,
-    title: buyer2[:company_name] + ' - Offer request: Accepted offer ' + seller1[:company_name],
+    title: 'Accepted offer ' + seller1[:company_name],
     date: Date.new(2020,3,20),
     start_date: Date.new(2020,7,1),
     end_date: Date.new(2021,6,30),
@@ -290,7 +292,7 @@ p counteroffer2 = Offer.create!(
 p renewedoffer2 = Offer.create!(
     from_user: seller1,
     to_user: buyer2,
-    title: buyer2[:company_name] + ' - Contracted supplier: ' + seller1[:company_name],
+    title: 'Contracted supplier: ' + seller1[:company_name],
     date: Date.new(2020,3,21),
     start_date: Date.new(2020,7,1),
     end_date: Date.new(2021,6,30),
@@ -890,7 +892,7 @@ p product_certificates = ProductCertificate.create!([
 
 p offer_request3 = Offer.create!(
     from_user: buyer2,
-    title: buyer2[:company_name] + ' - Offer request',
+    title: 'Offer request - Frozen Berries',
     date: Date.new(2020,3,5),
     start_date: Date.new(2020,7,1),
     end_date: Date.new(2021,6,30),
@@ -902,7 +904,7 @@ p offer_request3 = Offer.create!(
 p offer5 = Offer.create!(
     from_user: seller2,
     to_user: buyer2,
-    title: buyer2[:company_name] + ' - Offer request: Offer ' + seller2[:company_name],
+    title: 'Offer ' + seller2[:company_name],
     date: Date.new(2020,3,6),
     start_date: Date.new(2020,7,1),
     end_date: Date.new(2021,6,30),
@@ -915,7 +917,7 @@ p offer5 = Offer.create!(
 p offer6 = Offer.create!(
     from_user: seller5,
     to_user: buyer2,
-    title: buyer2[:company_name] + ' - Offer request: Offer ' + seller5[:company_name],
+    title: 'Offer ' + seller5[:company_name],
     date: Date.new(2020,3,8),
     start_date: Date.new(2020,7,1),
     end_date: Date.new(2021,6,30),
@@ -928,7 +930,7 @@ p offer6 = Offer.create!(
 p offer7 = Offer.create!(
     from_user: seller9,
     to_user: buyer2,
-    title: buyer2[:company_name] + ' - Offer request: Offer ' + seller9[:company_name],
+    title: 'Offer ' + seller9[:company_name],
     date: Date.new(2020,3,10),
     start_date: Date.new(2020,7,1),
     end_date: Date.new(2021,6,30),
@@ -941,7 +943,7 @@ p offer7 = Offer.create!(
 p offer8 = Offer.create!(
     from_user: seller10,
     to_user: buyer2,
-    title: buyer2[:company_name] + ' - Offer request: Offer ' + seller10[:company_name],
+    title: 'Offer ' + seller10[:company_name],
     date: Date.new(2020,3,12),
     start_date: Date.new(2020,7,1),
     end_date: Date.new(2021,6,30),
@@ -1150,6 +1152,6 @@ p offer_line41 = OfferLine.create!(
     quantity_in_tons: 65,
     target_offer_line: offer_line27,
     alternative_to_target: true,
-    price: 3.5
+    price: 4.15
    )
 
