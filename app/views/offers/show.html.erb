@@ -2,7 +2,7 @@
   <h1><%= @offer.title %></h1>
   <% if @offer.status == "confirmed" %>
   <div class="button-frame">
-    <a href="/offers/<%= @offer.id %>.pdf" class="btn btn-success">Download contract</a>
+    <a href="/offers/<%= @offer.id %>.pdf" class="btn btn-success" target="blank">Download contract</a>
   </div>
   <div class="backlink-div" data-url="<%= contracts_offers_path %>" style="cursor: pointer;">
     <i class="fas fa-chevron-left" data-url="<%= contracts_offers_path %>"></i>
