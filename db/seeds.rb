@@ -5,15 +5,15 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
-User.destroy_all
 Offer.destroy_all
-OfferLine.destroy_all
+User.destroy_all
 Product.destroy_all
+ProdCategory.destroy_all
+OfferLine.destroy_all
 Certificate.destroy_all
 CompanyCertificate.destroy_all
 ProductCertificate.destroy_all
 
-ProdCategory.destroy_all
 require 'nokogiri'
 
 file      = File.open('./lib/food.xml')
@@ -30,7 +30,7 @@ document.search('//brick').each do |brick|
    }])
 end
 
-ProdCategory.where gpc_brick: ['10000204', '10000270']
+prod_categories = ProdCategory.where gpc_brick: ['10000204', '10000270']
 # ==> the id's are 233 and 236
 
 require 'json'
@@ -136,7 +136,7 @@ buyer2 = User.create!(
   {
     email: 'buyer2@gmail.com',
     password: '369852abc!',
-    company_name: 'Continental Foods',
+    company_name: 'Food Servilicious',
     address: '18 Rue du Boulet, Brussels',
     country: 'BE',
     user_type: 'food service',
@@ -185,6 +185,7 @@ p offer1 = Offer.create!(
     follow_up_on_offer: offer_request,
     status: 'sent'
    )
+
 p offer2 = Offer.create!(
     from_user: seller2,
     to_user: buyer2,
@@ -196,7 +197,20 @@ p offer2 = Offer.create!(
     remark: 'Offer subject to unsold',
     offer_request: offer_request,
     follow_up_on_offer: offer_request,
-    status: 'sent'
+    status: 'pending'
+   )
+
+p offer4 = Offer.create!(
+    from_user: seller3,
+    to_user: buyer2,
+    title: buyer2[:company_name] + ' - Offer request: Offer ' + seller3[:company_name],
+    date: Date.new(2020,3,7),
+    start_date: Date.new(2020,7,1),
+    end_date: Date.new(2021,6,30),
+    remark: 'Offer subject to unsold',
+    offer_request: offer_request,
+    follow_up_on_offer: offer_request,
+    status: 'pending'
    )
 
 p counteroffer1 = Offer.create!(
@@ -297,7 +311,7 @@ p peas1 = Product.create!(
     weight_in_kg: 2.5,
     nr_per_sku: 4,
     user: buyer2,
-    prod_category_id: 233
+    prod_category: prod_categories.first
    )
 
 p carrots1 = Product.create!(
@@ -308,7 +322,7 @@ p carrots1 = Product.create!(
     weight_in_kg: 2.5,
     nr_per_sku: 4,
     user: buyer2,
-    prod_category_id: 233
+    prod_category: prod_categories.first
    )
 
 p beans1 = Product.create(
@@ -318,7 +332,7 @@ p beans1 = Product.create(
     private_label: true,
     weight_in_kg: 2.5,
     nr_per_sku: 4,
-    prod_category_id: 233,
+    prod_category: prod_categories.first,
     user: buyer2
    )
 
@@ -330,7 +344,7 @@ p peas2 = Product.create(
     weight_in_kg: 2.5,
     nr_per_sku: 4,
     user: seller1,
-    prod_category_id: 233
+    prod_category: prod_categories.first
    )
 
 p carrots2 = Product.create(
@@ -341,7 +355,7 @@ p carrots2 = Product.create(
     weight_in_kg: 5,
     nr_per_sku: 2,
     user: seller1,
-    prod_category_id: 233
+    prod_category: prod_categories.first
    )
 
 p peas3 = Product.create(
@@ -352,7 +366,7 @@ p peas3 = Product.create(
     weight_in_kg: 2.5,
     nr_per_sku: 4,
     user: seller2,
-    prod_category_id: 233
+    prod_category: prod_categories.first
    )
 
 p beans2 = Product.create(
@@ -363,7 +377,7 @@ p beans2 = Product.create(
     weight_in_kg: 10,
     nr_per_sku: 1,
     user: seller2,
-    prod_category_id: 233
+    prod_category: prod_categories.first
    )
 
 p cherries = Product.create(
@@ -372,7 +386,7 @@ p cherries = Product.create(
     weight_in_kg: 25,
     nr_per_sku: 1,
     user: seller2,
-    prod_category_id: 236
+    prod_category: prod_categories.last
    )
 
 p berries = Product.create(
@@ -381,7 +395,7 @@ p berries = Product.create(
     weight_in_kg: 10,
     nr_per_sku: 1,
     user: seller2,
-    prod_category_id: 236
+    prod_category: prod_categories.last
    )
 
 p offer_line1 = OfferLine.create!(
