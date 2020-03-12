@@ -5,8 +5,6 @@
     <p>You currently have no received offers.</p>
   <% else %>
   <h2>Offers responding to your requests</h2>
-    <!--Group by offer request-->
-    <!-- @requested_offers.each BUT @offers should be selected on offer_request_id -->
     <% @offers.group_by(&:offer_request_id).each do |offer_request_id, offers| %>
       <h3><%= Offer.find(offer_request_id).title %></h3>
       <% offers.each do |offer| %>
