@@ -29,7 +29,7 @@
                 <div class="user-info-details-text">
                   <h2>Producer: <%= user.company_name %></h2>
                   <p>Address: <%= user.address %>, <%= user.country %></p>
-                  <p><b><i class="fas fa-shopping-cart"></i> <%= link_to "Request an offer" ,new_offer_path(user) %></b></p>
+                  <p><b><%= link_to '<i class="fas fa-shopping-cart"></i> Request an offer'.html_safe ,new_offer_path(user) %></b></p>
                 </div>
                 <div class="cards">
                   <% products.each do |product| %>
@@ -48,7 +48,7 @@
                 <div class="user-info-details-text">
                   <h2>Producer: <%= user.company_name %></h2>
                   <p>Address: <%= user.address %>, <%= user.country %></p>
-                  <p><b><i class="fas fa-shopping-cart"></i> <%= link_to "Request an offer" ,new_offer_path(user) %></b></p>
+                  <p><b><%= link_to '<i class="fas fa-shopping-cart"></i> Request an offer'.html_safe ,new_offer_path(user) %></b></p>
                 </div>
                 <div class="cards">
                   <% user.products.each do |product| %>
@@ -61,10 +61,10 @@
         <% end %>
       <% end %>
     </div>
-    <div
-    id="map"
-    data-markers="<%= @markers.to_json %>"
-    data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>">
-  </div>
-  </div>
+
+      <div
+      id="map"
+      data-markers="<%= @markers.to_json %>"
+      data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>"></div>
+    </div>
 </div>
