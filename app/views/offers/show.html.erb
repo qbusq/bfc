@@ -4,6 +4,20 @@
   <div class="button-frame">
     <a href="/offers/<%= @offer.id %>.pdf" class="btn btn-success">Download contract</a>
   </div>
+  <div class="backlink-div" data-url="<%= contracts_offers_path %>" style="cursor: pointer;">
+    <i class="fas fa-chevron-left" data-url="<%= contracts_offers_path %>"></i>
+    <%= link_to 'All contracts', contracts_offers_path, class: 'backlink' %>
+  </div>
+  <% elsif @offer.status == "requested" %>
+  <div class="backlink-div" data-url="<%= offers_requested_offers_path %>" style="cursor: pointer;">
+    <i class="fas fa-chevron-left" data-url="<%= contracts_offers_path %>"></i>
+    <%= link_to 'All offer request', offers_requested_offers_path, class: 'backlink' %>
+  </div>
+  <% else %>
+  <div class="backlink-div" data-url="<%= offers_received_offers_path %>" style="cursor: pointer;">
+    <i class="fas fa-chevron-left" data-url="<%= contracts_offers_path %>"></i>
+    <%= link_to 'All offers', offers_received_offers_path, class: 'backlink' %>
+  </div>
   <% end %>
   <br>
   <div class="content-container">
