@@ -5,6 +5,8 @@
     <p>You currently have no received offers.</p>
   <% else %>
   <h2>Offers responding to your offer requests</h2>
+    <!--Group by offer request-->
+    <!-- @requested_offers.each BUT @offers should be selected on offer_request_id -->
     <% @offers.each do |offer| %>
       <% unless offer.offer_request_id == nil || offer.status == "accepted" %>
         <div class="card-user">
@@ -19,7 +21,7 @@
   <div class="content-container">
   <h2> Spontaneous offers</h2>
     <% if @spontaneous_offers.empty? %>
-      <p>You currently have no spontaenous offers.</p>
+      <p>You currently have no spontaneous offers.</p>
     <% else %>
       <% @spontaneous_offers.each do |offer| %>
           <div class="card-user">

@@ -92,7 +92,7 @@ buyer2 = User.create!(
   {
     email: 'buyer2@gmail.com',
     password: '369852abc!',
-    company_name: 'Gastro Gut Essen',
+    company_name: 'Food Servilicious',
     address: '18 Lagerstraße, Hamburg',
     country: 'DE',
     user_type: 'food service',
@@ -152,7 +152,7 @@ p offer2 = Offer.create!(
     remark: 'Offer subject to unsold',
     offer_request: offer_request,
     follow_up_on_offer: offer_request,
-    status: 'sent'
+    status: 'pending'
    )
 
 p counteroffer1 = Offer.create!(

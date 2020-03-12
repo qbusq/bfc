@@ -31,16 +31,36 @@
       </div>
     </div>
     <div class="button-frame">
-      <% if @offer.status == "sent" %>
-      <div>
-        <%= link_to "Send counter offer", offer_c_offers_path(@offer), method: :get, class: "btn btn-secondary" %>
-      </div>
-      <div>
-        <%= link_to "Accept", offer_path(@offer, offer: {status: "accepted"}), method: :put, class: "btn btn-success" %>
-      </div>
-      <div>
-        <%= link_to "Decline", offer_path(@offer, offer: {status: "declined"}), method: :put, class: "btn btn-danger" %>
-      </div>
+      <% if @offer.status == "pending" %>
+        <div>
+          <%= link_to "Send counter offer", offer_c_offers_path(@offer), method: :get, class: "btn btn-secondary" %>
+        </div>
+        <div>
+          <%= link_to "Accept", offer_path(@offer, offer: {status: "accepted"}), method: :put, class: "btn btn-success" %>
+        </div>
+        <div>
+          <%= link_to "Decline", offer_path(@offer, offer: {status: "declined"}), method: :put, class: "btn btn-danger" %>
+        </div>
+        <% if @offer.offer_request_id != @offer.follow_up_on_offer_id %>
+          <div><!--path still to be set correctly -->
+            <%= link_to "Offer history", offer_c_offers_path(@offer), method: :get, class: "btn btn-info" %>
+          </div>
+        <% end %>
+      <% end %>
+
+      <% if @offer.status == "sent" %><!--normally only if a counter offer by the user is pending -->
+        <div>
+          <%= link_to "Send counter offer", offer_c_offers_path(@offer), method: :get, :title => "You already sent a counter offer: do you want to send another counter offer?", class: "btn btn-secondary" %>
+        </div>
+        <div>
+          <%= link_to "Accept", offer_path(@offer, offer: {status: "accepted"}), method: :put, :title => "You already sent a counter offer: are you sure you want to accept this offer?", class: "btn btn-success" %>
+        </div>
+        <div>
+          <%= link_to "Decline", offer_path(@offer, offer: {status: "declined"}), method: :put, :title => "You already sent a counter offer: are you sure you want to decline this offer?", class: "btn btn-danger" %>
+        </div>
+        <div><!--path still to be set correctly -->
+          <%= link_to "Offer history", offer_c_offers_path(@offer), method: :get, class: "btn btn-info" %>
+        </div>
       <% end %>
 
       <% if current_user.seller && @offer.status == "requested" %>

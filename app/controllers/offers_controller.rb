@@ -36,6 +36,8 @@ class OffersController < ApplicationController
     @offer.offer_line = @offer_line
 
     if @offer.save
+    prev_offer = Offer.find(id: @offer.follow_up_on_offer_id)
+    prev_offer.status = 'sent'
       if @offer.status == 'confirmed'
         redirect_to contracts_offers_path
       else
@@ -71,11 +73,20 @@ class OffersController < ApplicationController
     @all_offers = Offer.all
   end
 
-  def offers_received #status "sent"
-    @offers = Offer.where(to_user_id: current_user.id).where(status: "sent")
+  def offers_received # mainly status "pending"
+    @offers = Offer.where(to_user_id: current_user.id).where(status: "pending")
+    # still need to correct, to include the last offers that have a pending counteroffer:
+    #@offers << Offer.where(from_user_id: current_user.id).where(status: "pending").where(id: follow_up_on_offer.id)
     @accepted_offers = Offer.where(to_user_id: current_user.id).where(status: "accepted")
     @spontaneous_offers = Offer.where(to_user_id: current_user.id).where(offer_request_id: nil)
     # @requested_offers = Offer.where(to_user_id: current_user.id).where(offer_request_id: != nil)
+  end
+
+  def offers_trail #status "sent"
+    # the offer history per offer request per supplier, including the counter offers of the buyer:
+    req_trail = Offer.where(offer_request_id: params[:offer_request_id])
+    supplier = req_trail.find(follow_up_on_offer_id: offer_request_id).from_user
+    @offers = req_trail.where(supplier: [to_user, from_user]).order(follow_up_on_offer_id: :desc)
   end
 
   def contracts #status "confirmed"
