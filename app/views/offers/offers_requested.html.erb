@@ -3,7 +3,7 @@
   <% if current_user.seller? %>
     <h1>Received offer requests</h1>
     <% @all_offers.each do |offer| %>
-      <% if offer.country == current_user.country  %>
+      <% if (offer.status == "requested") && (offer.country == current_user.country || offer.country == "") %>
         <div class="card-user">
           <p><b><%= offer.title %></b></p>
           <p><%= link_to "View request", offer_path(offer) %></p>
