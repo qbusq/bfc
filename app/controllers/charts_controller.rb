@@ -94,10 +94,10 @@ class ChartsController < ApplicationController
       @chart_points << [offer_line.price, product_position[offer_line.target_offer_line.product.id], creat_html(offer_line), "point { size: 13; shape-type: 'circle' ; fill-color: #{user_colours[find_user(offer_line)]}; }", ""]
     end
 
-
+    prices = @chart_points.map {|row| row[0]}
 
     product_position.each do |key, value|
-       @chart_points << [0.5, value, "", "point { size: 0; shape-type: 'circle' ; fill-color: #000000; }", Product.find(key).name ]
+       @chart_points << [prices.min, value, "", "point { size: 0; shape-type: 'circle' ; fill-color: #000000; }", Product.find(key).name ]
     end
 
   end
