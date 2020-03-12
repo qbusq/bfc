@@ -71,7 +71,7 @@ class ChartsController < ApplicationController
     offer = Offer.find(offer_line.offer_id)
     producer = User.find(offer.from_user_id)
 
-    return "<div data-target='#{offer_path(offer_line.offer)}' style='padding:5px 5px 5px 5px;'><b>#{producer.company_name}</b> <p style='font-weight: normal;'><b>Product</b>: #{product.name}</p> </div>"
+    return "<div data-target='#{offer_path(offer_line.offer)}' style='padding:5px 5px 5px 5px;'><b>#{producer.company_name}</b> <p style='font-weight: normal;'><b>Product</b>: #{product.name} <br><b>Price</b>: €#{offer_line.price} per/kg</p></div>"
   end
 
 
