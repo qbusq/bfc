@@ -25,6 +25,8 @@ const initMapbox = () => {
       .setPopup(popup)
       .addTo(map);
     });
+      fitMapToMarkers(map, markers);
+
   }
 };
 

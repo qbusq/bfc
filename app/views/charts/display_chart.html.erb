@@ -1,5 +1,5 @@
 <div class="container">
-  <h1>Price comparison</h1>
+  <h2>Price comparison</h2>
 
 
  <div id="chart_div" style="width: 1200px; height: 900px;" data-target="<%=  @chart_points.to_json %>"></div>
@@ -12,7 +12,7 @@
 
  <% @received_offers.each do |offer| %>
  <div class="content-container">
-   <h3><%= offer.title %></h3>
+   <h3><%= link_to offer.title, offer_path(offer) %></h3>
    <div class="row">
     <% @offer_lines.each do |offer_line| %>
     <% product = Product.find(offer_line.product_id) %>

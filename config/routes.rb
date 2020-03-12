@@ -10,6 +10,7 @@ Rails.application.routes.draw do
   resources :offers do
     get 'c_offers', to: 'offers#new_offer'
     post 'c_offers', to: 'offers#create_offer'
+    get 'offer_history', to: 'offers#offers_trail'
 
     resources :offer_lines, only: [:new, :create, :index, :destroy]
     resources :offers
