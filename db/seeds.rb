@@ -231,7 +231,7 @@ p offer2 = Offer.create!(
     remark: 'Offer subject to unsold',
     offer_request: offer_request,
     follow_up_on_offer: offer_request,
-    status: 'pending'
+    status: 'declined'
    )
 
 p offer4 = Offer.create!(
@@ -244,7 +244,7 @@ p offer4 = Offer.create!(
     remark: 'Offer subject to unsold',
     offer_request: offer_request,
     follow_up_on_offer: offer_request,
-    status: 'pending'
+    status: 'declined'
    )
 
 p counteroffer1 = Offer.create!(
@@ -450,7 +450,7 @@ p green_asparagus1 = Product.create(
     nr_per_sku: 2,
     user: seller2,
     brand: "Spring Produce",
-    prod_category: prod_categories.last
+    prod_category: prod_categories.first
   )
 green_asparagus1.photo.attach(io: open("https://source.unsplash.com/Yc_yUCFKNF4/1600x900"), filename: 'asparagus.jpg')
 
@@ -470,7 +470,7 @@ p green_asparagus3 = Product.create(
     nr_per_sku: 6,
     private_label: true,
     user: seller5,
-    prod_category: prod_categories.last
+    prod_category: prod_categories.first
   )
 green_asparagus3.photo.attach(io: open("https://source.unsplash.com/Yc_yUCFKNF4/1600x900"), filename: 'asparagus.jpg')
 
@@ -519,7 +519,7 @@ p oranges1 = Product.create(
     nr_per_sku: 2,
     user: seller9,
     private_label: true,
-    prod_category: prod_categories.first
+    prod_category: prod_categories.last
   )
 oranges1.photo.attach(io: open("https://source.unsplash.com/ZZU9Wqzpj-M/1600x900"), filename: 'oranges.jpg')
 
@@ -887,4 +887,269 @@ p product_certificates = ProductCertificate.create!([
 ])
 
 
+
+p offer_request3 = Offer.create!(
+    from_user: buyer2,
+    title: buyer2[:company_name] + ' - Offer request',
+    date: Date.new(2020,3,5),
+    start_date: Date.new(2020,7,1),
+    end_date: Date.new(2021,6,30),
+    remark: 'Please consult the general terms and conditions that apply to this offer request on our website.',
+    deadline: Date.new(2020,3,12),
+    status: 'requested'
+   )
+
+p offer5 = Offer.create!(
+    from_user: seller2,
+    to_user: buyer2,
+    title: buyer2[:company_name] + ' - Offer request: Offer ' + seller2[:company_name],
+    date: Date.new(2020,3,6),
+    start_date: Date.new(2020,7,1),
+    end_date: Date.new(2021,6,30),
+    remark: 'Offer subject to unsold',
+    offer_request: offer_request3,
+    follow_up_on_offer: offer_request3,
+    status: 'pending'
+   )
+
+p offer6 = Offer.create!(
+    from_user: seller5,
+    to_user: buyer2,
+    title: buyer2[:company_name] + ' - Offer request: Offer ' + seller5[:company_name],
+    date: Date.new(2020,3,8),
+    start_date: Date.new(2020,7,1),
+    end_date: Date.new(2021,6,30),
+    remark: 'Offer subject to unsold',
+    offer_request: offer_request3,
+    follow_up_on_offer: offer_request3,
+    status: 'pending'
+   )
+
+p offer7 = Offer.create!(
+    from_user: seller9,
+    to_user: buyer2,
+    title: buyer2[:company_name] + ' - Offer request: Offer ' + seller9[:company_name],
+    date: Date.new(2020,3,10),
+    start_date: Date.new(2020,7,1),
+    end_date: Date.new(2021,6,30),
+    remark: 'Offer subject to unsold',
+    offer_request: offer_request3,
+    follow_up_on_offer: offer_request3,
+    status: 'pending'
+   )
+
+p offer8 = Offer.create!(
+    from_user: seller10,
+    to_user: buyer2,
+    title: buyer2[:company_name] + ' - Offer request: Offer ' + seller10[:company_name],
+    date: Date.new(2020,3,12),
+    start_date: Date.new(2020,7,1),
+    end_date: Date.new(2021,6,30),
+    remark: 'Offer subject to unsold',
+    offer_request: offer_request3,
+    follow_up_on_offer: offer_request3,
+    status: 'pending'
+   )
+
+p raspberry1 = Product.create(
+    name: 'Frozen raspberries',
+    description: 'IQF raspberries Hotel quality',
+    brand: "Berry Best",
+    weight_in_kg: 2.5,
+    nr_per_sku: 4,
+    user: buyer2,
+    private_label: true,
+    prod_category: prod_categories.last
+   )
+
+p blueberry1 = Product.create(
+    name: 'Frozen blueberries',
+    description: 'IQF blueberries A grade',
+    brand: "Berry Best",
+    weight_in_kg: 2.5,
+    nr_per_sku: 4,
+    user: buyer2,
+    private_label: true,
+    prod_category: prod_categories.last
+   )
+
+p cherry1 = Product.create(
+    name: 'Frozen sourcherries',
+    description: 'IQF sourcherries halves pitless',
+    brand: "Berry Best",
+    weight_in_kg: 2.5,
+    nr_per_sku: 4,
+    user: buyer2,
+    private_label: true,
+    prod_category: prod_categories.last
+   )
+
+p strawberry1 = Product.create(
+    name: 'Frozen strawberries',
+    description: 'IQF strawberries B quality',
+    brand: "Berry Best",
+    weight_in_kg: 2.5,
+    nr_per_sku: 4,
+    user: buyer2,
+    private_label: true,
+    prod_category: prod_categories.last
+   )
+
+
+p strawberry2 = Product.create(
+    name: 'Frozen strawberries',
+    description: 'IQF strawberries Hotel quality',
+    brand: "Dailylicous",
+    weight_in_kg: 2.5,
+    nr_per_sku: 4,
+    user: seller10,
+    private_label: false,
+    prod_category: prod_categories.last
+   )
+
+
+p offer_line25 = OfferLine.create!(
+    offer: offer_request3,
+    product: raspberry1,
+    quantity_in_tons: 10
+   )
+
+p offer_line26 = OfferLine.create!(
+    offer: offer_request3,
+    product: blueberry1,
+    quantity_in_tons: 7
+   )
+
+p offer_line27 = OfferLine.create!(
+    offer: offer_request3,
+    product: strawberry1,
+    quantity_in_tons: 65
+   )
+
+p offer_line28 = OfferLine.create!(
+    offer: offer_request3,
+    product: cherry1,
+    quantity_in_tons: 43
+   )
+
+
+p offer_line29 = OfferLine.create!(
+    offer: offer5,
+    product: raspberry1,
+    quantity_in_tons: 10,
+    target_offer_line: offer_line25,
+    alternative_to_target: false,
+    price: 5.85
+   )
+
+p offer_line30 = OfferLine.create!(
+    offer: offer5,
+    product: blueberry1,
+    quantity_in_tons: 7,
+    target_offer_line: offer_line26,
+    alternative_to_target: false,
+    price: 7.65
+   )
+
+p offer_line31 = OfferLine.create!(
+    offer: offer5,
+    product: cherry1,
+    quantity_in_tons: 43,
+    target_offer_line: offer_line28,
+    alternative_to_target: false,
+    price: 4.75
+   )
+
+p offer_line32 = OfferLine.create!(
+    offer: offer7,
+    product: strawberry1,
+    quantity_in_tons: 65,
+    target_offer_line: offer_line27,
+    alternative_to_target: false,
+    price: 3.25
+   )
+
+
+p offer_line33 = OfferLine.create!(
+    offer: offer6,
+    product: raspberry1,
+    quantity_in_tons: 10,
+    target_offer_line: offer_line25,
+    alternative_to_target: false,
+    price: 6.69
+   )
+
+p offer_line34 = OfferLine.create!(
+    offer: offer6,
+    product: blueberry1,
+    quantity_in_tons: 7,
+    target_offer_line: offer_line26,
+    alternative_to_target: false,
+    price: 8.8
+   )
+
+p offer_line35 = OfferLine.create!(
+    offer: offer6,
+    product: strawberry1,
+    quantity_in_tons: 65,
+    target_offer_line: offer_line27,
+    alternative_to_target: false,
+    price: 4.9
+   )
+
+p offer_line36 = OfferLine.create!(
+    offer: offer6,
+    product: cherry1,
+    quantity_in_tons: 43,
+    target_offer_line: offer_line28,
+    alternative_to_target: false,
+    price: 5.95
+   )
+
+
+p offer_line37 = OfferLine.create!(
+    offer: offer8,
+    product: raspberry1,
+    quantity_in_tons: 10,
+    target_offer_line: offer_line25,
+    alternative_to_target: false,
+    price: 7.3
+   )
+
+p offer_line38 = OfferLine.create!(
+    offer: offer8,
+    product: blueberry1,
+    quantity_in_tons: 7,
+    target_offer_line: offer_line26,
+    alternative_to_target: false,
+    price: 7.5
+   )
+
+p offer_line39 = OfferLine.create!(
+    offer: offer8,
+    product: strawberry1,
+    quantity_in_tons: 65,
+    target_offer_line: offer_line27,
+    alternative_to_target: false,
+    price: 5.15
+   )
+
+p offer_line40 = OfferLine.create!(
+    offer: offer8,
+    product: cherry1,
+    quantity_in_tons: 43,
+    target_offer_line: offer_line28,
+    alternative_to_target: false,
+    price: 5.55
+   )
+
+
+p offer_line41 = OfferLine.create!(
+    offer: offer8,
+    product: strawberry2,
+    quantity_in_tons: 65,
+    target_offer_line: offer_line27,
+    alternative_to_target: true,
+    price: 3.5
+   )
 
