@@ -82,7 +82,7 @@ seller4 = User.create!(
     email: 'seller4@gmail.com',
     password: 'aspargus1234',
     company_name: 'The Green Company',
-    address: '31 Ransbergstraat, Linter',
+    address: "Rue Pont d'Avroy 63, Liège",
     country: 'BE',
     user_type: 'processor',
     seller: true
