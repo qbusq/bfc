@@ -55,22 +55,58 @@
 
         var options = {
           title: 'Product prices',
-          hAxis: {title: 'Price', minValue: 1, maxValue: 1, gridlines: {count: 0}, minorGridlines: {count: 0}},
-          vAxis: {title: 'Product', minValue: 1, maxValue: 3.5, minorGridlines: {count: 0}},
+          hAxis: {title: 'Price (€/kg)', minValue: 1, maxValue: 1, gridlines: {count: 0}, minorGridlines: {count: 0}},
+          vAxis: {title: 'Product', minValue: 1, maxValue: 3.5, minorGridlines: {count: 0}, textStyle: {color: '#ffffff'}},
           legend: 'none',
           pointSize: 15,
-          tooltip: { isHtml: true }
+          tooltip: { isHtml: true },
+          annotations: {
+              boxStyle: {
+                // Color of the box outline.
+                stroke: '#888',
+                // Thickness of the box outline.
+                strokeWidth: 1,
+                // x-radius of the corner curvature.
+                rx: 5,
+                // y-radius of the corner curvature.
+                ry: 5,
+                // Attributes for linear gradient fill.
+                gradient: {
+                  // Start color for gradient.
+                  color1: '#fbf6a7',
+                  // Finish color for gradient.
+                  color2: '#33b679',
+                  // Where on the boundary to start and
+                  // end the color1/color2 gradient,
+                  // relative to the upper left corner
+                  // of the boundary.
+                  x1: '0%', y1: '0%',
+                  x2: '100%', y2: '100%',
+                  // If true, the boundary for x1,
+                  // y1, x2, and y2 is the box. If
+                  // false, it's the entire chart.
+                  useObjectBoundingBoxUnits: true
+                }
+              }
+            }
+
         };
 
         var chart = new google.visualization.ScatterChart(document.getElementById('chart_div'));
         chart.draw(dataTable, options);
 
+        google.visualization.events.addListener(chart, 'select', selectHandler);
 
+        function selectHandler() {
+          var selection = chart.getSelection();
+          console.log(selection[0].row);
 
+         console.log(chartData[selection[0].row])
+         var wrapper= document.createElement('div');
+         wrapper.innerHTML = chartData[selection[0].row][2]
+         console.log(wrapper)
+         window.location = wrapper.firstChild.dataset.target
+                 }
 
-
-     // var chart = new google.visualization.ScatterChart(document.getElementById('chart_div'));
-
-     //chart.draw(data, options);
    }
  </script>
