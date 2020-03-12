@@ -1,6 +1,7 @@
 <div class="container">
+  <br>
   <div class="content-container">
-    <h1>Register a new product</h1>
+    <h2>Create a new product</h2>
     <%= simple_form_for  [@product] do |f| %>
       <%= f.input :name %>
       <%= f.input :description %>
@@ -12,7 +13,7 @@
       <%= f.input :prod_specification_pdf, as: :file, label: 'Detailed product speficiations' %>
       <%= f.input :photo, as: :file %>
       <%= f.hidden_field :user_id, value: current_user.id %>
-      <%= f.submit  "Register a product", class: "btn btn-success" %>
+      <%= f.submit  "Create a product", class: "btn btn-success" %>
     <% end %>
   </div>
 </div>
