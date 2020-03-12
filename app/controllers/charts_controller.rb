@@ -53,6 +53,7 @@ class ChartsController < ApplicationController
   end
 
   def assign_product_position(offer_lines)
+    # Returns the Hash with the positions of the products on the Y axis
     product_y_position = Hash.new
     products = all_products(offer_lines)
     j = 1
@@ -89,10 +90,16 @@ class ChartsController < ApplicationController
     user_colours = assign_user_colors(@offer_lines)
     product_position = assign_product_position(@offer_lines)
 
-
     @offer_lines.each do |offer_line|
-      @chart_points << [offer_line.price, product_position[offer_line.target_offer_line.product.id], creat_html(offer_line), "point { size: 13; shape-type: 'circle' ; fill-color: #{user_colours[find_user(offer_line)]}; }"]
+      @chart_points << [offer_line.price, product_position[offer_line.target_offer_line.product.id], creat_html(offer_line), "point { size: 13; shape-type: 'circle' ; fill-color: #{user_colours[find_user(offer_line)]}; }", ""]
     end
+
+
+
+    product_position.each do |key, value|
+       @chart_points << [0.5, value, "", "point { size: 0; shape-type: 'circle' ; fill-color: #000000; }", Product.find(key).name]
+    end
+
   end
 
 end
