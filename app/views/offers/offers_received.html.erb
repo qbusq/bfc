@@ -1,10 +1,10 @@
 <div class="container">
-  <h1> <%= current_user.company_name %> - Offers</h1>
+  <br>
   <div class="content-container">
   <% if @offers.empty? %>
     <p>You currently have no received offers.</p>
   <% else %>
-  <h2>Offers responding to your offer requests</h2>
+  <h2>Offers responding to your requests</h2>
     <!--Group by offer request-->
     <!-- @requested_offers.each BUT @offers should be selected on offer_request_id -->
     <% @offers.group_by(&:offer_request_id).each do |offer_request_id, offers| %>
@@ -26,7 +26,7 @@
     <% else %>
       <% @spontaneous_offers.each do |offer| %>
           <div class="card-user">
-            <p><%= link_to offer.title, offer_path(offer) %></p>
+            <p><b><%= link_to offer.title, offer_path(offer) %></b></p>
           </div>
       <% end %>
     <% end %>
@@ -39,7 +39,7 @@
     <% else %>
       <% @accepted_offers.each do |offer| %>
           <div class="card-user">
-            <p><%= link_to offer.title, offer_path(offer) %></p>
+            <p><b><%= link_to offer.title, offer_path(offer) %></b></p>
           </div>
       <% end %>
     <% end %>

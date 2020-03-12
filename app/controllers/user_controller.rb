@@ -15,10 +15,10 @@ class UserController < ApplicationController
 
     elsif params[:search][:location_input] != "" && params[:search][:prod_input] == ""
 
-      @users = User.near(params[:search][:location_input], 20, order: :distance)
+      @users = User.near(params[:search][:location_input], 200, order: :distance)
 
     else
-      all_users = User.near(params[:search][:location_input], 20, order: :distance)
+      all_users = User.near(params[:search][:location_input], 200, order: :distance)
 
       products = Product.joins(:user)
                       .where("name ILIKE ? ", "%#{(params[:search][:prod_input])}%")
@@ -47,7 +47,7 @@ class UserController < ApplicationController
   end
 
   def show
-    @user = User.find(params[:id])
+    @user = User.find_by_hashid(params[:id])
   end
 
 end

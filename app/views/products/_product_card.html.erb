@@ -7,17 +7,16 @@
       <div class="card-product-infos">
         <div class="card-product-description">
           <h2><b><%= @product.name %></b></h2>
-          <p>Brand: <b><%= @product.brand %></b></p>
+          <p><b>Brand:</b> <%= @product.brand %></p>
           <%if @product.private_label %>
             <p><i class="far fa-check-square"></i> Private label</p>
           <% end %>
-          <p>Weight: <b><%= @product.weight_in_kg %> kg</b></p>
-          <p>SKU number: <b><%= @product.nr_per_sku %></b></p>
+          <p><b>SKU</b>: <%= @product.nr_per_sku %> * <%= @product.weight_in_kg %> kg</p>
         </div>
 
         <div class="card-product-info-button">
             <!-- <div> -->
-              <button type="button" class="btn-sm btn-primary" data-toggle="modal" data-target="#product-<%= @product.id %>">
+              <button type="button" class="btn-sm btn-success" data-toggle="modal" data-target="#product-<%= @product.id %>">
               More
               </button>
               <div class="modal fade" id="product-<%= @product.id %>" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">

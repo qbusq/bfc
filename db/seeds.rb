@@ -77,6 +77,50 @@ seller3 = User.create!(
     seller: true
  })
 
+seller4 = User.create!(
+  {
+    email: 'seller4@gmail.com',
+    password: 'aspargus1234',
+    company_name: 'The Green Company',
+    address: '31 Ransbergstraat, Linter',
+    country: 'BE',
+    user_type: 'processor',
+    seller: true
+ })
+
+seller5 = User.create!(
+  {
+    email: 'seller5@gmail.com',
+    password: 'aspargus1234',
+    company_name: 'Fresh and Frozen Co.',
+    address: '11 Rue de Baudémont, Ittre',
+    country: 'BE',
+    user_type: 'processor',
+    seller: true
+ })
+
+seller6 = User.create!(
+  {
+    email: 'seller6@gmail.com',
+    password: 'aspargus1234',
+    company_name: 'Veggies and More',
+    address: '45 Verrekijker, Wingene',
+    country: 'BE',
+    user_type: 'processor',
+    seller: true
+ })
+
+seller7 = User.create!(
+  {
+    email: 'seller7@gmail.com',
+    password: 'aspargus1234',
+    company_name: 'Produce and Flowers',
+    address: '24 Resteleustraat, Geraardsbergen',
+    country: 'BE',
+    user_type: 'processor',
+    seller: true
+ })
+
 buyer1 = User.create!(
   {
     email: 'buyer1@gmail.com',
@@ -93,8 +137,8 @@ buyer2 = User.create!(
     email: 'buyer2@gmail.com',
     password: '369852abc!',
     company_name: 'Food Servilicious',
-    address: '18 Lagerstraße, Hamburg',
-    country: 'DE',
+    address: '18 Rue du Boulet, Brussels',
+    country: 'BE',
     user_type: 'food service',
     seller: false
  })

@@ -2,22 +2,18 @@ $primary: rgb(100, 191, 255);
 
 .secondary-container {
   height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.gray-background {
   background-color: rgb(245, 245, 245);
 }
 
-
-.icon {
-}
-
-svg {
-}
-
 .card-title {
-  font-size: 3vw;
+  font-size: 3.5vh;
   margin-top: 1vh;
-}
-
-.card-content {
 }
 
 #icon-svg {
@@ -25,26 +21,19 @@ svg {
   width: 65px;
 }
 
-#circle {
-  animation: circle 3s infinite;
-}
-
-@keyframes circle {
-  0%{transform: scale(1)}
-  50%{transform: scale(0.95)}
-  100%{transform: scale(1)}
-}
-
 .grid {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   grid-gap: 13px;
-  margin: 50px;
+  margin: 30px auto;
+  width: 70vw;
+  max-width: 570px;
 }
 
 @media (max-width: 500px) {
   .grid {
     grid-template-columns: 1fr;
+    margin: 10px;
   }
 }
 
@@ -54,6 +43,24 @@ svg {
   border-radius: 4px;
   height: 280px;
   border-color: white;
+}
+
+.card-front {
+  background-color: white;
+  padding: 10px 15px;
+  border-radius: 4px;
+  max-height: 450px;
+  border-color: white;
+}
+
+.cards-header {
+  margin: 40px 0px 15px 0px;
+  h2 {
+    font-size: 23px;
+  }
+  p {
+    font-size: 10px;
+  }
 }
 
 
@@ -72,7 +79,7 @@ svg {
 }
 
 html, body {
-  overflow-x: hidden;
+  //  overflow-x: hidden;
 }
 
 .full-width-bar {
@@ -118,6 +125,13 @@ html, body {
   grid-gap: 10px;
 }
 
+// .gray-line {
+//   background-color: rgb(206, 206, 206);
+//   width: 90vw;
+//   height: 1px;
+//   margin: auto;
+// }
+
 @media(max-width: 600px) {
   .buyer-middle-div, .seller-middle-div {
     grid-template-columns: 1fr;
@@ -139,6 +153,10 @@ html, body {
 
 .card-content h5 {
   font-size: 30px;
+}
+
+.card-content p {
+  font-size: 3vh;
 }
 
 .card-icon {

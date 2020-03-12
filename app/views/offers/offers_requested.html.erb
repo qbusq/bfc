@@ -1,9 +1,10 @@
 <div class="container">
+  <br>
   <div class="content-container">
   <% if current_user.seller? %>
-    <h1>Received offer requests</h1>
+    <h2>Received offer requests</h2>
     <% @all_offers.each do |offer| %>
-      <% if offer.country == current_user.country  %>
+      <% if (offer.status == "requested") && (offer.country == current_user.country || offer.country == "") %>
         <div class="card-user">
           <p><b><%= offer.title %></b></p>
           <p><%= link_to "View request", offer_path(offer) %></p>
@@ -11,7 +12,7 @@
       <% end %>
     <% end %>
   <% else %>
-    <h1>My sent offer requests</h1>
+    <h2>Ongoing offer requests</h2>
       <% @offers.each do |offer| %>
         <div class="card-user">
           <p><b><%= link_to offer.title, offer_path(offer) %></b></p>
@@ -21,6 +22,9 @@
           <% end %>
         </div>
       <% end %>
+      <div class="button-frame">
+        <%= link_to "Create a new request", new_offer_path, class: "btn btn-success" %>
+      </div>
   <% end %>
   </div>
 </div>

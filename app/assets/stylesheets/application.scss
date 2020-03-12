@@ -17,11 +17,15 @@
   #header, #footer, .navbar { display: none !important;
   }
 
-  .btn .btn-success  {
+  .btn .btn-success {
     display: none !important;
   }
 
   a {
+    display: none !important;
+  }
+
+  .backlink-div {
     display: none !important;
   }
 

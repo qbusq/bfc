@@ -9,7 +9,7 @@
 .user-container {
   margin-top: 20px;
   display: flex;
-  flex-orientation: row;
+  flex-direction: row;
 }
 
 .user-info-details {
@@ -22,4 +22,12 @@
 .user-info-details-text {
   display: flex;
   flex-direction: column;
+
+   a {
+    color: black;
+  }
+
+  a:hover {
+    color: #04df8f;
+  }
 }
