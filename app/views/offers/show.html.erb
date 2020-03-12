@@ -11,7 +11,7 @@
   <% elsif @offer.status == "requested" %>
   <div class="backlink-div" data-url="<%= offers_requested_offers_path %>" style="cursor: pointer;">
     <i class="fas fa-chevron-left" data-url="<%= contracts_offers_path %>"></i>
-    <%= link_to 'All offer request', offers_requested_offers_path, class: 'backlink' %>
+    <%= link_to 'All offer requests', offers_requested_offers_path, class: 'backlink' %>
   </div>
   <% else %>
   <div class="backlink-div" data-url="<%= offers_received_offers_path %>" style="cursor: pointer;">
@@ -23,14 +23,14 @@
   <div class="content-container">
     <h2>Info</h2>
     <% if @offer.status == "requested" %>
-    <%= render "details_offer_request" %>
+      <%= render "details_offer_request" %>
     <% else %>
-    <%= render "confirmed_offer" %>
+      <%= render "confirmed_offer" %>
     <% end %>
     <% if @offer.offer_request_id != nil && @offer.status != "confirmed" %>
-    <div class="button-frame">
-      <%= link_to 'Compare with other offers',  compare_chart_path(@offer), class: "btn btn-success" %>
-    </div>
+      <div class="button-frame">
+        <%= link_to 'Compare with other offers',  compare_chart_path(@offer), class: "btn btn-success" %>
+      </div>
     <% end %>
   </div>
   <br>
@@ -66,8 +66,8 @@
           <%= link_to "Decline", offer_path(@offer, offer: {status: "declined"}), method: :put, class: "btn btn-danger" %>
         </div>
         <% if @offer.offer_request_id != @offer.follow_up_on_offer_id %>
-          <div><!--path correctly ? -->
-            <%= link_to "Offer history", offer_offer_history_path(@offer), method: :get, class: "btn btn-info" %>
+          <div class="backlink-div" data-url="<%= offer_offer_history_path(@offer) %>" style="cursor: pointer;">
+            <%= link_to "Offer history", offer_offer_history_path(@offer), method: :get %>
           </div>
         <% end %>
       <% end %>
@@ -82,8 +82,8 @@
         <div>
           <%= link_to "Decline", offer_path(@offer, offer: {status: "declined"}), method: :put, :title => "You already sent a counter offer: are you sure you want to decline this offer?", class: "btn btn-danger" %>
         </div>
-        <div><!--path correctly ? -->
-          <%= link_to "Offer history", offer_offer_history_path(@offer), method: :get, class: "btn btn-info" %>
+        <div class="backlink-div" data-url="<%= offer_offer_history_path(@offer) %>" style="cursor: pointer;">
+          <%= link_to "Offer history", offer_offer_history_path(@offer), method: :get %>
         </div>
       <% end %>
 
@@ -103,6 +103,12 @@
       <div>
         <%= link_to "Decline", offer_path(@offer, offer: {status: "declined"}), method: :put, class: "btn btn-danger" %>
       </div>
+      <% end %>
+
+      <% if @offer.status == "confirmed" %>
+        <div class="backlink-div" data-url="<%= offer_offer_history_path(@offer) %>" style="cursor: pointer;">
+          <%= link_to "Offer history", offer_offer_history_path(@offer), method: :get %>
+        </div>
       <% end %>
     </div>
   </div>
