@@ -42,8 +42,8 @@
           <%= link_to "Decline", offer_path(@offer, offer: {status: "declined"}), method: :put, class: "btn btn-danger" %>
         </div>
         <% if @offer.offer_request_id != @offer.follow_up_on_offer_id %>
-          <div><!--path still to be set correctly -->
-            <%= link_to "Offer history", offer_c_offers_path(@offer), method: :get, class: "btn btn-info" %>
+          <div><!--path correctly ? -->
+            <%= link_to "Offer history", offer_offer_history_path(@offer), method: :get, class: "btn btn-info" %>
           </div>
         <% end %>
       <% end %>
@@ -58,8 +58,8 @@
         <div>
           <%= link_to "Decline", offer_path(@offer, offer: {status: "declined"}), method: :put, :title => "You already sent a counter offer: are you sure you want to decline this offer?", class: "btn btn-danger" %>
         </div>
-        <div><!--path still to be set correctly -->
-          <%= link_to "Offer history", offer_c_offers_path(@offer), method: :get, class: "btn btn-info" %>
+        <div><!--path correctly ? -->
+          <%= link_to "Offer history", offer_offer_history_path(@offer), method: :get, class: "btn btn-info" %>
         </div>
       <% end %>
 
@@ -82,6 +82,9 @@
       <% end %>
       <% if @offer.status == "confirmed" %>
         <a href="/offers/<%= @offer.id %>.pdf" class="btn btn-success">Download offer</a>
+        <div><!--path correctly ? -->
+          <%= link_to "Offer history", offer_offer_history_path(@offer), method: :get, class: "btn btn-info" %>
+        </div>
       <% end %>
     </div>
   </div>

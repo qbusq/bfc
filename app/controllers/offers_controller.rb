@@ -74,19 +74,16 @@ class OffersController < ApplicationController
   end
 
   def offers_received # mainly status "pending"
-    @offers = Offer.where(to_user_id: current_user.id).where(status: "pending")
-    # still need to correct, to include the last offers that have a pending counteroffer:
-    #@offers << Offer.where(from_user_id: current_user.id).where(status: "pending").where(id: follow_up_on_offer.id)
+    counter_offered = Offer.where(from_user_id: current_user.id).where(status: "pending").pluck(:follow_up_on_offer_id)
+    @offers = Offer.where(to_user_id: current_user.id).where(status: "pending").or(Offer.where(id: counter_offered))
+    # still need to correct, to include the last offers that have a pending countero0ffer:
     @accepted_offers = Offer.where(to_user_id: current_user.id).where(status: "accepted")
     @spontaneous_offers = Offer.where(to_user_id: current_user.id).where(offer_request_id: nil)
     # @requested_offers = Offer.where(to_user_id: current_user.id).where(offer_request_id: != nil)
   end
 
-  def offers_trail #status "sent"
-    # the offer history per offer request per supplier, including the counter offers of the buyer:
-    req_trail = Offer.where(offer_request_id: params[:offer_request_id])
-    supplier = req_trail.find(follow_up_on_offer_id: offer_request_id).from_user
-    @offers = req_trail.where(supplier: [to_user, from_user]).order(follow_up_on_offer_id: :desc)
+  def offers_trail
+        @offer = Offer.find(params[:offer_id])
   end
 
   def contracts #status "confirmed"

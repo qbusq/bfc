@@ -7,8 +7,9 @@
   <h2>Offers responding to your offer requests</h2>
     <!--Group by offer request-->
     <!-- @requested_offers.each BUT @offers should be selected on offer_request_id -->
-    <% @offers.each do |offer| %>
-      <% unless offer.offer_request_id == nil || offer.status == "accepted" %>
+    <% @offers.group_by(&:offer_request_id).each do |offer_request_id, offers| %>
+      <h3><%= Offer.find(offer_request_id).title %></h3>
+      <% offers.each do |offer| %>
         <div class="card-user">
           <p><b><%= link_to offer.title, offer_path(offer) %></b></p>
           <p> <%= link_to '<i class="far fa-chart-bar"></i> Compare with other offers'.html_safe,  compare_chart_path(offer) %></p>

@@ -141,6 +141,7 @@ p offer1 = Offer.create!(
     follow_up_on_offer: offer_request,
     status: 'sent'
    )
+
 p offer2 = Offer.create!(
     from_user: seller2,
     to_user: buyer2,
@@ -149,6 +150,19 @@ p offer2 = Offer.create!(
     start_date: Date.new(2020,7,1),
     end_date: Date.new(2021,6,30),
     country: 'BE',
+    remark: 'Offer subject to unsold',
+    offer_request: offer_request,
+    follow_up_on_offer: offer_request,
+    status: 'pending'
+   )
+
+p offer4 = Offer.create!(
+    from_user: seller3,
+    to_user: buyer2,
+    title: buyer2[:company_name] + ' - Offer request: Offer ' + seller3[:company_name],
+    date: Date.new(2020,3,7),
+    start_date: Date.new(2020,7,1),
+    end_date: Date.new(2021,6,30),
     remark: 'Offer subject to unsold',
     offer_request: offer_request,
     follow_up_on_offer: offer_request,

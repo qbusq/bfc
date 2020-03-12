@@ -1,11 +1,12 @@
 <div class="container">
   <h1> <%= current_user.company_name %></h1>
   <div class="content-container">
-    <h2>Offer history</h2>
-      <% @offers.each do |offer| %>
-        <div class="card-user">
-          <p><%= link_to offer.title, offer_path(offer) %></p>
-        </div>
-      <% end %>
+    <br>
+    <%= while @offer.follow_up_on_offer do %>
+      <div class="card-user">
+        <p><%= link_to @offer.title, offer_path(@offer) %></p>
+      </div>
+    <% @offer = @offer.follow_up_on_offer %>
+    <% end %>
   </div>
 </div>
