@@ -15,6 +15,7 @@ CompanyCertificate.destroy_all
 ProductCertificate.destroy_all
 
 require 'nokogiri'
+require 'open-uri'
 
 file      = File.open('./lib/food.xml')
 document  = Nokogiri::XML(file)
@@ -117,6 +118,39 @@ seller7 = User.create!(
     company_name: 'Produce and Flowers',
     address: '24 Resteleustraat, Geraardsbergen',
     country: 'BE',
+    user_type: 'processor',
+    seller: true
+ })
+
+seller8 = User.create!(
+  {
+    email: 'seller8@gmail.com',
+    password: 'aspargus1234',
+    company_name: 'Danske Vegetables',
+    address: '51 Læssøegade, Kolding',
+    country: 'DK',
+    user_type: 'processor',
+    seller: true
+ })
+
+seller9 = User.create!(
+  {
+    email: 'seller9@gmail.com',
+    password: 'aspargus1234',
+    company_name: 'Sunny Fruits',
+    address: '2 Calle Acropolis De Atenas, Aranjuez',
+    country: 'ES',
+    user_type: 'processor',
+    seller: true
+ })
+
+seller10 = User.create!(
+  {
+    email: 'seller10@gmail.com',
+    password: 'aspargus1234',
+    company_name: 'Sunny Fruits',
+    address: 'Raistinger Str. 43, Herrenberg',
+    country: 'DE',
     user_type: 'processor',
     seller: true
  })
@@ -313,6 +347,7 @@ p peas1 = Product.create!(
     user: buyer2,
     prod_category: prod_categories.first
    )
+  peas1.photo.attach(io: open("https://source.unsplash.com/8walmVeW47A/1600x900"), filename: 'peas.jpg')
 
 p carrots1 = Product.create!(
     name: 'Frozen carrot dices',
@@ -324,6 +359,7 @@ p carrots1 = Product.create!(
     user: buyer2,
     prod_category: prod_categories.first
    )
+  carrots1.photo.attach(io: open("https://source.unsplash.com/yNB8niq1qCk/1600x900"), filename: 'carrots.jpg')
 
 p beans1 = Product.create(
     name: 'Frozen broken beans',
@@ -335,68 +371,165 @@ p beans1 = Product.create(
     prod_category: prod_categories.first,
     user: buyer2
    )
+beans1.photo.attach(io: open("https://source.unsplash.com/8walmVeW47A/1600x900"), filename: 'peas.jpg')
 
 p peas2 = Product.create(
     name: 'Frozen garden peas – extra small',
     description: 'IQF garden peas: 7 - 8mm',
-    brand: 'Veggie',
+    brand: 'Fresh Vegetables',
     private_label: false,
     weight_in_kg: 2.5,
     nr_per_sku: 4,
     user: seller1,
     prod_category: prod_categories.first
    )
+peas2.photo.attach(io: open("https://source.unsplash.com/8walmVeW47A/1600x900"), filename: 'peas.jpg')
 
 p carrots2 = Product.create(
     name: 'Frozen carrot cubes',
     description: 'IQF carrots diced 10x10mm',
-    brand: 'Veggie',
+    brand: 'Fresh Vegetables',
     private_label: false,
     weight_in_kg: 5,
     nr_per_sku: 2,
     user: seller1,
     prod_category: prod_categories.first
    )
+carrots2.photo.attach(io: open("https://source.unsplash.com/yNB8niq1qCk/1600x900"), filename: 'carrots.jpg')
 
 p peas3 = Product.create(
     name: 'Petit pois',
     description: 'Frozen peas extra small (7.5 – 8 mm)',
-    brand: 'Fruity',
+    brand: 'Spring Produce',
     private_label: false,
     weight_in_kg: 2.5,
     nr_per_sku: 4,
     user: seller2,
     prod_category: prod_categories.first
    )
+peas3.photo.attach(io: open("https://source.unsplash.com/8walmVeW47A/1600x900"), filename: 'peas.jpg')
 
 p beans2 = Product.create(
     name: 'Frozen cut beans',
     description: 'IQF beans cut 26mm',
-    brand: 'Fruity',
+    brand: 'Spring Produce',
     private_label: false,
     weight_in_kg: 10,
     nr_per_sku: 1,
     user: seller2,
     prod_category: prod_categories.first
    )
+beans2.photo.attach(io: open("https://source.unsplash.com/8walmVeW47A/1600x900"), filename: 'peas.jpg')
 
 p cherries = Product.create(
     name: 'IQF bio sourcherries',
     description: 'IQF bio sourcherries halves pitless',
+    brand: "Berry Best",
     weight_in_kg: 25,
     nr_per_sku: 1,
     user: seller2,
     prod_category: prod_categories.last
    )
+cherries.photo.attach(io: open("https://source.unsplash.com/IkiUJ4XNC10/1600x900"), filename: 'cherries.jpg')
 
 p berries = Product.create(
     name: 'IQF bio blueberries',
     description: 'IQF bio blueberries B quality',
+    brand: "Berry Best",
     weight_in_kg: 10,
     nr_per_sku: 1,
     user: seller2,
+    private_label: true,
     prod_category: prod_categories.last
    )
+berries.photo.attach(io: open("https://source.unsplash.com/h4zs8fbybq4/1600x900"), filename: 'berries.jpg')
+
+p green_asparagus1 = Product.create(
+    name: 'Green asparagus',
+    weight_in_kg: 5,
+    nr_per_sku: 2,
+    user: seller2,
+    brand: "Spring Produce",
+    prod_category: prod_categories.last
+  )
+green_asparagus1.photo.attach(io: open("https://source.unsplash.com/Yc_yUCFKNF4/1600x900"), filename: 'asparagus.jpg')
+
+p green_asparagus2 = Product.create(
+    name: 'Green asparagus',
+    weight_in_kg: 8,
+    nr_per_sku: 3,
+    brand: "Best Asparagus",
+    user: seller6,
+    prod_category: prod_categories.first
+  )
+green_asparagus2.photo.attach(io: open("https://source.unsplash.com/Yc_yUCFKNF4/1600x900"), filename: 'asparagus.jpg')
+
+p green_asparagus3 = Product.create(
+    name: 'Whole green asparagus',
+    weight_in_kg: 4,
+    nr_per_sku: 6,
+    private_label: true,
+    user: seller5,
+    prod_category: prod_categories.last
+  )
+green_asparagus3.photo.attach(io: open("https://source.unsplash.com/Yc_yUCFKNF4/1600x900"), filename: 'asparagus.jpg')
+
+p green_asparagus4 = Product.create(
+    name: 'Green asparagus',
+    weight_in_kg: 10,
+    nr_per_sku: 4,
+    user: seller7,
+    prod_category: prod_categories.first
+  )
+green_asparagus4.photo.attach(io: open("https://source.unsplash.com/Yc_yUCFKNF4/1600x900"), filename: 'asparagus.jpg')
+
+p white_asparagus1 = Product.create(
+    name: 'White asparagus',
+    weight_in_kg: 5,
+    nr_per_sku: 2,
+    brand: "Best Asparagus",
+    user: seller6,
+    prod_category: prod_categories.first
+  )
+white_asparagus1.photo.attach(io: open("https://source.unsplash.com/K8PnrUSVl_s/1600x900"), filename: 'white_asparagus.jpg')
+
+p white_asparagus2 = Product.create(
+    name: 'White asparagus',
+    weight_in_kg: 5,
+    nr_per_sku: 2,
+    private_label: true,
+    user: seller5,
+    prod_category: prod_categories.first
+  )
+white_asparagus2.photo.attach(io: open("https://source.unsplash.com/K8PnrUSVl_s/1600x900"), filename: 'white_asparagus.jpg')
+
+p potatoes1 = Product.create(
+    name: 'Potatoes',
+    weight_in_kg: 10,
+    nr_per_sku: 2,
+    user: seller8,
+    brand: "Good earth",
+    prod_category: prod_categories.first
+  )
+potatoes1.photo.attach(io: open("https://source.unsplash.com/B0s3Xndk6tw/1600x900"), filename: 'potatoes.jpg')
+
+p oranges1 = Product.create(
+    name: 'Oranges',
+    weight_in_kg: 10,
+    nr_per_sku: 2,
+    user: seller9,
+    private_label: true,
+    prod_category: prod_categories.first
+  )
+oranges1.photo.attach(io: open("https://source.unsplash.com/ZZU9Wqzpj-M/1600x900"), filename: 'oranges.jpg')
+
+p lettuce = Product.create(
+    name: 'Lettuce',
+    weight_in_kg: 10,
+    nr_per_sku: 2,
+    user: seller10,
+    prod_category: prod_categories.first
+  )
 
 p offer_line1 = OfferLine.create!(
     offer: offer_request,
