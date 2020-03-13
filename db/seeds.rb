@@ -450,7 +450,7 @@ p green_asparagus1 = Product.create(
     name: 'Green asparagus',
     weight_in_kg: 5,
     nr_per_sku: 2,
-    user: seller2,
+    user: buyer2,
     brand: "Spring Produce",
     prod_category: prod_categories.first
   )
