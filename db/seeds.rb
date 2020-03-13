@@ -148,7 +148,7 @@ seller10 = User.create!(
   {
     email: 'seller10@gmail.com',
     password: 'aspargus1234',
-    company_name: 'Sunny Fruits',
+    company_name: 'HerFruit',
     address: 'Raistinger Str. 43, Herrenberg',
     country: 'DE',
     user_type: 'processor',
