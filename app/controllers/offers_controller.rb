@@ -41,7 +41,7 @@ class OffersController < ApplicationController
       if @offer.status == 'confirmed'
         redirect_to contracts_offers_path
       else
-        redirect_to offer_path(@offer)
+        redirect_to offers_received_offers_path
       end
     else
       render :new_offer
