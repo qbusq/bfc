@@ -109,6 +109,16 @@
         chart.draw(dataTable, options);
 
         google.visualization.events.addListener(chart, 'select', selectHandler);
+        google.visualization.events.addListener(chart, 'onmouseover', pointerHover);
+        google.visualization.events.addListener(chart, 'onmouseout', pointerUnHover);
+
+        function pointerHover(){
+          document.getElementById('chart_div').style.cursor = 'pointer'
+        }
+
+        function pointerUnHover(){
+          document.getElementById('chart_div').style.cursor = 'default'
+        }
 
         function selectHandler() {
           var selection = chart.getSelection();
@@ -119,7 +129,7 @@
          wrapper.innerHTML = chartData[selection[0].row][2]
 
          console.log(wrapper)
-         window.location = wrapper.firstChild.dataset.target
+        window.location = wrapper.firstChild.dataset.target
                  }
 
    }

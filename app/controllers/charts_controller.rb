@@ -97,7 +97,7 @@ class ChartsController < ApplicationController
 
 
     product_position.each do |key, value|
-       @chart_points << [0.5, value, "", "point { size: 0; shape-type: 'circle' ; fill-color: #000000; }", Product.find(key).name ]
+       @chart_points << [0.5, value, "", "point { size: 0; shape-type: 'circle' ; fill-color: #000000; cursor: pointer; }", Product.find(key).name ]
     end
 
   end
